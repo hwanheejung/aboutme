@@ -1,4 +1,19 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+import nextra from "nextra";
 
-export default nextConfig;
+const withNextra = nextra({
+  theme: "nextra-theme-docs",
+  themeConfig: "./theme.config.tsx",
+  codeHighlight: false,
+  //     mdxOptions: {
+  //       remarkPlugins: [remarkCodeImport, remarkRemoveFileProp],
+  //       rehypePlugins: [rehypeMdxCodeProps],
+  //     },
+});
+
+export default withNextra({
+  output: "export",
+  images: {
+    unoptimized: true,
+  },
+});
