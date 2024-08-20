@@ -1,0 +1,21 @@
+{
+  "name": "code-block-customizer",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "prism-react-renderer": "^2.3.1",
+    "typescript": "^5.5.4"
+  },
+  "peerDependencies": {
+    "prism-react-renderer": "^2.3.1",
+    "react": "^18",
+    "react-dom": "^18"
+  }
+}
