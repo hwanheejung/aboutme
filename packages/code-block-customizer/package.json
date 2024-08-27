@@ -1,0 +1,38 @@
+{
+  "name": "@aboutme/code-block",
+  "version": "0.0.0",
+  "main": "index.js",
+  "type": "module",
+  "exports": {
+    "./codeblock": {
+      "types": "./CodeBlock.tsx",
+      "default": "./dist/codeblock.js"
+    }
+  },
+  "scripts": {
+    "lint": "eslint *.ts*",
+    "build": "rollup --config",
+    "dev": "npm build --watch"
+  },
+  "author": "hwanheejung",
+  "description": "",
+ 
+  "devDependencies": {
+    "prism-react-renderer": "^2.3.1",
+    "typescript": "^5.5.4",
+
+    "@aboutme/eslint-config": "*",
+    "@aboutme/typescript-config": "*",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/react": "^18.2.61",
+    "@types/react-dom": "^18.2.19",
+    "eslint": "^8.57.0",
+    "rollup": "^4.12.0"
+    
+  },
+  "peerDependencies": {
+    "prism-react-renderer": "^2.3.1",
+    "react": "^18",
+    "react-dom": "^18"
+  }
+}
