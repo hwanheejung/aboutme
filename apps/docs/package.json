@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aboutme/code-block": "*",
     "next": "14.2.5",
     "nextra": "^2.13.4",
     "nextra-theme-docs": "^2.13.4",
@@ -17,6 +18,8 @@
     "rehype-mdx-code-props": "^3.0.1"
   },
   "devDependencies": {
+    "@aboutme/eslint-config": "*",
+    "@aboutme/typescript-config": "*",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

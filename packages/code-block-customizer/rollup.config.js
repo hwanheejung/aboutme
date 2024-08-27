@@ -2,9 +2,10 @@ import typescript from "@rollup/plugin-typescript";
 
 export default [
   {
-    input: "CodeBlock.tsx",
+    input: "src/CodeBlock.tsx",
     output: {
       file: "dist/codeblock.js",
+      format: "esm",
     },
   },
 ].map((entry) => ({

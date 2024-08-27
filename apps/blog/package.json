@@ -9,11 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aboutme/code-block": "*",
     "react": "^18",
     "react-dom": "^18",
     "next": "14.2.6"
   },
   "devDependencies": {
+    "@aboutme/eslint-config": "*",
+    "@aboutme/typescript-config": "*",
     "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
