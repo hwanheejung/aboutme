@@ -10,6 +10,12 @@ export default [
   },
 ].map((entry) => ({
   ...entry,
-  external: ["react/jsx-runtime"],
-  plugins: [typescript()],
+  external: ["react", "react/jsx-runtime"],
+  plugins: [
+    typescript({
+      tsconfig: "./tsconfig.json",
+      declaration: true,
+      declarationDir: "dist",
+    }),
+  ],
 }));
