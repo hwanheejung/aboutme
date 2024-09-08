@@ -11,19 +11,19 @@ const Theme = () => {
   const [theme, setTheme] = useState<ThemeType>(DEFAULT_THEME);
 
   useEffect(() => {
-    if (localStorage.getItem("theme") !== DEFAULT_THEME) {
-      setTheme(localStorage.getItem("theme") as ThemeType);
+    const storedTheme = localStorage.getItem("theme");
+    if (!storedTheme) {
+      localStorage.setItem("theme", DEFAULT_THEME);
+    } else {
+      if (storedTheme !== DEFAULT_THEME) {
+        setTheme(storedTheme as ThemeType);
+      }
     }
   }, []);
 
   useEffect(() => {
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
+    document.documentElement.classList.toggle("dark", theme === "dark");
+    localStorage.setItem("theme", theme);
   }, [theme]);
 
   const toggleTheme = () => {
