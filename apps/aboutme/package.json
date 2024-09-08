@@ -1,5 +1,5 @@
 {
-  "name": "blog",
+  "name": "aboutme",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,7 +11,7 @@
   "dependencies": {
     "@aboutme/code-block": "*",
     "gray-matter": "^4.0.3",
-    "next": "14.2.6",
+    "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18"
   },
