@@ -1,18 +1,18 @@
 "use client";
 
-import { Theme } from "@/types/theme";
+import type { Theme as ThemeType } from "@/types/theme";
 import DarkIcon from "public/icons/theme/dark.svg";
 import LightIcon from "public/icons/theme/light.svg";
 import { useEffect, useState } from "react";
 
-const DEFAULT_THEME: Theme = "dark";
+const DEFAULT_THEME: ThemeType = "dark";
 
 const Theme = () => {
-  const [theme, setTheme] = useState<Theme>(DEFAULT_THEME);
+  const [theme, setTheme] = useState<ThemeType>(DEFAULT_THEME);
 
   useEffect(() => {
     if (localStorage.getItem("theme") !== DEFAULT_THEME) {
-      setTheme(localStorage.getItem("theme") as Theme);
+      setTheme(localStorage.getItem("theme") as ThemeType);
     }
   }, []);
 
