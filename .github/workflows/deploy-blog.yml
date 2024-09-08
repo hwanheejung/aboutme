@@ -28,18 +28,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Change directory to blog
-        run: cd apps/blog
+      - name: Change directory to aboutme
+        run: cd apps/aboutme
 
       - name: Detect package manager
         id: detect-package-manager
         run: |
-          if [ -f "${{ github.workspace }}/apps/blog/yarn.lock" ]; then
+          if [ -f "${{ github.workspace }}/apps/aboutme/yarn.lock" ]; then
             echo "manager=yarn" >> $GITHUB_OUTPUT
             echo "command=install" >> $GITHUB_OUTPUT
             echo "runner=yarn" >> $GITHUB_OUTPUT
             exit 0
-          elif [ -f "${{ github.workspace }}/apps/blog/package.json" ]; then
+          elif [ -f "${{ github.workspace }}/apps/aboutme/package.json" ]; then
             echo "manager=npm" >> $GITHUB_OUTPUT
             echo "command=ci" >> $GITHUB_OUTPUT
             echo "runner=npx --no-install" >> $GITHUB_OUTPUT
@@ -65,24 +65,24 @@ jobs:
         with:
           path: |
             .next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/apps/blog/package-lock.json', '**/apps/blog/yarn.lock') }}-${{ hashFiles('**/apps/blog/**/*.[jt]s', '**/apps/blog/**/*.[jt]sx') }}
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/apps/aboutme/package-lock.json', '**/apps/aboutme/yarn.lock') }}-${{ hashFiles('**/apps/aboutme/**/*.[jt]s', '**/apps/aboutme/**/*.[jt]sx') }}
           restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('**/apps/blog/package-lock.json', '**/apps/blog/yarn.lock') }}-
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/apps/aboutme/package-lock.json', '**/apps/aboutme/yarn.lock') }}-
 
       - name: Install dependencies
         run: |
-          cd apps/blog
+          cd apps/aboutme
           ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
 
       - name: Build with Next.js
         run: |
-          cd apps/blog
+          cd apps/aboutme
           ${{ steps.detect-package-manager.outputs.runner }} next build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: apps/blog/out
+          path: apps/aboutme/out
 
   # Deployment job
   deploy:
