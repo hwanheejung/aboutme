@@ -10,7 +10,7 @@
     "prettier": "^3.3.3",
     "turbo": "^2.0.14"
   },
-  "name": "aboutme",
+  "name": "root",
   "private": true,
   "author": "hwanheejung",
   "workspaces": [
