@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@/styles/globals.css";
 import Settings from "@/components/Settings";
+import Navigation from "@/components/Navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +23,10 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <Settings />
-        {children}
+        <div className="flex h-woSettings">
+          <Navigation />
+          <main className="flex-1 overflow-y-scroll p-5">{children}</main>
+        </div>
       </body>
     </html>
   );

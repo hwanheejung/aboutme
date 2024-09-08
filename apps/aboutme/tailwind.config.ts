@@ -16,6 +16,14 @@ const config: Config = {
       },
       colors: {
         main: "#F39D33",
+        primary: "rgb(var(--color-primary) / <alpha-value>)",
+      },
+      height: {
+        dvh: "var(--dynamic-vh)",
+        woSettings: "calc(var(--dynamic-vh) - 2.5rem)",
+      },
+      minHeight: {
+        dvh: "var(--dynamic-vh)",
       },
     },
   },

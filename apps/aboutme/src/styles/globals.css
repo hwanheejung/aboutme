@@ -2,22 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --text: black;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@layer base {
+  :root {
+    --color-primary: 0 0 0;
+    --background-start-rgb: 214, 219, 220;
+    --background-end-rgb: 255, 255, 255;
+    --dynamic-vh: 100vh;
+  }
+
+  :root.dark {
+    --color-primary: 255 255 255;
+    --background-start-rgb: 23, 23, 23;
+    --background-end-rgb: 23, 23, 23;
+  }
 }
 
-:root.dark {
-  --foreground-rgb: 255, 255, 255;
-  --text: white;
-  --background-start-rgb: 0, 0, 0;
-  --background-end-rgb: 0, 0, 0;
+@supports (height: 100dvh) {
+  :root {
+    --dynamic-vh: 100dvh;
+  }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
+  color: rgb(var(--color-primary));
   background: linear-gradient(
       to bottom,
       transparent,
