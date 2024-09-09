@@ -25,7 +25,9 @@ export default function RootLayout({
         <Settings />
         <div className="flex h-woSettings">
           <Navigation />
-          <main className="flex-1 overflow-y-scroll p-5">{children}</main>
+          <main className="flex-1 overflow-y-scroll p-5 font-sans">
+            {children}
+          </main>
         </div>
       </body>
     </html>

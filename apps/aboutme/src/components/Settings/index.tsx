@@ -3,9 +3,9 @@ import Theme from "./Theme";
 
 const Settings = () => {
   return (
-    <div className="sticky top-0 left-0 bg-main bg-opacity-70 h-10 w-full flex items-center px-10 gap-4">
+    <div className="sticky left-0 top-0 flex h-10 w-full items-center gap-4 bg-main bg-opacity-70 px-10">
       <Theme />
-      <div className="w-px bg-primary h-4" />
+      <div className="h-4 w-px bg-primary" />
       <Language />
     </div>
   );
