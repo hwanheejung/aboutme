@@ -15,8 +15,8 @@ const Menu = ({ title, link }: MenuProps) => {
     <Link
       href={link}
       className={twMerge(
-        "group transition-all border border-transparent hover:border-gray-300 hover:bg-gray-100 flex w-full items-center justify-between rounded-md py-2 px-3 text-sm font-medium hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30 opacity-50 hover:opacity-100",
-        pathName === link ? "opacity-100" : ""
+        "group flex w-full items-center justify-between rounded-md border border-transparent px-3 py-2 text-sm font-medium opacity-50 transition-all hover:border-gray-300 hover:bg-gray-100 hover:opacity-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30",
+        pathName === link ? "opacity-100" : "",
       )}
     >
       {title}

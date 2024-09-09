@@ -9,6 +9,8 @@ module.exports = {
     "prettier",
     require.resolve("@vercel/style-guide/eslint/next"),
     "turbo",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
   ],
   globals: {
     React: true,
@@ -24,6 +26,32 @@ module.exports = {
         project,
       },
     },
+  },
+  rules: {
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": ["warn", { extensions: [".ts", ".tsx"] }],
+    "no-useless-catch": "off",
+    "jsx-a11y/no-autofocus": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "import/no-unresolved": "error",
+    "import/prefer-default-export": "off",
+    "react/function-component-definition": [
+      2,
+      { namedComponents: ["arrow-function", "function-declaration"] },
+    ],
+    "react/jsx-props-no-spreading": [
+      "error",
+      {
+        html: "ignore",
+      },
+    ],
+    "react/require-default-props": [
+      "error",
+      {
+        functions: "defaultArguments",
+      },
+    ],
   },
   ignorePatterns: [
     // Ignore dotfiles

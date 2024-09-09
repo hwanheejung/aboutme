@@ -1,7 +1,8 @@
-
-
 import Link from "next/link";
 import Menu from "./Menu";
+import Info from "./Info";
+import Links from "./Links";
+import { USERMETA } from "contents/meta";
 
 const MENUS = [
   {
@@ -19,17 +20,18 @@ const MENUS = [
 ];
 
 const Navigation = () => {
-  
   return (
-    <nav className="py-7 px-5">
-      <h1 className="text-main text-2xl font-bold px-2 pr-4">
-        <Link href="/">Hwanhee Jeong</Link>
+    <nav className="px-5 py-7">
+      <h1 className="px-2 pr-4 text-2xl font-bold text-main">
+        <Link href="/">{USERMETA.name}</Link>
       </h1>
-      <ul className="flex flex-col gap-2 mt-10">
+      <ul className="mt-10 flex flex-col gap-2">
         {MENUS.map((menu) => (
           <Menu key={menu.link} title={menu.title} link={menu.link} />
         ))}
       </ul>
+      <Info />
+      <Links />
     </nav>
   );
 };
