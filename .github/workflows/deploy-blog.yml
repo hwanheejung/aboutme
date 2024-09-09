@@ -28,6 +28,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # Install dependencies at the root of the monorepo to include Husky
+      - name: Install root dependencies
+        run: npm install
+        # Setting CI=true to skip husky install during the build
+        env:
+          CI: true
+
       - name: Change directory to aboutme
         run: cd apps/aboutme
 
@@ -69,10 +76,13 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/apps/aboutme/package-lock.json', '**/apps/aboutme/yarn.lock') }}-
 
-      - name: Install dependencies
+      # Install dependencies for 'aboutme' (CI skips Husky install)
+      - name: Install dependencies in aboutme
         run: |
           cd apps/aboutme
           ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+        env:
+          CI: true
 
       - name: Build with Next.js
         run: |
