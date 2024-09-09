@@ -28,13 +28,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Install dependencies at the root of the monorepo to include Husky
-      - name: Install root dependencies
-        run: npm install
-        # Setting CI=true to skip husky install during the build
-        env:
-          CI: true
-
       - name: Change directory to aboutme
         run: cd apps/aboutme
 
@@ -82,7 +75,8 @@ jobs:
           cd apps/aboutme
           ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
         env:
-          CI: true
+          CI: true # Skip prepare script
+          HUSKY: 0 # Completely disable Husky in CI
 
       - name: Build with Next.js
         run: |
