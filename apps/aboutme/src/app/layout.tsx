@@ -3,12 +3,13 @@ import { Inter } from "next/font/google";
 import "@/styles/globals.css";
 import Settings from "@/components/Settings";
 import Navigation from "@/components/Navigation";
+import { SITEMETA } from "contents/meta";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "J.Hwanhee",
-  description: "About me",
+  title: SITEMETA.title,
+  description: SITEMETA.description,
 };
 
 export default function RootLayout({
