@@ -28,13 +28,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Remove prepare script and install production dependencies
+      - name: Remove prepare script
         run: |
-          npm set-script prepare ''  
-          npm ci
-        env:
-          CI: true
-          HUSKY: 0
+          jq 'del(.scripts.prepare)' package.json > temp.json && mv temp.json package.json
+          npm install --production
 
       - name: Change directory to aboutme
         run: cd apps/aboutme
