@@ -10,6 +10,7 @@ const Navigation = () => {
       <h1 className="px-2 pr-4 text-2xl font-bold text-main">
         <Link href="/">{USERMETA.name}</Link>
       </h1>
+      <Info />
       <ul className="mt-10 flex flex-col gap-2">
         {MENUS.map((menu) => (
           <Menu
@@ -20,7 +21,7 @@ const Navigation = () => {
           />
         ))}
       </ul>
-      <Info />
+
       <Links />
     </nav>
   );

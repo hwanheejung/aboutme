@@ -31,11 +31,14 @@ const Menu = ({ title, link, subs }: Menu) => {
         {subs &&
           isSubMenuOpen &&
           subs.map((item) => (
-            <div className="ml-2">
+            <div className="ml-2" key={item.title}>
               <Link
                 key={item.title}
                 href={item.link}
-                className="flex px-3 py-2 text-xs opacity-60 transition-all hover:opacity-100"
+                className={twMerge(
+                  "flex px-3 py-2 text-xs opacity-60 transition-all hover:opacity-100",
+                  pathName === item.link ? "text-main opacity-100" : "",
+                )}
               >
                 {item.title}
               </Link>

@@ -1,3 +1,17 @@
+//////////////////////////////////////////////////////////
+
+interface SiteMeta {
+  title: string;
+  description: string;
+}
+
+export const SITEMETA: SiteMeta = {
+  title: "J.Hwanhee",
+  description: "About me",
+};
+
+//////////////////////////////////////////////////////////
+
 interface UserMeta {
   name: string;
   github?: string;
@@ -15,6 +29,8 @@ export const USERMETA: UserMeta = {
   location: "Seoul, South Korea",
   school: "Yonsei University",
 };
+
+//////////////////////////////////////////////////////////
 
 interface MenuBase {
   title: string;
