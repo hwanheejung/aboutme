@@ -2,22 +2,7 @@ import Link from "next/link";
 import Menu from "./Menu";
 import Info from "./Info";
 import Links from "./Links";
-import { USERMETA } from "contents/meta";
-
-const MENUS = [
-  {
-    title: "CV",
-    link: "/cv",
-  },
-  {
-    title: "Tech Blog",
-    link: "/blog",
-  },
-  {
-    title: "Projects",
-    link: "/projects",
-  },
-];
+import { MENUS, USERMETA } from "contents/meta";
 
 const Navigation = () => {
   return (
@@ -27,7 +12,12 @@ const Navigation = () => {
       </h1>
       <ul className="mt-10 flex flex-col gap-2">
         {MENUS.map((menu) => (
-          <Menu key={menu.link} title={menu.title} link={menu.link} />
+          <Menu
+            key={menu.link}
+            title={menu.title}
+            link={menu.link}
+            subs={menu.subs}
+          />
         ))}
       </ul>
       <Info />
