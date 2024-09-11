@@ -25,6 +25,7 @@ const Navigation = () => {
       </ul>
 
       <Links />
+      <span className="pl-3 text-xs opacity-60">©2024 by hwanheejung</span>
     </nav>
   );
 };

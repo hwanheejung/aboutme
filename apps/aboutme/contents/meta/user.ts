@@ -20,7 +20,7 @@ interface UserMeta {
 export const USERMETA: UserMeta = {
   name: "Hwanhee Jeong",
   github: "https://github.com/hwanheejung",
-  linkedIn: "www.linkedin.com/in/hwanhee-jeong-9b12711a6",
+  linkedIn: "https://www.linkedin.com/in/hwanhee-jeong-9b12711a6",
   email: "hwanheejung117@gmail.com",
   location: "Seoul, South Korea",
   school: "Yonsei University",
