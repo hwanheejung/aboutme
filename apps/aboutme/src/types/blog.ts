@@ -1,5 +1,5 @@
 export interface FrontMatter {
-  id: string;
+  url: string;
   title: string;
   description: string;
   date: `${number}-${number}-${number}`;

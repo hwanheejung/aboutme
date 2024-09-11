@@ -10,7 +10,7 @@ export const getPosts = (categoryId?: number | string) => {
   const files = fs.readdirSync(blogDirectory);
 
   const posts = files.map((file) => {
-    const id = file.replace(/\.mdx$/, "");
+    const url = file.replace(/\.mdx$/, "");
 
     const fullPath = path.join(blogDirectory, file);
     const fileContents = fs.readFileSync(fullPath, "utf8");
@@ -18,7 +18,7 @@ export const getPosts = (categoryId?: number | string) => {
     const matterResult = matter(fileContents);
 
     const postMatter: FrontMatter = {
-      id,
+      url,
       title: matterResult.data.title,
       date: matterResult.data.date,
       description: matterResult.data.description,

@@ -2,13 +2,22 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import type { Menu } from "contents/meta";
 
 const Menu = ({ title, link, subs }: Menu) => {
   const pathName = usePathname();
   const [isSubMenuOpen, setIsSubMenuOpen] = useState<boolean>(false);
+
+  // if pathname starts with /blog, open the submenu
+  useEffect(() => {
+    if (pathName.startsWith("/blog") && link === "/blog") {
+      setIsSubMenuOpen(true);
+    } else {
+      setIsSubMenuOpen(false);
+    }
+  }, [pathName, link]);
 
   return (
     <div className="">
@@ -18,7 +27,7 @@ const Menu = ({ title, link, subs }: Menu) => {
           "group flex w-full items-center justify-between rounded-md border border-transparent px-3 py-2 text-sm font-medium opacity-100 transition-all hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30",
           pathName === link ? "opacity-100" : "",
         )}
-        onClick={() => setIsSubMenuOpen((prev) => !prev)}
+        onClick={() => setIsSubMenuOpen(true)}
       >
         {title}
         <span
