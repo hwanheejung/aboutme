@@ -1,14 +1,14 @@
-import { getAllPosts } from "@/lib/utils/file";
+import { getPosts } from "@/lib/utils/file";
 
 export async function generateStaticParams() {
-  const posts = getAllPosts();
+  const posts = getPosts();
 
   if (!posts || posts.length === 0) {
     return [{ slug: "not-found" }];
   }
 
   return posts.map((post) => ({
-    slug: post.id,
+    slug: post.url,
   }));
 }
 

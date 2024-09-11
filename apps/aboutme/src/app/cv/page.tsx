@@ -1,11 +1,11 @@
-import CV from "contents/cv/cv.mdx";
+// import CV from "contents/cv/cv.mdx";
 
 const CVPage = () => {
   return (
-    <>
-      <div>CV</div>
-      <CV />
-    </>
+    <div className="flex h-full items-center justify-center">
+      <div>Coming Soon :)</div>
+      {/* <CV /> */}
+    </div>
   );
 };
 

@@ -1,0 +1,32 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "title": "Projects/Activities",
+      "subs": [
+        {
+          "id": 1.1,
+          "title": "DizzyCode"
+        },
+        {
+          "id": 1.2,
+          "title": "Polabo"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Computer Science",
+      "subs": [
+        {
+          "id": 2.1,
+          "title": "Network"
+        },
+        {
+          "id": 2.2,
+          "title": "Algorithms"
+        }
+      ]
+    }
+  ]
+}
