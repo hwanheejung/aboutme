@@ -1,9 +1,9 @@
+import Hamburger from "@/components/Navigation/Hamburger";
+import Settings from "@/components/Settings";
+import "@/styles/globals.css";
+import { SITEMETA } from "contents/meta";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "@/styles/globals.css";
-import Settings from "@/components/Settings";
-import Navigation from "@/components/Navigation";
-import { SITEMETA } from "contents/meta";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,10 +24,8 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <Settings />
-        <div className="flex h-woSettings">
-          <nav className="overflow-y-scroll scrollbar-hide">
-            <Navigation />
-          </nav>
+        <div className="relative flex h-woSettings">
+          <Hamburger />
           <main className="flex-1 overflow-y-scroll p-5 font-sans scrollbar-hide">
             {children}
           </main>

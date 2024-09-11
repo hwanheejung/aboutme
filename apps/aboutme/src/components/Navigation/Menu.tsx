@@ -6,7 +6,11 @@ import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import type { Menu } from "contents/meta";
 
-const Menu = ({ title, link, subs }: Menu) => {
+interface MenuProps extends Menu {
+  onClick: () => void;
+}
+
+const Menu = ({ title, link, subs, onClick }: MenuProps) => {
   const pathName = usePathname();
   const [isSubMenuOpen, setIsSubMenuOpen] = useState<boolean>(false);
 
@@ -27,7 +31,10 @@ const Menu = ({ title, link, subs }: Menu) => {
           "group flex w-full items-center justify-between rounded-md border border-transparent px-3 py-2 text-sm font-medium opacity-100 transition-all hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30",
           pathName === link ? "opacity-100" : "",
         )}
-        onClick={() => setIsSubMenuOpen(true)}
+        onClick={() => {
+          !subs && onClick();
+          setIsSubMenuOpen(true);
+        }}
       >
         {title}
         <span
@@ -48,6 +55,7 @@ const Menu = ({ title, link, subs }: Menu) => {
                   "flex px-3 py-2 text-xs opacity-60 transition-all hover:opacity-100",
                   pathName === item.link ? "text-main opacity-100" : "",
                 )}
+                onClick={onClick}
               >
                 {item.title}
               </Link>
@@ -63,6 +71,7 @@ const Menu = ({ title, link, subs }: Menu) => {
                           ? "border-l-main text-main opacity-100"
                           : "",
                       )}
+                      onClick={onClick}
                     >
                       {sub.title}
                     </Link>

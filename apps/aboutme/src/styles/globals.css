@@ -23,7 +23,8 @@
   }
 }
 
-body {
+body,
+nav {
   color: rgb(var(--color-primary));
   background: linear-gradient(
       to bottom,

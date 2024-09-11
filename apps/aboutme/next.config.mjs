@@ -16,6 +16,9 @@ const nextConfig = {
   output: "export",
   assetPrefix: prefix,
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
+  images: {
+    unoptimized: true,
+  },
 
   webpack: (config) => {
     config.resolve.alias["@"] = path.resolve(__dirname, "src");
