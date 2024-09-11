@@ -1,5 +1,5 @@
 const Hero = () => (
-  <div className="mx-24 mt-40 font-mono lg:mx-10">
+  <div className="mx-24 mt-40 font-mono lg:mx-10 lg:mt-28">
     <div className="flex w-fit flex-col gap-2">
       <div className="mr-4 flex items-center gap-3">
         <span className="font-thin">Hi, this is</span>
