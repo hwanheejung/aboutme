@@ -16,6 +16,7 @@ const nextConfig = {
   output: "export",
   assetPrefix: prefix,
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
+
   webpack: (config) => {
     config.resolve.alias["@"] = path.resolve(__dirname, "src");
     config.resolve.alias["public"] = path.resolve(__dirname, "public");

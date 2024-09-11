@@ -4,7 +4,7 @@ import OrganizationIcon from "public/icons/organization.svg";
 
 const Info = () => {
   return (
-    <div className="mt-16 flex flex-col gap-2 pl-2 text-sm opacity-70">
+    <div className="mt-10 flex flex-col gap-2 pl-2 text-sm opacity-70">
       <div className="flex items-center gap-2">
         <LocationIcon />
         <span>{USERMETA.location}</span>

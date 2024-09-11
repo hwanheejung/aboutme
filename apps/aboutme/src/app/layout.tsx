@@ -25,8 +25,10 @@ export default function RootLayout({
       <body className={inter.className}>
         <Settings />
         <div className="flex h-woSettings">
-          <Navigation />
-          <main className="flex-1 overflow-y-scroll p-5 font-sans">
+          <nav className="overflow-y-scroll scrollbar-hide">
+            <Navigation />
+          </nav>
+          <main className="flex-1 overflow-y-scroll p-5 font-sans scrollbar-hide">
             {children}
           </main>
         </div>

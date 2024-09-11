@@ -38,3 +38,8 @@ body {
     text-wrap: balance;
   }
 }
+
+.custom-shape {
+  @apply grid h-[150px] w-[150px] place-items-center bg-main text-2xl;
+  border-radius: 70% 30% 30% 70% / 60% 40% 60% 40%;
+}
