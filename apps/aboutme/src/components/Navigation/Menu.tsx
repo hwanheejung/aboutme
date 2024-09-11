@@ -48,7 +48,12 @@ const Menu = ({ title, link, subs }: Menu) => {
                     <Link
                       key={sub.title}
                       href={sub.link}
-                      className="flex border-l border-l-primary px-3 py-1 text-xs opacity-60 transition-all hover:opacity-100"
+                      className={twMerge(
+                        "flex border-l border-l-primary px-3 py-1 text-xs opacity-60 transition-all hover:opacity-100",
+                        pathName === sub.link
+                          ? "border-l-main text-main opacity-100"
+                          : "",
+                      )}
                     >
                       {sub.title}
                     </Link>

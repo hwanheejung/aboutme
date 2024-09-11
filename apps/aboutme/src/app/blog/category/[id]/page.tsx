@@ -1,4 +1,7 @@
+import { getPosts } from "@/lib/utils/file";
 import blogCategories from "contents/meta/blogCategories.json";
+import Hero from "../../_components/Hero";
+import PostBox from "../../_components/PostBox";
 
 // /blog/category/1, /blog/category/2
 export async function generateStaticParams() {
@@ -25,7 +28,16 @@ const CategoryPage = ({
   };
 }) => {
   const { id } = params;
-  return <div>Category Main Page {id}</div>;
+  const posts = getPosts(id);
+  return (
+    <>
+      <div className="mx-35 my-10 grid grid-cols-3 gap-5">
+        {posts.map((post) => (
+          <PostBox key={post.id} post={post} />
+        ))}
+      </div>
+    </>
+  );
 };
 
 export default CategoryPage;

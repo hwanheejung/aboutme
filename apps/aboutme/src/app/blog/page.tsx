@@ -1,9 +1,9 @@
-import { getAllPosts } from "@/lib/utils/file";
+import { getPosts } from "@/lib/utils/file";
 import Hero from "./_components/Hero";
 import PostBox from "./_components/PostBox";
 
 const BlogPage = () => {
-  const posts = getAllPosts();
+  const posts = getPosts();
   return (
     <>
       <Hero

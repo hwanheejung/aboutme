@@ -5,25 +5,25 @@
       "title": "Projects/Activities",
       "subs": [
         {
-          "id": 2,
+          "id": 1.1,
           "title": "DizzyCode"
         },
         {
-          "id": 3,
+          "id": 1.2,
           "title": "Polabo"
         }
       ]
     },
     {
-      "id": 4,
+      "id": 2,
       "title": "Computer Science",
       "subs": [
         {
-          "id": 5,
+          "id": 2.1,
           "title": "Network"
         },
         {
-          "id": 6,
+          "id": 2.2,
           "title": "Algorithms"
         }
       ]
