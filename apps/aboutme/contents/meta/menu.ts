@@ -13,8 +13,16 @@ export interface Menu extends MenuBase {
 
 export const MENUS: Menu[] = [
   {
+    title: "Home",
+    link: "/",
+  },
+  {
     title: "CV",
     link: "/cv",
+  },
+  {
+    title: "Projects",
+    link: "/projects",
   },
   {
     title: "Tech Blog",
@@ -33,9 +41,5 @@ export const MENUS: Menu[] = [
         })),
       })),
     ],
-  },
-  {
-    title: "Projects",
-    link: "/projects",
   },
 ];

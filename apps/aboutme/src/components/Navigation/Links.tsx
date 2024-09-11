@@ -5,11 +5,12 @@ import EmailIcon from "public/icons/links/email.svg";
 
 const Links = () => {
   return (
-    <div className="mt-10 flex items-center gap-3 pl-3">
+    <div className="mb-5 mt-10 flex items-center gap-3 pl-3">
       {USERMETA.github && (
         <a
           href={USERMETA.github}
           className="opacity-60 transition-opacity hover:opacity-100"
+          target="_blank"
         >
           <GithubIcon />
         </a>
@@ -20,6 +21,7 @@ const Links = () => {
           <a
             href={USERMETA.linkedIn}
             className="opacity-60 transition-opacity hover:opacity-100"
+            target="_blank"
           >
             <LinkedInIcon />
           </a>
@@ -31,6 +33,7 @@ const Links = () => {
           <a
             href={`mailto:${USERMETA.email}`}
             className="opacity-60 transition-opacity hover:opacity-100"
+            target="_blank"
           >
             <EmailIcon />
           </a>

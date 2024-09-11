@@ -1,3 +1,11 @@
+// import Background from "contents/home/background.mdx";
+import Hero from "./_components/Hero";
+
 export default function Home() {
-  return <main className="h-[1000px]">HOME</main>;
+  return (
+    <main className="">
+      <Hero />
+      {/* <Background /> */}
+    </main>
+  );
 }

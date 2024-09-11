@@ -11,7 +11,7 @@ const BlogPage = () => {
         title={"Welcome to my Tech Blog"}
         description="I'm currently focusing on Next.js, Tailwind.css"
       />
-      <div className="mx-35 my-10 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+      <div className="mx-35 my-10 grid grid-cols-3 gap-5 lg:grid-cols-2 md:grid-cols-1">
         {posts.map((post) => (
           <PostBox key={post.url} post={post} />
         ))}
