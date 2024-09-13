@@ -1,7 +1,10 @@
 import { PROJECTS } from "contents/projects/data";
-import Navigator from "../../_components/Navigator";
 import Intro from "../../_components/Intro";
-import Section from "../../_components/Section";
+import Navigator from "../../_components/Navigator";
+import Overview from "./_sections/Overview";
+import Process from "./_sections/Process";
+import Reflection from "./_sections/Reflection";
+import MVPTimeline from "./_sections/MVPTimeline";
 
 const PolaboPage = () => {
   const data = PROJECTS.POLABO;
@@ -9,15 +12,10 @@ const PolaboPage = () => {
     <div>
       <Navigator />
       <Intro data={data} />
-      <Section>
-        <Section.Header title="Polabo Overview" subTitle="process highlights" />
-      </Section>
-      <Section>
-        <Section.Header title="The Process" />
-      </Section>
-      <Section>
-        <Section.Header title="Next Steps" subTitle="reflection" />
-      </Section>
+      <Overview />
+      <MVPTimeline />
+      <Process />
+      <Reflection />
     </div>
   );
 };

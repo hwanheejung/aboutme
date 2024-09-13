@@ -10,7 +10,10 @@ const AboutmePage = () => {
       <Navigator />
       <Intro data={data} />
       <Section>
-        <Section.Header title="Polabo Overview" subTitle="process highlights" />
+        <Section.Header
+          title="Aboutme Overview"
+          subTitle="process highlights"
+        />
       </Section>
       <Section>
         <Section.Header title="The Process" />

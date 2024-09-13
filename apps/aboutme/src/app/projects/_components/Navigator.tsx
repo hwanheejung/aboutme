@@ -8,7 +8,7 @@ const Navigator = () => {
   const pathParts = pathname.split("/").filter(Boolean);
 
   return (
-    <div className="text-right text-sm font-thin text-primary/60">
+    <div className="fixed right-10 top-16 z-20 text-right text-sm font-thin text-primary/60">
       {pathParts.length > 0 && (
         <div className="">
           {pathParts.map((part, index) => (
