@@ -1,5 +1,5 @@
 import { parseDate } from "@/lib/utils/date";
-import { FrontMatter } from "@/types/blog";
+import { FrontMatter } from "@/types";
 import Link from "next/link";
 
 interface PostBoxProps {

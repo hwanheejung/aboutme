@@ -1,4 +1,4 @@
-import { FrontMatter } from "@/types/blog";
+import { FrontMatter } from "@/types";
 
 export const parseDate = (date: FrontMatter["date"]) => {
   // date is in the format of "YYYY-MM-DD"

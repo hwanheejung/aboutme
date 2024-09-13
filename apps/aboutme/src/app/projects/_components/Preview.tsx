@@ -1,5 +1,8 @@
-import type { Preview as PreviewType } from "@/types/project";
+"use client";
+
+import type { Preview as PreviewType } from "@/types";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const Preview = (props: PreviewType) => {
   const mockup = require(`public/projects/${props.img.mockupSrc}`);
@@ -8,8 +11,19 @@ const Preview = (props: PreviewType) => {
     hoverBg = require(`public/projects/${props.img.bgSrc}`);
   }
 
+  const router = useRouter();
+
+  const handleLink = () => {
+    if (props.link) {
+      router.push(props.link);
+    }
+  };
+
   return (
-    <div className="group relative max-w-3xl cursor-pointer overflow-hidden rounded-lg border border-gray-300 bg-gray-100 dark:border-neutral-700 dark:bg-neutral-800/30">
+    <div
+      onClick={handleLink}
+      className="group relative max-w-3xl cursor-pointer overflow-hidden rounded-lg border border-gray-300 bg-gray-100 dark:border-neutral-700 dark:bg-neutral-800/30"
+    >
       {hoverBg && (
         <div className="absolute left-0 top-0 -z-10 h-full w-full opacity-0 transition-opacity duration-500 group-hover:opacity-100">
           <Image
@@ -58,7 +72,7 @@ const Preview = (props: PreviewType) => {
             <div className="pb-3 font-mono text-4xl font-semibold">
               {props.title}
             </div>
-            <div>{props.description}</div>
+            <div className="opacity-60">{props.description}</div>
           </div>
         </div>
       </div>

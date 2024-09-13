@@ -1,6 +1,6 @@
 "use client";
 
-import type { Theme as ThemeType } from "@/types/theme";
+import type { Theme as ThemeType } from "@/types";
 import DarkIcon from "public/icons/theme/dark.svg";
 import LightIcon from "public/icons/theme/light.svg";
 import { useEffect, useState } from "react";

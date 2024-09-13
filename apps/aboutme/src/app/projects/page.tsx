@@ -1,7 +1,4 @@
-import type {
-  Preview as PreviewType,
-  Project as ProjectType,
-} from "@/types/project";
+import type { Preview as PreviewType, Project as ProjectType } from "@/types";
 import Preview from "./_components/Preview";
 
 const projects: Record<ProjectType, PreviewType> = {
@@ -17,6 +14,7 @@ const projects: Record<ProjectType, PreviewType> = {
       bgSrc: "preview_polabo_bg.png",
     },
     platform: "WEB",
+    link: "/projects/polabo",
   },
   DIZZYCODE: {
     title: "DizzyCode",
@@ -30,6 +28,7 @@ const projects: Record<ProjectType, PreviewType> = {
       bgSrc: "preview_dizzycode_bg.png",
     },
     platform: "WEB",
+    link: "/projects/dizzycode",
   },
   ABOUTME: {
     title: "AboutMe",
@@ -42,6 +41,7 @@ const projects: Record<ProjectType, PreviewType> = {
       mockupSrc: "preview_aboutme.png",
     },
     platform: "WEB",
+    link: "/projects/aboutme",
   },
   TASKSTOCK: {
     title: "TaskStock",
@@ -55,6 +55,7 @@ const projects: Record<ProjectType, PreviewType> = {
       bgSrc: "preview_taskstock_bg.png",
     },
     platform: "APP",
+    link: "/projects/taskstock",
   },
   PIROGRAMMING_WEB: {
     title: "Pirogramming",
@@ -67,6 +68,7 @@ const projects: Record<ProjectType, PreviewType> = {
       bgSrc: "preview_piroApp_bg.png",
     },
     platform: "WEB",
+    link: "/projects/piroweb",
   },
   PIROGRAMMING_APP: {
     title: "Pirogramming App",
@@ -79,6 +81,7 @@ const projects: Record<ProjectType, PreviewType> = {
       bgSrc: "preview_piroApp_bg.png",
     },
     platform: "APP",
+    link: "/projects/piroapp",
   },
 };
 

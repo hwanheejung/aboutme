@@ -9,6 +9,7 @@ export interface Preview {
     bgSrc?: string;
   };
   platform: "WEB" | "APP";
+  link?: string;
 }
 
 export type Project =
