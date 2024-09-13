@@ -2,6 +2,7 @@ import { PROJECTS } from "contents/projects/data";
 import Navigator from "../../_components/Navigator";
 import Intro from "../../_components/Intro";
 import Section from "../../_components/Section";
+import Overview from "./_sections/Overview";
 
 const PiroWebPage = () => {
   const data = PROJECTS.PIROGRAMMING_WEB;
@@ -9,9 +10,7 @@ const PiroWebPage = () => {
     <div>
       <Navigator />
       <Intro data={data} />
-      <Section>
-        <Section.Header title="Overview" subTitle="process highlights" />
-      </Section>
+      <Overview />
       <Section>
         <Section.Header title="The Process" />
       </Section>

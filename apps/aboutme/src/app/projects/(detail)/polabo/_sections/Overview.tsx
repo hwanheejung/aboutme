@@ -33,15 +33,15 @@ const Overview = () => (
     <Section.Divider />
     <Section.Table>
       <div className="pr-3">
-        <h3>Timeline</h3>
-        <p className="opacity-60">Jun 2024 - Current</p>
+        <h3>Timeline & Status</h3>
+        <p className="opacity-60">Jun '24 - Current, 3rd MVP Released</p>
       </div>
       <div className="pr-3">
         <h3>Team</h3>
         <p className="opacity-60">Product Manager 1</p>
         <p className="opacity-60">Frontend 2</p>
         <p className="opacity-60">Backend 1</p>
-        <p className="opacity-60">Designers 2</p>
+        <p className="opacity-60">Designer 2</p>
       </div>
       <div className="pr-3">
         <h3>Responsibilities</h3>
