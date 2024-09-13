@@ -11,6 +11,12 @@ const Overview = () => (
       <div className="pr-3">
         <h3>Links</h3>
         <a
+          href="https://polabo.site/"
+          className="block underline opacity-60 hover:text-main"
+        >
+          Release
+        </a>
+        <a
           href="https://github.com/DDD-Community/DDD-11-Sonny-Polabo-FE"
           className="block underline opacity-60 hover:text-main"
         >
