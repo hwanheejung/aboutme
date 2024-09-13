@@ -1,7 +1,7 @@
-import { Preview } from "@/types/project";
+import type { Preview as PreviewType } from "@/types/project";
 import Image from "next/image";
 
-const Preview = (props: Preview) => {
+const Preview = (props: PreviewType) => {
   const mockup = require(`public/projects/${props.img.mockupSrc}`);
   let hoverBg;
   if (props.img.bgSrc) {
