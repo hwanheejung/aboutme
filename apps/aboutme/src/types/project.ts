@@ -3,8 +3,11 @@ export interface Preview {
   description: string;
   num: number;
   role: string;
-  imgSrc: string;
-  hoverBg?: string;
+  img: {
+    mockup: "APP" | "WEB";
+    mockupSrc: string;
+    bgSrc?: string;
+  };
   platform: "WEB" | "APP";
 }
 
