@@ -28,6 +28,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Remove prepare script
+        run: |
+          jq 'del(.scripts.prepare)' package.json > temp.json && mv temp.json package.json
+          npm install --omit=dev
+
       - name: Change directory to aboutme
         run: cd apps/aboutme
 
@@ -69,10 +74,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/apps/aboutme/package-lock.json', '**/apps/aboutme/yarn.lock') }}-
 
-      - name: Install dependencies
+      # Install dependencies for 'aboutme' (CI skips Husky install)
+      - name: Install dependencies in aboutme
         run: |
           cd apps/aboutme
           ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+        env:
+          CI: true # Skip prepare script
+          HUSKY: 0 # Completely disable Husky in CI
 
       - name: Build with Next.js
         run: |

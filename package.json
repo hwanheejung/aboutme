@@ -4,6 +4,7 @@
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "postinstall": "if [ \"$CI\" != \"true\" ]; then husky install; fi",
     "prepare": "husky install"
   },
   "devDependencies": {
@@ -14,7 +15,7 @@
     "turbo": "^2.0.14"
   },
   "lint-staged": {
-    "apps/**/*.{js,jsx,ts,tsx}": [
+    "apps/aboutme/**/*.{js,jsx,ts,tsx}": [
       "eslint --cache --fix",
       "prettier --cache --write"
     ],
@@ -29,5 +30,9 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "overrides": {
+    "glob": "9.0.0",
+    "rimraf": "^4.0.0"
+  }
 }
