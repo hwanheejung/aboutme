@@ -21,6 +21,7 @@ const config: Config = {
       height: {
         dvh: "var(--dynamic-vh)",
         woSettings: "calc(var(--dynamic-vh) - 2.5rem)",
+        section: "calc(var(--dynamic-vh) * 0.7)",
       },
       minHeight: {
         dvh: "var(--dynamic-vh)",
