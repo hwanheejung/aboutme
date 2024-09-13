@@ -1,10 +1,10 @@
 "use client";
 
+import type { Menu } from "contents/meta";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
-import type { Menu } from "contents/meta";
 
 interface MenuProps extends Menu {
   onClick: () => void;
@@ -16,6 +16,7 @@ const Menu = ({ title, link, subs, onClick }: MenuProps) => {
 
   // if pathname starts with /blog, open the submenu
   useEffect(() => {
+    console.log(pathName === "/", link);
     if (pathName.startsWith("/blog") && link === "/blog") {
       setIsSubMenuOpen(true);
     } else {
@@ -23,13 +24,23 @@ const Menu = ({ title, link, subs, onClick }: MenuProps) => {
     }
   }, [pathName, link]);
 
+  const checkCurrentPage = () => {
+    if (pathName === "/") {
+      return pathName === link;
+    } else {
+      if (link !== "/") {
+        return pathName.startsWith(link);
+      }
+    }
+  };
+
   return (
     <div className="">
       <Link
         href={link}
         className={twMerge(
           "group flex w-full items-center justify-between rounded-md border border-transparent px-3 py-2 text-sm font-medium opacity-100 transition-all hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30",
-          pathName === link ? "opacity-100" : "",
+          checkCurrentPage() ? "opacity-100" : "opacity-60",
         )}
         onClick={() => {
           !subs && onClick();

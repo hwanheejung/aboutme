@@ -12,7 +12,7 @@ const prefix =
     : "";
 
 const nextConfig = {
-  basePath: "/aboutme",
+  basePath: "",
   output: "export",
   assetPrefix: prefix,
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
