@@ -1,12 +1,20 @@
+import Image from "next/image";
 import Section from "../../../_components/Section";
+import Architecture from "public/projects/dizzycode/comm_arch.png";
+import FlowChart from "public/projects/dizzycode/flow_chart.png";
 
 const Overview = () => (
   <Section>
-    <Section.Header title="DizzyCode Overview" subTitle="process highlights" />
+    <Section.Header title="Project Overview" subTitle="process highlights" />
     <Section.Table>
       <div className="pr-3">
         <h3>Focus</h3>
-        <p className="opacity-60"></p>
+        <p className="opacity-60">
+          Built <strong className="font-normal text-main">real-time</strong>{" "}
+          chat and video conferencing features using WebSocket and WebRTC.
+          Worked on state management, ensuring secure authentication, and
+          optimizing frontend performance for smooth user interactions.
+        </p>
       </div>
       <div className="pr-3">
         <h3>Links</h3>
@@ -32,8 +40,8 @@ const Overview = () => (
       </div>
       <div className="pr-3">
         <h3>Team</h3>
-        <p className="opacity-60">FE 2</p>
-        <p className="opacity-60">BE 2</p>
+        <p className="opacity-60">Frontend 2</p>
+        <p className="opacity-60">Backend 2</p>
       </div>
       <div className="pr-3">
         <h3>Responsibilities</h3>
@@ -50,6 +58,25 @@ const Overview = () => (
         <p className="opacity-60">Styled-Components</p>
       </div>
     </Section.Table>
+    <div className="h-5 w-full" />
+    <Section.Body title="Client-Server Communication">
+      <Image
+        src={Architecture}
+        width={700}
+        height={400}
+        alt="communication architecture"
+        className="mx-auto mt-5"
+      />
+    </Section.Body>
+    <Section.Body title="User Flow Chart">
+      <Image
+        src={FlowChart}
+        width={700}
+        height={400}
+        alt="communication architecture"
+        className="mx-auto mt-5"
+      />
+    </Section.Body>
   </Section>
 );
 

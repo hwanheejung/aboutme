@@ -1,9 +1,9 @@
 import { PROJECTS } from "contents/projects/data";
 import Intro from "../../_components/Intro";
 import Navigator from "../../_components/Navigator";
-import MainFeatures from "./_sections/MainFeatures";
 import Overview from "./_sections/Overview";
 import Reflection from "./_sections/Reflection";
+import Tech from "./_sections/Tech";
 
 const DizzycodePage = () => {
   const data = PROJECTS.DIZZYCODE;
@@ -12,7 +12,7 @@ const DizzycodePage = () => {
       <Navigator />
       <Intro data={data} />
       <Overview />
-      <MainFeatures />
+      <Tech />
       <Reflection />
     </div>
   );

@@ -3,10 +3,13 @@ import Section from "../../../_components/Section";
 const Reflection = () => (
   <>
     <Section>
-      <Section.Header title="Keep" subTitle="reflection" />
-    </Section>
-    <Section>
-      <Section.Header title="Next Steps" subTitle="reflection" />
+      <Section.Header title="Reflection" />
+      <Section.Body title="What Worked Well">
+        <div>Explanation....</div>
+      </Section.Body>
+      <Section.Body title="Future Improvements">
+        <div>Explanation....</div>
+      </Section.Body>
     </Section>
   </>
 );
