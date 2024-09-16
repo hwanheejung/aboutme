@@ -59,7 +59,7 @@ const Overview = () => (
       </div>
     </Section.Table>
     <div className="h-5 w-full" />
-    <Section.Body title="Client-Server Communication">
+    <Section.Body title="System Architecture">
       <Image
         src={Architecture}
         width={700}

@@ -10,7 +10,7 @@ const DizzycodePage = () => {
   return (
     <div>
       <Navigator />
-      <Intro data={data} />
+      <Intro data={data} subTitle="Real-Time Chat, Video Conference" />
       <Overview />
       <Tech />
       <Reflection />

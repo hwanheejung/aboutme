@@ -63,3 +63,20 @@ function isCategoryOrSubcategory(
     blogCategoryString.startsWith(categoryString + ".")
   );
 }
+
+export const getPostBySlug = (slug: string) => {
+  const fullPath = path.join(blogDirectory, `${slug}.mdx`);
+  const fileContents = fs.readFileSync(fullPath, "utf8");
+
+  const matterResult = matter(fileContents);
+
+  const postMatter: FrontMatter = {
+    url: slug,
+    title: matterResult.data.title,
+    date: matterResult.data.date,
+    description: matterResult.data.description,
+    categoryId: matterResult.data.categoryId,
+  };
+
+  return postMatter;
+};

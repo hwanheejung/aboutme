@@ -2,6 +2,8 @@
 import createMDX from "@next/mdx";
 import path from "path";
 import { fileURLToPath } from "url";
+import remarkGfm from "remark-gfm";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -34,7 +36,10 @@ const nextConfig = {
 };
 
 const withMDX = createMDX({
-  // Add markdown plugins here, as desired
+  options: {
+    remarkPlugins: [remarkGfm],
+    rehypePlugins: [rehypeAutolinkHeadings],
+  },
 });
 
 export default withMDX(nextConfig);
