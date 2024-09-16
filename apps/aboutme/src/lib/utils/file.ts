@@ -6,7 +6,7 @@ import { FrontMatter } from "@/types";
 const blogDirectory = path.join(process.cwd(), "contents/blog");
 
 // get all posts or posts by category
-export const getPosts = (categoryId?: number | string) => {
+export const getPosts = (categoryId?: number) => {
   const files = fs.readdirSync(blogDirectory);
 
   const posts = files.map((file) => {
@@ -51,10 +51,7 @@ export const getPosts = (categoryId?: number | string) => {
 };
 
 // check if the post is in the category or subcategory
-function isCategoryOrSubcategory(
-  blogCategoryId: number | string,
-  categoryId: number | string,
-) {
+function isCategoryOrSubcategory(blogCategoryId: number, categoryId: number) {
   const blogCategoryString = blogCategoryId.toString();
   const categoryString = categoryId.toString();
 

@@ -27,7 +27,7 @@ const CategoryPage = ({
   };
 }) => {
   const { id } = params;
-  const posts = getPosts(id);
+  const posts = getPosts(parseInt(id));
   return (
     <>
       <div className="mx-35 my-10 grid grid-cols-3 gap-5 lg:grid-cols-2 md:grid-cols-1">
