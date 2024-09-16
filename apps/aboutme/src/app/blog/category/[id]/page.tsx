@@ -1,4 +1,4 @@
-import { getPosts } from "@/lib/utils/file";
+import { getAllPosts } from "@/lib/utils/file";
 import blogCategories from "contents/meta/blogCategories.json";
 import PostBox from "../../_components/PostBox";
 
@@ -27,7 +27,7 @@ const CategoryPage = ({
   };
 }) => {
   const { id } = params;
-  const posts = getPosts(parseInt(id));
+  const posts = getAllPosts(parseInt(id));
   return (
     <>
       <div className="mx-35 my-10 grid grid-cols-3 gap-5 lg:grid-cols-2 md:grid-cols-1">

@@ -1,9 +1,10 @@
-import { getPostBySlug, getPosts } from "@/lib/utils/file";
+import { getAllPosts, getPostBySlug } from "@/lib/utils/file";
 import { USERMETA } from "contents/meta";
 import CategoryLink from "./_components/CategoryLink";
+import { parseDate } from "@/lib/utils/date";
 
 export async function generateStaticParams() {
-  const posts = getPosts();
+  const posts = getAllPosts();
 
   if (!posts || posts.length === 0) {
     return [{ slug: "not-found" }];
@@ -32,11 +33,17 @@ const PostPage = async ({
         )}
         <div className="mb-5 text-4xl text-main">{frontmatter.title}</div>
         <div className="font-thin text-primary/60">
-          <div>{frontmatter.date}</div>
+          <div>{parseDate(frontmatter.date)}</div>
           <div>by {USERMETA.name}</div>
         </div>
       </div>
-      <div>{content}</div>
+
+      <div className="prose-a:font-normal prose-a:text-primary/60 prose-a:underline hover:prose-a:text-main/60">
+        {content}
+      </div>
+
+      {/* TODO: Add footer */}
+      <div className="h-80 w-full" />
     </div>
   );
 };

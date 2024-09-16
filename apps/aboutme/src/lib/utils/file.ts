@@ -11,7 +11,7 @@ import remarkGfm from "remark-gfm";
 const blogDirectory = path.join(process.cwd(), "contents/blog");
 
 // get all posts or posts by category
-export const getPosts = (categoryId?: number) => {
+export const getAllPosts = (categoryId?: number) => {
   const files = fs.readdirSync(blogDirectory);
 
   const posts = files.map((file) => {

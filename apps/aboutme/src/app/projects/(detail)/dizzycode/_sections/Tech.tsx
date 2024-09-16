@@ -1,5 +1,5 @@
-import Process from "@/app/projects/_components/Process";
-import Section from "../../../_components/Section";
+import Process from "@/components/Layouts/Process";
+import Section from "@/components/Layouts/Section";
 import Security from "./Security";
 import Websocket from "./Websocket";
 import OpenVidu from "./OpenVidu";

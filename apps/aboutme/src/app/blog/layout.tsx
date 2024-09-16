@@ -1,6 +1,7 @@
 export default function MdxLayout({ children }: { children: React.ReactNode }) {
   return (
-    // <div className="prose max-w-none text-primary/60 transition-all prose-headings:mt-8 prose-headings:font-mono prose-headings:font-semibold  prose-h1:text-3xl prose-h2:text-4xl prose-h3:text-3xl prose-h4:text-2xl prose-h5:text-xl prose-h6:text-lg prose-p:m-0 prose-a:text-primary hover:prose-a:text-opacity-80 prose-strong:text-primary dark:prose-headings:text-white">
-    <div className="mdx">{children}</div>
+    <div className="mdx prose-h1:text-main prose-blockquote:font-normal prose-blockquote:text-primary/60">
+      {children}
+    </div>
   );
 }
