@@ -1,10 +1,5 @@
-import { getPosts } from "@/lib/utils/file";
-import { FrontMatter } from "@/types";
+import { getPostBySlug, getPosts } from "@/lib/utils/file";
 import { USERMETA } from "contents/meta";
-import fs from "fs";
-import { compileMDX } from "next-mdx-remote/rsc";
-import path from "path";
-import remarkGfm from "remark-gfm";
 import CategoryLink from "./_components/CategoryLink";
 
 export async function generateStaticParams() {
@@ -27,21 +22,7 @@ const PostPage = async ({
   };
 }) => {
   const { slug } = params;
-  const source = fs.readFileSync(
-    path.join(process.cwd(), `contents/blog`, slug) + ".mdx",
-    "utf8",
-  );
-
-  const { content, frontmatter } = await compileMDX<FrontMatter>({
-    source,
-    options: {
-      mdxOptions: {
-        // rehypePlugins: [rehypeHighlight],
-        remarkPlugins: [remarkGfm],
-      },
-      parseFrontmatter: true,
-    },
-  });
+  const { content, frontmatter } = await getPostBySlug(slug);
 
   return (
     <div>

@@ -1,7 +1,12 @@
-import path from "path";
+import { rehypePrettyCodeOptions } from "@/styles/rehypePrettyCode";
+import { FrontMatter } from "@/types";
 import fs from "fs";
 import matter from "gray-matter";
-import { FrontMatter } from "@/types";
+import { compileMDX } from "next-mdx-remote/rsc";
+import path from "path";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypePrettyCode from "rehype-pretty-code";
+import remarkGfm from "remark-gfm";
 
 const blogDirectory = path.join(process.cwd(), "contents/blog");
 
@@ -61,19 +66,25 @@ function isCategoryOrSubcategory(blogCategoryId: number, categoryId: number) {
   );
 }
 
-export const getPostBySlug = (slug: string) => {
-  const fullPath = path.join(blogDirectory, `${slug}.mdx`);
-  const fileContents = fs.readFileSync(fullPath, "utf8");
+export const getPostBySlug = async (slug: string) => {
+  const source = fs.readFileSync(
+    path.join(process.cwd(), `contents/blog`, slug) + ".mdx",
+    "utf8",
+  );
 
-  const matterResult = matter(fileContents);
+  const { content, frontmatter } = await compileMDX<FrontMatter>({
+    source,
+    options: {
+      mdxOptions: {
+        rehypePlugins: [
+          rehypeAutolinkHeadings,
+          [rehypePrettyCode, rehypePrettyCodeOptions],
+        ],
+        remarkPlugins: [remarkGfm],
+      },
+      parseFrontmatter: true,
+    },
+  });
 
-  const postMatter: FrontMatter = {
-    url: slug,
-    title: matterResult.data.title,
-    date: matterResult.data.date,
-    description: matterResult.data.description,
-    categoryId: matterResult.data.categoryId,
-  };
-
-  return postMatter;
+  return { frontmatter, content };
 };

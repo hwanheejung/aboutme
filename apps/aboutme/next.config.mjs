@@ -4,6 +4,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import remarkGfm from "remark-gfm";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypePrettyCode from "rehype-pretty-code";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -21,6 +22,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  reactStrictMode: true,
 
   webpack: (config) => {
     config.resolve.alias["@"] = path.resolve(__dirname, "src");
@@ -35,10 +37,25 @@ const nextConfig = {
   transpilePackages: ["next-mdx-remote"],
 };
 
+const rehypePrettyCodeOptions = {
+  theme: {
+    dark: "github-dark-dimmed",
+    light: "github-light",
+  },
+  keepBackground: false,
+};
+
 const withMDX = createMDX({
+  extension: /\.mdx?$/,
+  experimental: {
+    mdxRs: false,
+  },
   options: {
     remarkPlugins: [remarkGfm],
-    rehypePlugins: [rehypeAutolinkHeadings],
+    rehypePlugins: [
+      rehypeAutolinkHeadings,
+      [rehypePrettyCode, rehypePrettyCodeOptions],
+    ],
   },
 });
 

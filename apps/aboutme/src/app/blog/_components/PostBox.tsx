@@ -12,18 +12,18 @@ const PostBox = async ({ post }: PostBoxProps) => {
   const parsedDate = parseDate(date);
 
   return (
-    <div className="flex flex-col rounded-lg border border-primary border-opacity-60 p-3 no-underline">
+    <div className="flex flex-col rounded-lg border border-primary border-opacity-60 p-3">
       <span className="text-xs opacity-60">{parsedDate}</span>
       <Link
         href={`/blog/${post.url}`}
-        className="mt-2 p-0 text-xl no-underline"
+        className="mt-2 p-0 text-xl !no-underline"
       >
-        {title}
+        <div className="text-main hover:text-main/80">{title}</div>
       </Link>
       <p className="pb-3 pt-1 font-light opacity-80">{description}</p>
       <Link
         href={`/blog/${post.url}`}
-        className="mt-2 rounded-md bg-primary bg-opacity-10 py-1 text-center font-thin !text-primary no-underline transition-all hover:bg-opacity-20"
+        className="mt-2 rounded-md bg-primary bg-opacity-10 py-1 text-center !font-thin !text-primary transition-all hover:bg-opacity-20"
       >
         Read More
       </Link>

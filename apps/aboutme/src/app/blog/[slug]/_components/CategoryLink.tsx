@@ -1,4 +1,4 @@
-import { categories } from "contents/meta/blogCategories.json";
+import blogCategories from "contents/meta/blogCategories.json";
 import Link from "next/link";
 
 interface CategoryLinkProps {
@@ -7,6 +7,7 @@ interface CategoryLinkProps {
 
 const CategoryLink = ({ currentCatId }: CategoryLinkProps) => {
   const categoryMap = new Map();
+  const categories = blogCategories.categories;
 
   // Populate the map
   categories.forEach((category) => {
@@ -22,12 +23,12 @@ const CategoryLink = ({ currentCatId }: CategoryLinkProps) => {
   const category = categoryMap.get(currentCatId);
 
   return (
-    <div className="mb-3 font-thin">
+    <div className="mb-3 font-thin text-primary">
       {category.parent && (
         <>
           <Link
             href={`/blog/category/${Math.floor(Number(currentCatId))}`}
-            className="font-thin no-underline"
+            className="!font-thin"
           >
             {category.parent}
           </Link>{" "}
@@ -35,10 +36,7 @@ const CategoryLink = ({ currentCatId }: CategoryLinkProps) => {
         </>
       )}
       {category && (
-        <Link
-          className="font-thin no-underline"
-          href={`/blog/category/${currentCatId}`}
-        >
+        <Link className="!font-thin" href={`/blog/category/${currentCatId}`}>
           {" "}
           {category.title}
         </Link>
