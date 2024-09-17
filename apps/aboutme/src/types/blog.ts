@@ -3,5 +3,5 @@ export interface FrontMatter {
   title: string;
   description: string;
   date: `${number}-${number}-${number}`;
-  categoryId?: number | string;
+  categoryId?: number;
 }

@@ -17,10 +17,6 @@ export const MENUS: Menu[] = [
     link: "/",
   },
   {
-    title: "CV",
-    link: "/cv",
-  },
-  {
     title: "Projects",
     link: "/projects",
   },
@@ -41,5 +37,9 @@ export const MENUS: Menu[] = [
         })),
       })),
     ],
+  },
+  {
+    title: "CV",
+    link: "/cv",
   },
 ];

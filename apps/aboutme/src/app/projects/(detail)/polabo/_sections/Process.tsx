@@ -1,4 +1,4 @@
-import Section from "../../../_components/Section";
+import Section from "../../../../../components/Layouts/Section";
 
 const Process = () => (
   <>

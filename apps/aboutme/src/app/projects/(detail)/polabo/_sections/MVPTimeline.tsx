@@ -1,4 +1,4 @@
-import Section from "@/app/projects/_components/Section";
+import Section from "@/components/Layouts/Section";
 import Timeline from "@/app/projects/_components/Timeline";
 
 const MVPTimeline = () => (

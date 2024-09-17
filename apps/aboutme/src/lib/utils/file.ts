@@ -1,12 +1,17 @@
-import path from "path";
+import { rehypePrettyCodeOptions } from "@/styles/rehypePrettyCode";
+import { FrontMatter } from "@/types";
 import fs from "fs";
 import matter from "gray-matter";
-import { FrontMatter } from "@/types";
+import { compileMDX } from "next-mdx-remote/rsc";
+import path from "path";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypePrettyCode from "rehype-pretty-code";
+import remarkGfm from "remark-gfm";
 
 const blogDirectory = path.join(process.cwd(), "contents/blog");
 
 // get all posts or posts by category
-export const getPosts = (categoryId?: number | string) => {
+export const getAllPosts = (categoryId?: number) => {
   const files = fs.readdirSync(blogDirectory);
 
   const posts = files.map((file) => {
@@ -51,10 +56,7 @@ export const getPosts = (categoryId?: number | string) => {
 };
 
 // check if the post is in the category or subcategory
-function isCategoryOrSubcategory(
-  blogCategoryId: number | string,
-  categoryId: number | string,
-) {
+function isCategoryOrSubcategory(blogCategoryId: number, categoryId: number) {
   const blogCategoryString = blogCategoryId.toString();
   const categoryString = categoryId.toString();
 
@@ -63,3 +65,27 @@ function isCategoryOrSubcategory(
     blogCategoryString.startsWith(categoryString + ".")
   );
 }
+
+export const getPostBySlug = async (slug: string) => {
+  const source = fs.readFileSync(
+    path.join(process.cwd(), `contents/blog`, slug) + ".mdx",
+    "utf8",
+  );
+
+  const { content, frontmatter } = await compileMDX<FrontMatter>({
+    source,
+    options: {
+      mdxOptions: {
+        rehypePlugins: [
+          rehypeAutolinkHeadings,
+          [rehypePrettyCode, rehypePrettyCodeOptions],
+          // [rehypeImgSize, { dir: "public" }],
+        ],
+        remarkPlugins: [remarkGfm],
+      },
+      parseFrontmatter: true,
+    },
+  });
+
+  return { frontmatter, content };
+};

@@ -1,7 +1,7 @@
 import { PROJECTS } from "contents/projects/data";
 import Navigator from "../../_components/Navigator";
 import Intro from "../../_components/Intro";
-import Section from "../../_components/Section";
+import Section from "../../../../components/Layouts/Section";
 import Overview from "./_sections/Overview";
 
 const PiroAppPage = () => {

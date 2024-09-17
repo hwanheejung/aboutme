@@ -34,7 +34,7 @@ export const HamburgerProvider = ({ children }: { children: ReactNode }) => {
   return (
     <HamburgerContext.Provider value={value}>
       <button
-        className="absolute left-5 top-5 hidden sm:block"
+        className="absolute left-5 top-5 z-50 hidden sm:block"
         onClick={() => setIsOpen((prev) => !prev)}
       >
         <HamburgerIcon className="scale-150" />
