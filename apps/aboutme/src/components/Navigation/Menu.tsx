@@ -16,7 +16,6 @@ const Menu = ({ title, link, subs, onClick }: MenuProps) => {
 
   // if pathname starts with /blog, open the submenu
   useEffect(() => {
-    console.log(pathName === "/", link);
     if (pathName.startsWith("/blog") && link === "/blog") {
       setIsSubMenuOpen(true);
     } else {

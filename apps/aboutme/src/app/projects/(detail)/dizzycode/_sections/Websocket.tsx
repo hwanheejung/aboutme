@@ -3,6 +3,14 @@ import Section from "@/components/Layouts/Section";
 const Websocket = () => {
   return (
     <Section>
+      <Section.Header
+        title="Sock.js + STOMP"
+        subTitle="WebSocket"
+        type="secondary"
+      />
+      <Section.Body title="🤔 Problem: Limits when using pure WebSocket">
+        <div>Explanation...</div>
+      </Section.Body>
       <Section.Header title="Messaging" subTitle="WebSocket" type="secondary" />
       <Section.Body title="Sth..">
         <div>Explanation...</div>

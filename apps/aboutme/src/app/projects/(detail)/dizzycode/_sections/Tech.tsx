@@ -13,7 +13,7 @@ const Tech = () => (
         subTitle="our considerations"
       />
       <Process>
-        <Process.Item num={1} title="Security" lists={["JWT", "WebSocket"]} />
+        <Process.Item num={1} title="Security" lists={["WebSocket+JWT"]} />
         <Process.Item
           num={2}
           title="Websocket"

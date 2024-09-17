@@ -1,0 +1,61 @@
+---
+title: "Sock.js + STOMP"
+description: "The reason why we combined Sock.js & STOMP protocol rather than just using pure WebSocket for messaging."
+date: "2024-5-24"
+categoryId: 1.1
+---
+
+# 1. Problems with WebSocket
+
+## 1.1. Limited Browser Support
+
+**Problem**
+
+While the `Can I use` website indicates that most modern browsers support WebSocket,
+it's important to note that **it does not support in older versions and specific environments.**
+This limitation can affect the reach and compatibility of applications relying solely on WebSocket.
+
+<Image src={"/blog/dizzycode/2.png"} alt="can I use" width={700} />
+
+**Solution: Fallback Mechanism**
+
+Environments that do not support Websocket can use **alternative technologies such as polling, long polling, streaming**, etc.
+This fallback mechanism is used to address browser compatibility issues, and libraries like **SockJS** or **Socket.IO** utilize it.
+
+Let's slightly dive into how Socket.IO works. According to the [official documentation of Socket.IO](https://socket.io/docs/v4/how-it-works/), it uses long polling as a fallback.
+More specifically, **it initially tries to connect with long polling, and once the WebSocket connection is available, it upgrades.**
+Cuz attempting a WebSocket connection first can lead to delays of up to 10 seconds in non-supporting environments.
+
+<Image src={"/blog/dizzycode/3.png"} alt="socketIO" width={500} />
+
+1. Initial GET request: with long polling by default
+
+2. Client -> Server data send (long-polling)
+
+3. Data reception (long-polling)
+
+4. WebSocket upgrade attempt
+
+5. Upgrade successful. Final request to terminate the existing long polling connection. All subsequent communication takes place via WebSocket.
+
+## 1.2. Raw Data Handling
+
+**Problem**
+
+The WebSocket protocol allows for the transmission of text and binary frames, but **it doesn't provide a predefined format or structure for messages.**
+This lack of structure presents several issues:
+
+- As projects grow, developers must design and manage complex logic for:
+  - Determining message types
+  - Handling message transmission between client and server
+  - Parsing incoming messages
+- The flexibility in data types and message structures, while offering freedom, also introduces the **burden of definition and management.**
+- Without a standardized approach, maintaining consistency in message handling across different parts of the application can become increasingly difficult.
+
+These issues highlight **the need for additional protocols atop WebSocket** to provide more **structured communication** in complex applications.
+
+<br />
+
+**Solution: STOMP Protocol**
+
+# 2. STOMP over WebSocket
