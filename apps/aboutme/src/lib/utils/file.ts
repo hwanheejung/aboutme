@@ -79,6 +79,7 @@ export const getPostBySlug = async (slug: string) => {
         rehypePlugins: [
           rehypeAutolinkHeadings,
           [rehypePrettyCode, rehypePrettyCodeOptions],
+          // [rehypeImgSize, { dir: "public" }],
         ],
         remarkPlugins: [remarkGfm],
       },

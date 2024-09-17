@@ -71,6 +71,8 @@ const socket = new SockJS(
 
 The above issue is about allowing custom headers during the handshake process, but a Chrome WebSocket contributor argues that **including it in the query string of the URL is also acceptable.**
 
+<Image src={"/blog/dizzy-jwt/1.png"} alt="issue" width={700} />
+
 His reasoning can be summarized as follows:
 
 - The WebSocket URL, unlike an HTTP URL, is not easily exposed, making

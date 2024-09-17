@@ -23,7 +23,7 @@ const PostBox = async ({ post }: PostBoxProps) => {
       <p className="pb-3 pt-1 font-light opacity-80">{description}</p>
       <Link
         href={`/blog/${post.url}`}
-        className="mt-2 rounded-md bg-primary bg-opacity-10 py-1 text-center !font-thin !text-primary transition-all hover:bg-opacity-20"
+        className="mt-auto rounded-md bg-primary bg-opacity-10 py-1 text-center !font-thin !text-primary transition-all hover:bg-opacity-20"
       >
         Read More
       </Link>

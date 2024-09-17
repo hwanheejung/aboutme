@@ -1,7 +1,27 @@
-import { getAllPosts, getPostBySlug } from "@/lib/utils/file";
-import { USERMETA } from "contents/meta";
-import CategoryLink from "./_components/CategoryLink";
 import { parseDate } from "@/lib/utils/date";
+import { getAllPosts, getPostBySlug } from "@/lib/utils/file";
+import { rehypePrettyCodeOptions } from "@/styles/rehypePrettyCode";
+import { USERMETA } from "contents/meta";
+import fs from "fs";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import path from "path";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypePrettyCode from "rehype-pretty-code";
+import remarkGfm from "remark-gfm";
+import CategoryLink from "./_components/CategoryLink";
+import Image, { ImageProps } from "next/image";
+
+const components = {
+  Image: (props: ImageProps) => (
+    <Image
+      {...props}
+      src={`/aboutme${props.src}`}
+      height={500}
+      alt={props.alt}
+      className="mx-auto rounded-lg"
+    />
+  ),
+};
 
 export async function generateStaticParams() {
   const posts = getAllPosts();
@@ -25,6 +45,11 @@ const PostPage = async ({
   const { slug } = params;
   const { content, frontmatter } = await getPostBySlug(slug);
 
+  const source = fs.readFileSync(
+    path.join(process.cwd(), `contents/blog`, slug) + ".mdx",
+    "utf8",
+  );
+
   return (
     <div>
       <div className="border-b border-primary/30 pb-5 pt-20 text-center">
@@ -37,9 +62,21 @@ const PostPage = async ({
           <div>by {USERMETA.name}</div>
         </div>
       </div>
-
       <div className="prose-a:font-normal prose-a:text-primary/60 prose-a:underline hover:prose-a:text-main/60">
-        {content}
+        <MDXRemote
+          source={source}
+          components={components}
+          options={{
+            parseFrontmatter: true,
+            mdxOptions: {
+              rehypePlugins: [
+                rehypeAutolinkHeadings,
+                [rehypePrettyCode, rehypePrettyCodeOptions],
+              ],
+              remarkPlugins: [remarkGfm],
+            },
+          }}
+        />
       </div>
 
       {/* TODO: Add footer */}

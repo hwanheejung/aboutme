@@ -21,6 +21,7 @@ const nextConfig = {
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   images: {
     unoptimized: true,
+    domains: ["localhost"],
   },
   reactStrictMode: true,
 
@@ -28,18 +29,6 @@ const nextConfig = {
     config.resolve.alias["@"] = path.resolve(__dirname, "src");
     config.resolve.alias["public"] = path.resolve(__dirname, "public");
     config.resolve.alias["contents"] = path.resolve(__dirname, "contents");
-    // config.module.rules.push({
-    //   test: /\.(png|jpg|jpeg|gif|svg)$/, // Handle image file extensions
-    //   use: [
-    //     {
-    //       loader: "file-loader", // Use file-loader
-    //       options: {
-    //         name: "[path][name].[ext]", // File name options
-    //       },
-    //     },
-    //   ],
-    // });
-
     config.module.rules.push({
       test: /\.svg$/,
       use: ["@svgr/webpack"],

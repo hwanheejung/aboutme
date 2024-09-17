@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Section from "../../../../../components/Layouts/Section";
+import Section from "@/components/Layouts/Section";
 import Architecture from "public/projects/dizzycode/comm_arch.png";
 import FlowChart from "public/projects/dizzycode/flow_chart.png";
 
