@@ -5,4 +5,5 @@ export const rehypePrettyCodeOptions = {
     light: "github-light",
   },
   keepBackground: false,
+  defaultLang: "plaintext",
 };

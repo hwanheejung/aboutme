@@ -8,21 +8,27 @@ const Process = ({ children }: { children: ReactNode }) => {
 interface ProcessProps {
   num: number;
   title: string;
-  lists: string[];
+  lists?: string[];
 }
 
 const Item = (props: ProcessProps) => {
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center pt-5">
       <span className="flex h-12 w-12 items-center justify-center rounded-full bg-main/20 text-center text-lg font-semibold text-main">
         {props.num}
       </span>
-      <h3 className="py-3 text-lg">{props.title}</h3>
-      <ul className="text-center opacity-60">
-        {props.lists.map((list, index) => (
-          <li key={index}>{list}</li>
-        ))}
-      </ul>
+      <div className="py-3 pb-2 pt-2 text-center text-lg text-primary">
+        {props.title}
+      </div>
+      {props.lists && (
+        <ul className="!m-0 !p-0 text-center text-primary/60 prose-li:list-none">
+          {props.lists.map((list, index) => (
+            <li key={index} className="!m-0">
+              {list}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

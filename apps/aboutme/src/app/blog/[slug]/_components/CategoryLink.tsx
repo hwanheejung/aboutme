@@ -23,20 +23,23 @@ const CategoryLink = ({ currentCatId }: CategoryLinkProps) => {
   const category = categoryMap.get(currentCatId);
 
   return (
-    <div className="mb-3 font-thin text-primary">
+    <div className="mb-3 font-thin text-primary/60">
       {category.parent && (
         <>
           <Link
             href={`/blog/category/${Math.floor(Number(currentCatId))}`}
-            className="!font-thin"
+            className="transition-all hover:text-main"
           >
             {category.parent}
           </Link>{" "}
-          <span>&gt;</span>
+          <span className="font-thin">&gt;</span>
         </>
       )}
       {category && (
-        <Link className="!font-thin" href={`/blog/category/${currentCatId}`}>
+        <Link
+          className="transition-all hover:text-main"
+          href={`/blog/category/${currentCatId}`}
+        >
           {" "}
           {category.title}
         </Link>

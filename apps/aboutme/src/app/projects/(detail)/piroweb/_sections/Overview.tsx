@@ -2,11 +2,20 @@ import Section from "../../../../../components/Layouts/Section";
 
 const Overview = () => (
   <Section>
-    <Section.Header title="DizzyCode Overview" subTitle="process highlights" />
+    <Section.Header title="Overview" subTitle="process highlights" />
     <Section.Table>
       <div className="pr-3">
         <h3>Focus</h3>
         <p className="opacity-60"></p>
+      </div>
+      <div className="pr-3">
+        <h3>Links</h3>
+        <a
+          href="https://pirogramming.com/"
+          className="block underline opacity-60 hover:text-main"
+        >
+          Release
+        </a>
       </div>
     </Section.Table>
     <Section.Divider />

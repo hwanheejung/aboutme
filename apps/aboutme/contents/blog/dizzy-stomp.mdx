@@ -1,0 +1,138 @@
+---
+title: "Sock.js + STOMP"
+description: "Why we chose SockJS & STOMP over pure WebSocket for robust messaging in DizzyCode Project."
+date: "2024-5-24"
+categoryId: 1.1
+---
+
+<br />
+
+<Process>
+  <Process.Item
+    num={1}
+    title="Limits of WebSocket"
+    lists={["Limited Browser Support", "Data is Too Raw"]}
+  />
+  <Process.Item
+    num={2}
+    title="STOMP"
+    lists={["STOMP over WebSocket", "Prefix"]}
+  />
+</Process>
+
+<Section>
+<Section.Header
+  title="Limited Browser Support"
+  subTitle="limits of websocket"
+/>
+
+  <Section.Body title="Problem">
+    While the `Can I use` website indicates that most modern browsers support WebSocket,
+    it's important to note that **it does not support in older versions and specific environments.**
+    This limitation can affect the reach and compatibility of applications relying solely on WebSocket.
+
+    <Image src={"/blog/dizzycode/2.png"} alt="can I use" width={700} description="https://caniuse.com/?search=websocket"/>
+
+  </Section.Body>
+
+  <Section.Body title="Solution: Fallback Mechanism">
+    Environments that do not support Websocket can use **alternative technologies such as polling, long polling, streaming**, etc.
+    This fallback mechanism is used to address browser compatibility issues, and libraries like **SockJS** or **Socket.IO** utilize it.
+
+    Let's slightly dive into how Socket.IO works. According to the [official documentation of Socket.IO](https://socket.io/docs/v4/how-it-works/), it uses long polling as a fallback.
+    More specifically, **it initially tries to connect with long polling, and once the WebSocket connection is available, it upgrades.**
+    Cuz attempting a WebSocket connection first can lead to delays of up to 10 seconds in non-supporting environments.
+
+    <Image src={"/blog/dizzycode/3.png"} alt="socketIO" width={500}  />
+
+    1. Initial GET request: with long polling by default
+
+    2. Client -> Server data send (long-polling)
+
+    3. Data reception (long-polling)
+
+    4. WebSocket upgrade attempt
+
+    5. Upgrade successful. Final request to terminate the existing long polling connection. All subsequent communication takes place via WebSocket.
+
+  </Section.Body>
+  <Section.Header
+    title="Data is Too Raw"
+    subTitle="limits of websocket"
+  />
+  <Section.Body title="Problem">
+    The WebSocket protocol allows for the transmission of text and binary frames, but **it doesn't provide a predefined format or structure for messages.**
+    This lack of structure presents several issues:
+
+    - As projects grow, developers must design and manage complex logic for:
+      - Determining message types
+      - Handling message transmission between client and server
+      - Parsing incoming messages
+    - The flexibility in data types and message structures, while offering freedom, also introduces the **burden of definition and management.**
+    - Without a standardized approach, maintaining consistency in message handling across different parts of the application can become increasingly difficult.
+
+    These issues highlight **the need for additional protocols atop WebSocket** to provide more **structured communication** in complex applications.
+
+  </Section.Body>
+
+  <Section.Body title="Solution: STOMP Protocol">
+    When using STOMP, messages are managed in a more structured format, enabling clear communication
+    STOMP stands for Simple Text Oriented Messaging Protocol, a subprotocol that can be used alongside WebSocket.
+    STOMP frames consist of COMMAND, Headers, and Body.
+
+    <Box>
+      <div>**COMMAND**: The type of message, e.g., CONNECT, SEND, SUBSCRIBE</div>
+      <div>**Headers**: Metadata of the message</div>
+      <div>**Body**: The actual data</div>
+    </Box>
+
+    Let's compare how data is transmitted when sending a simple message like "Hello" using WebSocket alone and when using STOMP alongside it.
+
+    **When using WebSocket alone**, developers themselves must define and manage message structures using JSON, XML, text, etc.
+
+    ```json title="Handmade Structure"
+    // client -> server
+    {
+      "type": "message",
+      "content": "Hello"
+    }
+
+    // server -> client
+    {
+      "type": "response",
+      "content": "Server received: Hello"
+    }
+    ```
+
+    **When using STOMP alongside WebSocket**, the message structure follows the format defined by the STOMP protocol.
+
+    ```text title="STOMP Frames"
+     // client -> server
+     SEND
+     destination:/app/hello
+     content-type:application/json
+
+     {
+       "name": "Hello"
+     }
+     ^@
+
+     // server -> client
+     MESSAGE
+     subscription:sub-0
+     message-id:007
+     destination:/topic/greetings
+     content-type:application/json
+
+     {
+       "content": "Hello, Hello!"
+     }
+     ^@
+     ```
+
+  </Section.Body>
+</Section>
+
+<Section>
+  <Section.Header title="STOMP over WebSocket" subTitle="STOMP" />
+</Section>

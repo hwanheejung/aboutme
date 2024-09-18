@@ -1,4 +1,4 @@
-import Section from "../../../../../components/Layouts/Section";
+import Section from "@/components/Layouts/Section";
 
 const Reflection = () => (
   <>

@@ -1,5 +1,20 @@
+import { USERMETA } from "contents/meta";
 import { PROJECTS } from "contents/projects/data";
+import { Metadata } from "next";
 import Preview from "./_components/Preview";
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    openGraph: {
+      title: `${USERMETA.name}'s Projects`,
+      description: "Welcome!",
+    },
+    twitter: {
+      title: `${USERMETA.name}'s Projects`,
+      description: "Welcome!",
+    },
+  };
+}
 
 const ProjectsPage = () => {
   return (
