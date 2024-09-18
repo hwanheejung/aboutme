@@ -2,7 +2,7 @@ import Image, { ImageProps } from "@/components/Image";
 import Process from "@/components/Layouts/Process";
 import Section from "@/components/Layouts/Section";
 import { parseDate } from "@/lib/utils/date";
-import { getAllPosts, getPostBySlug } from "@/lib/utils/file";
+import { getAllPosts, getPostBySlug } from "@/lib/utils/getBlog";
 import { rehypePrettyCodeOptions } from "@/styles/rehypePrettyCode";
 import { USERMETA } from "contents/meta";
 import fs from "fs";

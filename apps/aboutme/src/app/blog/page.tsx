@@ -1,4 +1,4 @@
-import { getAllPosts } from "@/lib/utils/file";
+import { getAllPosts } from "@/lib/utils/getBlog";
 import { USERMETA } from "contents/meta";
 import { Metadata } from "next";
 import Hero from "./_components/Hero";

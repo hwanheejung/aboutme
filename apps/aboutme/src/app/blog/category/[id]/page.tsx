@@ -1,4 +1,4 @@
-import { getAllPosts } from "@/lib/utils/file";
+import { getAllPosts } from "@/lib/utils/getBlog";
 import blogCategories from "contents/meta/blogCategories.json";
 import PostBox from "../../_components/PostBox";
 

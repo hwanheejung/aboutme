@@ -1,7 +1,7 @@
 import { USERMETA } from "contents/meta";
-import { PROJECTS } from "contents/projects/data";
 import { Metadata } from "next";
 import Preview from "./_components/Preview";
+import { getAllProjects } from "@/lib/utils/getProject";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -16,12 +16,13 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const ProjectsPage = () => {
+const ProjectsPage = async () => {
+  const projects = await getAllProjects();
   return (
     <div className="flex flex-col justify-center">
       <div className="mx-auto flex flex-col gap-10 pb-40 pt-20">
-        {Object.entries(PROJECTS).map(([key, project]) => (
-          <Preview key={key} {...project} />
+        {Object.entries(projects).map(([key, project]) => (
+          <Preview key={key} slug={project.slug} {...project.frontmatter} />
         ))}
       </div>
     </div>
