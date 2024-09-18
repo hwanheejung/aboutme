@@ -1,16 +1,12 @@
 import Image, { ImageProps } from "@/components/Image";
 import Process from "@/components/Layouts/Process";
 import Section from "@/components/Layouts/Section";
+import CustomMDXRemote from "@/components/MDX/MDXRemote";
 import { parseDate } from "@/lib/utils/date";
 import { getAllPosts, getPostBySlug } from "@/lib/utils/getBlog";
-import { rehypePrettyCodeOptions } from "@/styles/rehypePrettyCode";
 import { USERMETA } from "contents/meta";
 import { Metadata } from "next";
-import { MDXRemote } from "next-mdx-remote/rsc";
 import { HTMLAttributes, ReactNode } from "react";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypePrettyCode from "rehype-pretty-code";
-import remarkGfm from "remark-gfm";
 import { twMerge } from "tailwind-merge";
 import CategoryLink from "./_components/CategoryLink";
 
@@ -84,20 +80,7 @@ const PostPage = async ({ params }: PostPageProps) => {
         </div>
       </div>
       <div className="mdx prose-a:font-normal prose-a:text-primary/60 prose-a:underline hover:prose-a:text-main/60">
-        <MDXRemote
-          source={source}
-          components={components}
-          options={{
-            parseFrontmatter: true,
-            mdxOptions: {
-              rehypePlugins: [
-                rehypeAutolinkHeadings,
-                [rehypePrettyCode, rehypePrettyCodeOptions],
-              ],
-              remarkPlugins: [remarkGfm],
-            },
-          }}
-        />
+        <CustomMDXRemote source={source} components={components} />
       </div>
 
       {/* TODO: Add footer */}

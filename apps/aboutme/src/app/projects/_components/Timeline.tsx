@@ -18,10 +18,10 @@ const Item = (props: ItemProps) => {
           <div className="w-[56px] rounded-lg border border-gray-300 bg-gray-100 py-1 text-center dark:border-neutral-700 dark:bg-neutral-800/30">
             {props.date}
           </div>
-          <div>{props.title}</div>
+          <div className="text-primary">{props.title}</div>
         </div>
       </div>
-      <ul className="opacity-60 lg:pl-[68px]">
+      <ul className="!m-0 lg:pl-[68px]">
         {props.lists.map((list, index) => (
           <li key={index}>{list}</li>
         ))}

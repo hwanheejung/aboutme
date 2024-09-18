@@ -1,18 +1,14 @@
 import Image, { ImageProps } from "@/components/Image";
+import Callout from "@/components/Layouts/Callout";
 import Process from "@/components/Layouts/Process";
 import Section from "@/components/Layouts/Section";
+import CustomMDXRemote from "@/components/MDX/MDXRemote";
 import { getAllProjects, getProjectBySlug } from "@/lib/utils/getProject";
-import { MDXRemote } from "next-mdx-remote/rsc";
 import { HTMLAttributes, ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypePrettyCode from "rehype-pretty-code";
-import remarkGfm from "remark-gfm";
-import { rehypePrettyCodeOptions } from "@/styles/rehypePrettyCode";
 import Intro from "../_components/Intro";
-import Callout from "@/components/Layouts/Callout";
-import Overview from "./_sections/dizzycode/Overview";
 import Navigator from "../_components/Navigator";
+import Timeline from "../_components/Timeline";
 
 export async function generateStaticParams() {
   const projects = await getAllProjects();
@@ -51,6 +47,19 @@ const components = {
   Process: Process,
   "Process.Item": Process.Item,
   Callout: Callout,
+  OverviewItem: ({
+    title,
+    children,
+  }: {
+    title: string;
+    children: ReactNode;
+  }) => (
+    <div className="pr-3">
+      <div className="text-primary">{title}</div>
+      <div className="flex flex-col !leading-4">{children}</div>
+    </div>
+  ),
+  Timeline: Timeline,
 };
 
 const ProjectPage = async ({ params }: ProjectPageProps) => {
@@ -60,22 +69,9 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
     <div>
       <Navigator />
       <Intro data={frontmatter} />
-      <Overview />
+      {/* <Overview /> */}
       <div className="mdx prose-a:font-normal prose-a:text-primary/60 prose-a:underline hover:prose-a:text-main/60">
-        <MDXRemote
-          source={source}
-          components={components}
-          options={{
-            parseFrontmatter: true,
-            mdxOptions: {
-              rehypePlugins: [
-                rehypeAutolinkHeadings,
-                [rehypePrettyCode, rehypePrettyCodeOptions],
-              ],
-              remarkPlugins: [remarkGfm],
-            },
-          }}
-        />
+        <CustomMDXRemote source={source} components={components} />
       </div>
       {/* TODO: Add footer */}
       <div className="h-80 w-full" />
