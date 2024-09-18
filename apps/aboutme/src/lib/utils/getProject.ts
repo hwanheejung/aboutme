@@ -16,7 +16,7 @@ export const getAllProjects = async () => {
     const source = fs.readFileSync(path.join(projectDirectory, file), "utf8");
     const slug = file.replace(/\.mdx$/, "");
 
-    const { content, frontmatter } = await compileMDX<ProjectFrontMatter>({
+    const { frontmatter } = await compileMDX<ProjectFrontMatter>({
       source,
       options: {
         mdxOptions: {
@@ -30,7 +30,7 @@ export const getAllProjects = async () => {
       },
     });
 
-    return { content, frontmatter, slug };
+    return { frontmatter, slug };
   });
 
   const projects = await Promise.all(projectPromises);

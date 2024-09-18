@@ -5,10 +5,8 @@ import { parseDate } from "@/lib/utils/date";
 import { getAllPosts, getPostBySlug } from "@/lib/utils/getBlog";
 import { rehypePrettyCodeOptions } from "@/styles/rehypePrettyCode";
 import { USERMETA } from "contents/meta";
-import fs from "fs";
 import { Metadata } from "next";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import path from "path";
 import { HTMLAttributes, ReactNode } from "react";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrettyCode from "rehype-pretty-code";
@@ -53,14 +51,14 @@ const components = {
 };
 
 export async function generateStaticParams() {
-  const posts = getAllPosts();
+  const posts = await getAllPosts();
 
   if (!posts || posts.length === 0) {
     return [{ slug: "not-found" }];
   }
 
   return posts.map((post) => ({
-    slug: post.url,
+    slug: post?.slug,
   }));
 }
 
@@ -71,12 +69,7 @@ interface PostPageProps {
 }
 const PostPage = async ({ params }: PostPageProps) => {
   const { slug } = params;
-  const { frontmatter } = await getPostBySlug(slug);
-
-  const source = fs.readFileSync(
-    path.join(process.cwd(), `contents/blog`, slug) + ".mdx",
-    "utf8",
-  );
+  const { source, frontmatter } = await getPostBySlug(slug);
 
   return (
     <div>

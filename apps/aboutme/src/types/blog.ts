@@ -1,5 +1,5 @@
-export interface FrontMatter {
-  url: string;
+export interface BlogFrontMatter {
+  slug: string;
   title: string;
   description: string;
   date: `${number}-${number}-${number}`;
