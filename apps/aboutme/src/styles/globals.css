@@ -39,7 +39,7 @@ nav {
 }
 
 .mdx {
-  @apply prose max-w-none text-primary/60 prose-headings:mt-8 prose-headings:font-semibold prose-headings:text-primary prose-h1:text-2xl prose-h2:text-xl prose-p:mb-2 prose-p:mt-1 prose-a:text-primary prose-a:no-underline hover:prose-a:text-opacity-80 prose-strong:font-normal prose-strong:text-primary prose-code:rounded-sm prose-code:bg-primary/20 prose-code:px-1 prose-code:font-normal prose-code:text-primary prose-ul:my-2;
+  @apply prose max-w-none text-primary/60 transition-all prose-headings:my-0 prose-headings:text-primary prose-h1:text-2xl prose-h2:text-2xl prose-h2:font-normal prose-h3:text-lg prose-h3:font-normal prose-h4:text-lg prose-h5:text-xl prose-h6:text-lg prose-p:mb-2 prose-p:mt-1 prose-p:leading-7 prose-a:text-main prose-a:no-underline hover:prose-a:text-opacity-80 prose-blockquote:text-primary/60 prose-strong:font-normal prose-strong:text-primary prose-code:rounded-sm prose-code:bg-primary/20 prose-code:px-1 prose-code:font-normal prose-code:text-primary;
 }
 
 @layer utilities {
@@ -103,10 +103,6 @@ code[data-line-numbers] > [data-line]::before {
   content: counter(line);
   @apply mr-4 inline-block w-4 text-right text-gray-500;
 }
-
-/* .prose {
-  @apply max-w-[55rem] !leading-7 md:text-xl sm:text-lg sm:!leading-9;
-} */
 
 pre [data-line] {
   @apply border-l-2 border-l-transparent px-4;

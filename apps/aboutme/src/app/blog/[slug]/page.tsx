@@ -9,18 +9,28 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrettyCode from "rehype-pretty-code";
 import remarkGfm from "remark-gfm";
 import CategoryLink from "./_components/CategoryLink";
-import Image, { ImageProps } from "next/image";
+import Image, { ImageProps } from "@/components/Image";
+import { HTMLAttributes, ReactNode } from "react";
+import { twMerge } from "tailwind-merge";
+import Section from "@/components/Layouts/Section";
+import Process from "@/components/Layouts/Process";
 
 const components = {
-  Image: (props: ImageProps) => (
-    <Image
-      {...props}
-      src={`/aboutme${props.src}`}
-      height={500}
-      alt={props.alt}
-      className="mx-auto rounded-lg"
-    />
-  ),
+  Image: (props: ImageProps) => <Image {...props} height={400} />,
+  Box: ({
+    children,
+    className,
+  }: {
+    children: ReactNode;
+    className?: HTMLAttributes<HTMLDivElement>["className"];
+  }) => <div className={twMerge("box my-5", className)}>{children}</div>,
+  Section: Section,
+  "Section.Header": Section.Header,
+  "Section.Body": Section.Body,
+  "Section.Table": Section.Table,
+  "Section.Divider": Section.Divider,
+  Process: Process,
+  "Process.Item": Process.Item,
 };
 
 export async function generateStaticParams() {
@@ -62,7 +72,7 @@ const PostPage = async ({
           <div>by {USERMETA.name}</div>
         </div>
       </div>
-      <div className="prose-a:font-normal prose-a:text-primary/60 prose-a:underline hover:prose-a:text-main/60">
+      <div className="mdx prose-a:font-normal prose-a:text-primary/60 prose-a:underline hover:prose-a:text-main/60">
         <MDXRemote
           source={source}
           components={components}

@@ -34,7 +34,7 @@ const Menu = ({ title, link, subs, onClick }: MenuProps) => {
   };
 
   return (
-    <div className="">
+    <>
       <Link
         href={link}
         className={twMerge(
@@ -91,7 +91,7 @@ const Menu = ({ title, link, subs, onClick }: MenuProps) => {
             </div>
           ))}
       </div>
-    </div>
+    </>
   );
 };
 

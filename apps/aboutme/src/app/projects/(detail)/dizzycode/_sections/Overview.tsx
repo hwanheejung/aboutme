@@ -1,7 +1,5 @@
-import Image from "next/image";
 import Section from "@/components/Layouts/Section";
-import Architecture from "public/projects/dizzycode/comm_arch.png";
-import FlowChart from "public/projects/dizzycode/flow_chart.png";
+import Image from "@/components/Image";
 
 const Overview = () => (
   <Section>
@@ -61,7 +59,7 @@ const Overview = () => (
     <div className="h-5 w-full" />
     <Section.Body title="System Architecture">
       <Image
-        src={Architecture}
+        src={"/projects/dizzycode/comm_arch.png"}
         width={700}
         height={400}
         alt="communication architecture"
@@ -70,7 +68,7 @@ const Overview = () => (
     </Section.Body>
     <Section.Body title="User Flow Chart">
       <Image
-        src={FlowChart}
+        src={"/projects/dizzycode/flow_chart.png"}
         width={700}
         height={400}
         alt="communication architecture"

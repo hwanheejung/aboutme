@@ -1,8 +1,10 @@
 import { PROJECTS } from "contents/projects/data";
-import Navigator from "../../_components/Navigator";
 import Intro from "../../_components/Intro";
-import Section from "../../../../components/Layouts/Section";
+import Navigator from "../../_components/Navigator";
 import Overview from "./_sections/Overview";
+import Reflection from "./_sections/Reflection";
+import Tech from "./_sections/Tech";
+import TechReflection from "./_sections/TechReflection";
 
 const TaskStockPage = () => {
   const data = PROJECTS.TASKSTOCK;
@@ -11,12 +13,9 @@ const TaskStockPage = () => {
       <Navigator />
       <Intro data={data} />
       <Overview />
-      <Section>
-        <Section.Header title="The Process" />
-      </Section>
-      <Section>
-        <Section.Header title="Next Steps" subTitle="reflection" />
-      </Section>
+      <Tech />
+      <TechReflection />
+      <Reflection />
     </div>
   );
 };
