@@ -26,7 +26,7 @@ export default function RootLayout({
         <Settings />
         <div className="relative flex h-woSettings">
           <Hamburger />
-          <main className="flex-1 overflow-y-scroll p-5 font-sans scrollbar-hide">
+          <main className="flex-1 overflow-y-scroll p-5 font-sans">
             {children}
           </main>
         </div>

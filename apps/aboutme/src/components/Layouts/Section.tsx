@@ -16,7 +16,7 @@ const Header = ({
   return (
     <div className="border-b border-b-primary/30 pb-2 pt-14">
       {subTitle && (
-        <span className="mb-2 block text-xs font-thin uppercase tracking-widest opacity-60">
+        <span className="mb-2 block text-xs font-thin uppercase tracking-widest">
           {subTitle}
         </span>
       )}
