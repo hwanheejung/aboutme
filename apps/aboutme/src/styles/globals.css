@@ -79,6 +79,7 @@ pre > code {
   counter-reset: line;
 }
 
+pre[data-theme*=" "],
 code[data-theme*=" "],
 code[data-theme*=" "] span {
   color: var(--shiki-light);
@@ -87,10 +88,12 @@ code[data-theme*=" "] span {
 }
 
 .dark {
+  pre[data-theme*=" "],
   code[data-theme*=" "],
   code[data-theme*=" "] span {
     color: var(--shiki-dark);
-    background-color: var(--shiki-dark-bg);
+    /* background-color: var(--shiki-dark-bg); */
+    background-color: rgb(37, 37, 37);
   }
 }
 
