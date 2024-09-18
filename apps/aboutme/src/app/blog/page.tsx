@@ -1,4 +1,4 @@
-import { getAllPosts } from "@/lib/utils/file";
+import { getAllPosts } from "@/lib/utils/getBlog";
 import { USERMETA } from "contents/meta";
 import { Metadata } from "next";
 import Hero from "./_components/Hero";
@@ -17,8 +17,8 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const BlogPage = () => {
-  const posts = getAllPosts();
+const BlogPage = async () => {
+  const posts = await getAllPosts();
   return (
     <>
       <Hero
@@ -26,11 +26,15 @@ const BlogPage = () => {
         title={"Welcome to my Tech Blog :)"}
         description="I'm currently focusing on Next.js"
       />
-      <div className="mx-35 my-10 grid grid-cols-3 gap-5 lg:grid-cols-2 md:grid-cols-1">
-        {posts.map((post) => (
-          <PostBox key={post.url} post={post} />
-        ))}
-      </div>
+      {posts.length === 0 ? (
+        <div className="pt-40 text-center text-xl">No Post Yet...</div>
+      ) : (
+        <div className="mx-35 my-10 grid grid-cols-3 gap-5 lg:grid-cols-2 md:grid-cols-1">
+          {posts.map((post) => (
+            <PostBox key={post.slug} post={post.frontmatter} slug={post.slug} />
+          ))}
+        </div>
+      )}
     </>
   );
 };

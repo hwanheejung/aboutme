@@ -1,4 +1,4 @@
-import { getAllPosts } from "@/lib/utils/file";
+import { getAllPosts } from "@/lib/utils/getBlog";
 import blogCategories from "contents/meta/blogCategories.json";
 import PostBox from "../../_components/PostBox";
 
@@ -19,7 +19,7 @@ export async function generateStaticParams() {
   return params;
 }
 
-const CategoryPage = ({
+const CategoryPage = async ({
   params,
 }: {
   params: {
@@ -27,7 +27,7 @@ const CategoryPage = ({
   };
 }) => {
   const { id } = params;
-  const posts = getAllPosts(parseFloat(id));
+  const posts = await getAllPosts(parseFloat(id));
   return (
     <>
       {posts.length === 0 ? (
@@ -35,7 +35,7 @@ const CategoryPage = ({
       ) : (
         <div className="mx-35 my-10 grid grid-cols-3 gap-5 lg:grid-cols-2 md:grid-cols-1">
           {posts.map((post) => (
-            <PostBox key={post.url} post={post} />
+            <PostBox key={post.slug} post={post.frontmatter} slug={post.slug} />
           ))}
         </div>
       )}

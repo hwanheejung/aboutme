@@ -1,7 +1,7 @@
-export interface Preview {
+export interface ProjectFrontMatter {
+  num: number;
   title: string;
   description: string;
-  num: number;
   role: string;
   img: {
     mockup: "APP" | "WEB";
@@ -9,13 +9,5 @@ export interface Preview {
     bgSrc?: string;
   };
   platform: "WEB" | "APP";
-  link?: string;
+  status: "ONGOING" | "COMPLETED";
 }
-
-export type Project =
-  | "DIZZYCODE"
-  | "POLABO"
-  | "ABOUTME"
-  | "TASKSTOCK"
-  | "PIROGRAMMING_WEB"
-  | "PIROGRAMMING_APP";
