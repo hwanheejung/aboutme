@@ -1,6 +1,6 @@
-import { FrontMatter } from "@/types";
+import { BlogFrontMatter } from "@/types";
 
-export const parseDate = (date: FrontMatter["date"]) => {
+export const parseDate = (date: BlogFrontMatter["date"]) => {
   // date is in the format of "YYYY-MM-DD"
   // we want to return "Month DD, YYYY"
 
