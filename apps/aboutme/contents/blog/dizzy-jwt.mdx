@@ -5,6 +5,23 @@ date: "2024-5-29"
 categoryId: 1.1
 ---
 
+<br />
+
+<Process>
+  <Process.Item num={1} title="Background" />
+  <Process.Item num={2} title="Problem Definition" />
+  <Process.Item
+    num={3}
+    title="Solution"
+    lists={["Rejected Approaches", "Chosen Solution"]}
+  />
+  <Process.Item
+    num={4}
+    title="After WebSocket Connection"
+    lists={["STOMP Connection", "Message Transmission"]}
+  />
+</Process>
+
 <Section>
   <Section.Header title="Background" />
   Say, we're chatting in a discord channel. The points at which we need to check
@@ -102,8 +119,6 @@ security when sensitive information like a token is included in the
 URL, even if the actual risk is low.**
 
   </Section.Body>
-
-{" "}
 
 <Section.Header
   title="Sol 2: Sending the Authentication Token with the First WebSocket Message"

@@ -20,11 +20,11 @@ const Header = ({
           {subTitle}
         </span>
       )}
-      <h2
-        className={`text-2xl ${type === "primary" ? "!text-main" : "text-primary"}`}
+      <div
+        className={`text-2xl text-primary ${type === "primary" ? "!text-main" : "text-primary"}`}
       >
         {title}
-      </h2>
+      </div>
     </div>
   );
 };
@@ -32,7 +32,7 @@ const Header = ({
 const Body = ({ children, title }: { children: ReactNode; title: string }) => {
   return (
     <div className="pb-5">
-      <h3 className="pb-3 text-xl font-semibold">{title}</h3>
+      <div className="pb-3 text-xl font-semibold text-primary">{title}</div>
       <div className="prose max-w-none text-primary/60 prose-p:mb-2 prose-p:mt-1 prose-strong:font-normal prose-strong:text-primary prose-code:rounded prose-code:bg-black/10 prose-code:px-1 prose-code:font-normal prose-code:text-primary prose-ul:my-2 prose-code:dark:bg-white/20">
         {children}
       </div>

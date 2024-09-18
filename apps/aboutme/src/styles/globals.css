@@ -39,7 +39,7 @@ nav {
 }
 
 .mdx {
-  @apply prose max-w-none text-primary/60 transition-all prose-headings:my-0 prose-headings:text-primary prose-h1:text-2xl prose-h2:text-2xl prose-h2:font-normal prose-h3:text-lg prose-h3:font-normal prose-h4:text-lg prose-h5:text-xl prose-h6:text-lg prose-p:mb-2 prose-p:mt-1 prose-p:leading-7 prose-a:text-main prose-a:no-underline hover:prose-a:text-opacity-80 prose-blockquote:text-primary/60 prose-strong:font-normal prose-strong:text-primary prose-code:rounded-sm prose-code:bg-primary/20 prose-code:px-1 prose-code:font-normal prose-code:text-primary;
+  @apply prose max-w-none text-primary/60 transition-all prose-headings:text-primary prose-h1:text-3xl prose-h2:mb-3 prose-h2:mt-10 prose-h2:text-2xl prose-h3:text-lg prose-p:mb-2 prose-p:mt-1 prose-p:leading-7 prose-a:text-main prose-a:no-underline hover:prose-a:text-opacity-80 prose-blockquote:text-primary/60 prose-strong:font-normal prose-strong:text-primary prose-code:rounded-sm prose-code:bg-primary/20 prose-code:px-1 prose-code:font-normal prose-code:text-primary prose-li:my-0;
 }
 
 @layer utilities {

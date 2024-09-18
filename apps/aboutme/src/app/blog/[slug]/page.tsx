@@ -1,19 +1,38 @@
+import Image, { ImageProps } from "@/components/Image";
+import Process from "@/components/Layouts/Process";
+import Section from "@/components/Layouts/Section";
 import { parseDate } from "@/lib/utils/date";
 import { getAllPosts, getPostBySlug } from "@/lib/utils/file";
 import { rehypePrettyCodeOptions } from "@/styles/rehypePrettyCode";
 import { USERMETA } from "contents/meta";
 import fs from "fs";
+import { Metadata } from "next";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import path from "path";
+import { HTMLAttributes, ReactNode } from "react";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrettyCode from "rehype-pretty-code";
 import remarkGfm from "remark-gfm";
-import CategoryLink from "./_components/CategoryLink";
-import Image, { ImageProps } from "@/components/Image";
-import { HTMLAttributes, ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
-import Section from "@/components/Layouts/Section";
-import Process from "@/components/Layouts/Process";
+import CategoryLink from "./_components/CategoryLink";
+
+export async function generateMetadata({
+  params,
+}: PostPageProps): Promise<Metadata> {
+  const { slug } = params;
+  const { frontmatter } = await getPostBySlug(slug);
+
+  return {
+    openGraph: {
+      title: frontmatter.title,
+      description: frontmatter.description,
+    },
+    twitter: {
+      title: frontmatter.title,
+      description: frontmatter.description,
+    },
+  };
+}
 
 const components = {
   Image: (props: ImageProps) => <Image {...props} height={400} />,
@@ -45,15 +64,14 @@ export async function generateStaticParams() {
   }));
 }
 
-const PostPage = async ({
-  params,
-}: {
+interface PostPageProps {
   params: {
     slug: string;
   };
-}) => {
+}
+const PostPage = async ({ params }: PostPageProps) => {
   const { slug } = params;
-  const { content, frontmatter } = await getPostBySlug(slug);
+  const { frontmatter } = await getPostBySlug(slug);
 
   const source = fs.readFileSync(
     path.join(process.cwd(), `contents/blog`, slug) + ".mdx",
