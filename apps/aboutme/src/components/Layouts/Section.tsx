@@ -14,7 +14,9 @@ const Header = ({
   type?: "primary" | "secondary";
 }) => {
   return (
-    <div className="border-b border-b-primary/30 pb-2 pt-14">
+    <div
+      className={`border-b border-b-primary/30 pb-2 ${type === "primary" ? "pt-16" : "pt-10"}`}
+    >
       {subTitle && (
         <span className="mb-2 block text-xs font-thin uppercase tracking-widest">
           {subTitle}
