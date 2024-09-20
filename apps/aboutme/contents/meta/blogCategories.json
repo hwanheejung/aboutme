@@ -2,7 +2,7 @@
   "categories": [
     {
       "id": 1,
-      "title": "Projects/Activities",
+      "title": "Projects",
       "subs": [
         {
           "id": 1.1,
@@ -26,25 +26,7 @@
     },
     {
       "id": 3,
-      "title": "Frontend",
-      "subs": [
-        {
-          "id": 3.1,
-          "title": "JavaScript"
-        },
-        {
-          "id": 3.2,
-          "title": "TypeScript"
-        },
-        {
-          "id": 3.3,
-          "title": "React"
-        },
-        {
-          "id": 3.4,
-          "title": "Next.js"
-        }
-      ]
+      "title": "Frontend"
     }
   ]
 }

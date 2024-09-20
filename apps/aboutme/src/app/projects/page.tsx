@@ -2,6 +2,7 @@ import { USERMETA } from "contents/meta";
 import { Metadata } from "next";
 import Preview from "./_components/Preview";
 import { getAllProjects } from "@/lib/utils/getProject";
+import Footer from "@/components/Footer";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -52,6 +53,7 @@ const ProjectsPage = async () => {
           />
         ))}
       </div>
+      <Footer />
     </div>
   );
 };
