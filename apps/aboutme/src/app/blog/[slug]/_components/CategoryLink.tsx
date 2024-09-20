@@ -15,7 +15,7 @@ const CategoryLink = ({ currentCatId }: CategoryLinkProps) => {
     categoryMap.set(category.id, { title: category.title, parent: null });
 
     // Add the subcategories
-    category.subs.forEach((sub) => {
+    category.subs?.forEach((sub) => {
       categoryMap.set(sub.id, { title: sub.title, parent: category.title });
     });
   });
