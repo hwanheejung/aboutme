@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <head>
-        <link rel="icon" href="/images/favicon.ico" sizes="any" />
+        <link rel="icon" href="/aboutme/images/favicon.svg" sizes="any" />
       </head>
       <body className={inter.className}>
         <Settings />
