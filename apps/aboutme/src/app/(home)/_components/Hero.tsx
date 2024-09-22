@@ -1,7 +1,7 @@
 const Hero = () => (
-  <div className="flex h-[70dvh] flex-col items-center justify-center">
-    <p className="pb-3 text-lg">Hi, This is Hwanhee</p>
-    <div className="flex flex-col items-center gap-3 text-6xl font-extrabold uppercase text-white">
+  <div className="flex h-[80dvh] flex-col items-center justify-center">
+    <p className="pb-3 text-lg">Hello, I'm Hwanhee</p>
+    <div className="flex flex-col items-center gap-3 text-6xl font-extrabold uppercase">
       <div>
         <span className="text-accent-teal">Front-end</span> Driven,
       </div>

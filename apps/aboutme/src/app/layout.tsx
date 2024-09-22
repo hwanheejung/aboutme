@@ -1,6 +1,4 @@
 import Header from "@/components/Header";
-import Hamburger from "@/components/Navigation/Hamburger";
-import Settings from "@/components/Settings";
 import "@/styles/globals.css";
 import { SITEMETA } from "contents/meta";
 import type { Metadata } from "next";
@@ -42,7 +40,8 @@ export default function RootLayout({
           <Header />
 
           {/* <Hamburger /> */}
-          <main className="flex-1 px-5">{children}</main>
+
+          <main className="px-10">{children}</main>
         </div>
       </body>
     </html>
