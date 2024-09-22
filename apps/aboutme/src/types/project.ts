@@ -6,8 +6,9 @@ export interface ProjectFrontMatter {
   img: {
     mockup: "APP" | "WEB";
     mockupSrc: string;
-    bgSrc?: string;
   };
   platform: "WEB" | "APP";
   status: "ONGOING" | "COMPLETED";
+  site?: string;
+  github?: string;
 }
