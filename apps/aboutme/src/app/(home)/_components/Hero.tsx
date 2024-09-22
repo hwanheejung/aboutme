@@ -1,27 +1,16 @@
 const Hero = () => (
-  <div className="mx-24 mt-40 font-mono lg:mx-10 lg:mt-28 sm:mx-5">
-    <div className="flex w-fit flex-col gap-2">
-      <div className="mr-4 flex items-center gap-3">
-        <span className="font-thin">Hi, this is</span>
-        <div className="h-px flex-1 bg-primary" />
+  <div className="flex h-[80dvh] flex-col items-center justify-center">
+    <p className="pb-3 text-lg">Hello, I'm Hwanhee</p>
+    <div className="flex flex-col items-center gap-3 text-6xl font-extrabold uppercase">
+      <div>
+        <span className="text-accent-teal">Front-end</span> Driven,
       </div>
-      <h1 className="whitespace-pre-line text-4xl font-bold text-main">
-        Frontend Developer, {"\n"}Hwanhee Jeong
-      </h1>
-    </div>
-    <div className="flex flex-col gap-2">
-      <p className="mt-10">
-        I create digital experiences across web & app, turn data into meaning,
-        empower ideas with code.
-      </p>
-      <p>
-        Passionate about solving real-world problems through development, I
-        consistently share my learnings and insights on my blog.
-      </p>
-      <p>
-        I strive to find the simplest yet most reasonable solution to every
-        challenge.
-      </p>
+      <div>
+        Clear <span className="text-accent-lime">Docs</span>,
+      </div>
+      <div>
+        <span className="text-accent-yellow">Fast</span> Learner
+      </div>
     </div>
   </div>
 );

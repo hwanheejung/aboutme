@@ -73,8 +73,6 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
       <div className="mdx prose-a:font-normal prose-a:text-primary/60 prose-a:underline hover:prose-a:text-main/60">
         <CustomMDXRemote source={source} components={components} />
       </div>
-      {/* TODO: Add footer */}
-      <div className="h-80 w-full" />
     </div>
   );
 };

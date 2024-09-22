@@ -1,8 +1,7 @@
+import { getAllProjects } from "@/lib/utils/getProject";
 import { USERMETA } from "contents/meta";
 import { Metadata } from "next";
 import Preview from "./_components/Preview";
-import { getAllProjects } from "@/lib/utils/getProject";
-import Footer from "@/components/Footer";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -29,9 +28,9 @@ const ProjectsPage = async () => {
 
   return (
     <div className="flex flex-col justify-center">
-      <h1 className="mb-10 mt-20 text-center text-xl font-thin uppercase tracking-wider">
+      <h3 className="mb-10 mt-20 text-center text-3xl font-bold uppercase text-accent-teal">
         Current Works
-      </h1>
+      </h3>
       <div className="mx-auto flex flex-col gap-10 pb-40">
         {ongoingProjects.map((project) => (
           <Preview
@@ -41,9 +40,9 @@ const ProjectsPage = async () => {
           />
         ))}
       </div>
-      <h1 className="mb-10 mt-20 text-center text-xl font-thin uppercase tracking-wider">
+      <h3 className="mb-10 mt-20 text-center text-3xl font-bold uppercase text-accent-lime">
         Completed Works
-      </h1>
+      </h3>
       <div className="mx-auto flex flex-col gap-10 pb-40">
         {completedProjects.map((project) => (
           <Preview
@@ -53,7 +52,6 @@ const ProjectsPage = async () => {
           />
         ))}
       </div>
-      <Footer />
     </div>
   );
 };
