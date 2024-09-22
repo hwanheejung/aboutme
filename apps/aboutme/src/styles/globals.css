@@ -5,8 +5,8 @@
 @layer base {
   :root {
     --color-primary: 0 0 0;
-    --background-start-rgb: 255, 255, 255;
-    --background-end-rgb: 255, 255, 255;
+    --background-start-rgb: 255, 250, 241;
+    --background-end-rgb: 255, 250, 241;
     --dynamic-vh: 100vh;
   }
 

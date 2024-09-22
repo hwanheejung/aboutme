@@ -41,7 +41,7 @@ export default function RootLayout({
 
           {/* <Hamburger /> */}
 
-          <main className="px-10">{children}</main>
+          <main className="px-10 text-lg">{children}</main>
         </div>
       </body>
     </html>
