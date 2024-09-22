@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Menu from "./Menu";
+import Menu from "../Menu";
 import Theme from "./Theme";
 
 const Header = () => {
@@ -13,10 +13,10 @@ const Header = () => {
         <h1 className="">J.HH</h1>
       </Link>
       <ul className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 transform rounded-full border border-primary/20 px-4 text-lg">
-        <Menu name="About me" link="/" />
-        <Menu name="Projects" link="/projects" />
-        <Menu name="Tech Blog" link="/blog" />
-        <Menu name="CV" link="/cv" />
+        <Menu name="About me" link="/" className="px-4 py-3" />
+        <Menu name="Projects" link="/projects" className="px-4 py-3" />
+        <Menu name="Tech Blog" link="/blog" className="px-4 py-3" />
+        <Menu name="CV" link="/cv" className="px-4 py-3" />
       </ul>
       <menu className="flex items-center justify-center rounded-full border border-primary/20 px-4 py-3">
         <Theme />

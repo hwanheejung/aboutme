@@ -7,11 +7,11 @@ import Link from "next/link";
 const WhatIDo = () => {
   return (
     <>
-      <h1 className="py-10 text-center text-3xl font-bold uppercase text-accent-lime">
+      <h2 className="py-10 text-center text-3xl font-bold uppercase text-accent-lime">
         what i do
-      </h1>
-      <div className="grid grid-cols-2 gap-4">
-        <div className="flex flex-col items-center rounded-lg border border-gray-300/60 bg-accent-yellow/5 px-5 pb-5 pt-10 text-center dark:border-neutral-700 dark:bg-neutral-800/30">
+      </h2>
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-1">
+        <div className="flex flex-col items-center rounded-lg border border-gray-300/60 px-5 pb-5 pt-10 text-center dark:border-neutral-700 dark:bg-neutral-800/30">
           <WebAppIcon className="h-20 text-accent-teal" />
           <div className="pb-3 pt-5 text-xl font-bold text-accent-teal">
             Web&App Development
@@ -30,7 +30,7 @@ const WhatIDo = () => {
             </ButtonTransition>
           </Link>
         </div>
-        <div className="flex flex-col items-center rounded-lg border border-gray-300/60 bg-accent-yellow/5 px-5 pb-5 pt-10 text-center dark:border-neutral-700 dark:bg-neutral-800/30">
+        <div className="flex flex-col items-center rounded-lg border border-gray-300/60 px-5 pb-5 pt-10 text-center dark:border-neutral-700 dark:bg-neutral-800/30">
           <BookIcon className="h-20 text-accent-yellow" />
           <div className="pb-3 pt-5 text-xl font-bold text-accent-yellow">
             Documentation

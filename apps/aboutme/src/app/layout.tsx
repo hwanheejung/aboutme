@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import "@/styles/globals.css";
 import { SITEMETA } from "contents/meta";
@@ -33,15 +34,12 @@ export default function RootLayout({
         <link rel="icon" href="/aboutme/images/favicon.svg" sizes="any" />
       </head>
       <body
-        className={`${HankenItalicVariable.variable} ${HankenVariable.variable} ${inter.className}}`}
+        className={`${HankenItalicVariable.variable} ${HankenVariable.variable} ${inter.className} overflow-x-hidden`}
       >
-        {/* <Settings /> */}
         <div className="font-hanken">
           <Header />
-
-          {/* <Hamburger /> */}
-
           <main className="px-10 text-lg">{children}</main>
+          <Footer />
         </div>
       </body>
     </html>

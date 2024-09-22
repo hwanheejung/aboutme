@@ -3,13 +3,16 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import ButtonTransition from "../Transitions/ButtonTransition";
+import { HTMLAttributes } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface MenuProps {
   name: string;
   link: string;
+  className?: HTMLAttributes<HTMLLIElement>["className"];
 }
 
-const Menu = ({ name, link }: MenuProps) => {
+const Menu = ({ name, link, className }: MenuProps) => {
   const pathName = usePathname();
 
   const checkCurrentPage = () => {
@@ -23,7 +26,7 @@ const Menu = ({ name, link }: MenuProps) => {
   };
 
   return (
-    <li className="relative px-4 py-3 transition-opacity">
+    <li className={twMerge("relative transition-opacity", className)}>
       <ButtonTransition>
         <Link href={link}>{name}</Link>
       </ButtonTransition>

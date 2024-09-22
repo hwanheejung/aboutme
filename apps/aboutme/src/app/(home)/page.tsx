@@ -1,14 +1,13 @@
-import Contact from "./_components/Contact";
 import Hero from "./_components/Hero";
+import MainContact from "./_components/Contact";
 import WhatIDo from "./_components/WhatIDo";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <Contact />
+      <MainContact />
       <WhatIDo />
-      <div className="h-[400px]"></div>
     </>
   );
 }
