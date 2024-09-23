@@ -4,11 +4,10 @@ import Section from "@/components/Layouts/Section";
 import CustomMDXRemote from "@/components/MDX/MDXRemote";
 import { parseDate } from "@/lib/utils/date";
 import { getAllPosts, getPostBySlug } from "@/lib/utils/getBlog";
-import { USERMETA } from "contents/meta";
+import { USERMETA } from "contents/meta/user";
 import { Metadata } from "next";
 import { HTMLAttributes, ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
-import { getCategoryColorById } from "../_utils/category";
 import CategoryLink from "./_components/CategoryLink";
 
 export async function generateMetadata({
@@ -50,10 +49,6 @@ const PostPage = async ({ params }: PostPageProps) => {
   const { slug } = params;
   const { source, frontmatter } = await getPostBySlug(slug);
 
-  const titleColor = frontmatter.categoryId
-    ? `text-[${getCategoryColorById(frontmatter.categoryId)}]`
-    : "text-primary";
-
   const components = {
     Image: (props: ImageProps) => <Image {...props} height={400} />,
     Box: ({
@@ -78,7 +73,7 @@ const PostPage = async ({ params }: PostPageProps) => {
         {frontmatter.categoryId && (
           <CategoryLink currentCatId={frontmatter.categoryId} />
         )}
-        <div className={twMerge("mb-5 text-4xl font-bold", titleColor)}>
+        <div className={"mb-5 text-4xl font-bold text-accent-yellow"}>
           {frontmatter.title}
         </div>
         <div className="font-thin text-primary/60">

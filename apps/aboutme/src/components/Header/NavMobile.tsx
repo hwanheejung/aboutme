@@ -131,41 +131,39 @@ const Drawer = () => {
   if (isOpen) {
     return (
       <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="shadow-4xl absolute left-0 right-0 top-full z-50 border-b border-b-white/20 bg-neutral-950 p-5 pt-0"
-          >
-            <MenuList
-              renderItem={(nav, index) => (
-                <motion.div
-                  key={nav.link}
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 260,
-                    damping: 20,
-                    delay: 0.1 + index / 10,
-                  }}
-                  className="flex"
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          className="shadow-4xl absolute left-0 right-0 top-full z-50 border-b border-b-white/20 bg-background p-5 pt-0"
+        >
+          <MenuList
+            renderItem={(nav, index) => (
+              <motion.div
+                key={nav.link}
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 260,
+                  damping: 20,
+                  delay: 0.1 + index / 10,
+                }}
+                className="flex"
+              >
+                <Link
+                  href={nav.link}
+                  onClick={setClose}
+                  className="flex-1 rounded-full border border-primary/20 px-4 py-3 text-center"
                 >
-                  <Link
-                    href={nav.link}
-                    onClick={setClose}
-                    className="flex-1 rounded-full border border-primary/20 px-4 py-3 text-center"
-                  >
-                    {nav.title}
-                  </Link>
-                </motion.div>
-              )}
-              className="z-50 flex w-full flex-col gap-4 bg-black px-5 pb-5 pt-10"
-            />
-          </motion.div>
-        )}
+                  {nav.title}
+                </Link>
+              </motion.div>
+            )}
+            className="z-50 flex w-full flex-col gap-4 px-5 pb-5 pt-10"
+          />
+        </motion.div>
       </AnimatePresence>
     );
   } else {

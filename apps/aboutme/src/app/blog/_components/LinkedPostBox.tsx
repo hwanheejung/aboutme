@@ -4,13 +4,12 @@ import { BlogFrontMatter } from "@/types";
 import Link from "next/link";
 import { getCategoryById } from "../_utils/category";
 
-interface PostBoxProps {
-  post: BlogFrontMatter;
-  slug: string;
+interface LinkedPostBoxProps {
+  post: Omit<BlogFrontMatter, "slug"> & { link: string };
 }
 
-const PostBox = async ({ post, slug }: PostBoxProps) => {
-  const { title, description, date, categoryId } = post;
+const LinkedPostBox = async ({ post }: LinkedPostBoxProps) => {
+  const { title, description, date, categoryId, link } = post;
 
   const parsedDate = parseDate(date);
 
@@ -23,25 +22,26 @@ const PostBox = async ({ post, slug }: PostBoxProps) => {
         >
           {categoryId ? getCategoryById(categoryId) : ""}
         </Link>
-        <span className="text-xl">🇺🇸</span>
+        <span className="text-xl">🇰🇷</span>
       </div>
-      <Link href={`/blog/${slug}`} className="mt-2 p-0 text-xl !no-underline">
+      <a href={link} target="_blank" className="mt-2 p-0 text-xl !no-underline">
         <div className="text-2xl font-bold hover:underline">{title}</div>
-      </Link>
+      </a>
       <span className="py-2 text-xs font-thin text-primary/70">
         {parsedDate}
       </span>
       <p className="pb-6 pt-2 text-sm opacity-70">{description}</p>
-      <Link
-        href={`/blog/${slug}`}
+      <a
+        href={link}
+        target="_blank"
         className="mt-auto w-full rounded-full border border-gray-300 py-2 dark:border-neutral-700"
       >
         <ButtonTransition className="flex items-center justify-center">
           Read More!
         </ButtonTransition>
-      </Link>
+      </a>
     </div>
   );
 };
 
-export default PostBox;
+export default LinkedPostBox;

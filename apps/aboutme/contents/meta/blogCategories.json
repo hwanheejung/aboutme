@@ -3,29 +3,34 @@
     {
       "id": 1,
       "title": "Projects",
-      "color": "",
+
       "subs": [
         {
           "id": 1.1,
-          "title": "DizzyCode",
-          "color": "#7289DA"
+          "title": "DizzyCode"
+        },
+        {
+          "id": 1.2,
+          "title": "Polabo"
+        },
+        {
+          "id": 1.3,
+          "title": "TaskStock"
         }
       ]
     },
     {
       "id": 2,
       "title": "Computer Science",
-      "color": "",
+
       "subs": [
         {
           "id": 2.1,
-          "title": "Network",
-          "color": "#54BFB5"
+          "title": "Network"
         },
         {
           "id": 2.2,
-          "title": "Algorithms",
-          "color": "#BED95F"
+          "title": "Algorithms"
         }
       ]
     },

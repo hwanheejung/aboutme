@@ -19,23 +19,3 @@ export const getCategoryById = (categoryId: number) => {
 
   return null;
 };
-
-export const getCategoryColorById = (categoryId: number) => {
-  const categories = blogCategories.categories;
-
-  for (const category of categories) {
-    if (category.id === categoryId) {
-      return category.color;
-    }
-
-    if (category.subs) {
-      for (const sub of category.subs) {
-        if (sub.id === categoryId) {
-          return sub.color;
-        }
-      }
-    }
-  }
-
-  return null;
-};

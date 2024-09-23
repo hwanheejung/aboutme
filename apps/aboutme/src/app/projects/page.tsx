@@ -1,5 +1,5 @@
 import { getAllProjects } from "@/lib/utils/getProject";
-import { USERMETA } from "contents/meta";
+import { USERMETA } from "contents/meta/user";
 import { Metadata } from "next";
 import Preview from "./_components/Preview";
 

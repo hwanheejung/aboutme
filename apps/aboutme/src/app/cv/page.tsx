@@ -1,5 +1,5 @@
 import CV from "contents/cv/cv.mdx";
-import { USERMETA } from "contents/meta";
+import { USERMETA } from "contents/meta/user";
 import { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
