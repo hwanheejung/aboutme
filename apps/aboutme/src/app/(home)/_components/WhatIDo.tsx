@@ -28,7 +28,7 @@ const WhatIDo = () => (
         </Link>
       </div>
       <div className="flex flex-col items-center rounded-xl border border-gray-300/60 px-5 pb-5 pt-10 text-center dark:border-neutral-700 dark:bg-neutral-800/30">
-        <BookIcon className="h-20 text-accent-yellow" />
+        <BookIcon className="h-20 w-20 text-accent-yellow" />
         <div className="pb-3 pt-5 text-xl font-bold text-accent-yellow">
           Documentation
         </div>

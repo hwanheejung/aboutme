@@ -38,7 +38,7 @@ export default function RootLayout({
       >
         <div className="font-hanken">
           <Header />
-          <main className="px-10 text-lg">{children}</main>
+          <main className="px-10 text-lg md:px-5">{children}</main>
           <Footer />
         </div>
       </body>

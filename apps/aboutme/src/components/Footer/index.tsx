@@ -1,5 +1,7 @@
+import Link from "next/link";
 import FooterContact from "../Contact/FooterContact";
-import Menu from "../Menu";
+import MenuList from "../Menu/MenuList";
+import ButtonTransition from "../Transitions/ButtonTransition";
 
 const Footer = () => {
   return (
@@ -15,12 +17,15 @@ const Footer = () => {
               <h2 className="mb-4 text-xl font-bold">Explore</h2>
               <div className="absolute bottom-0 left-1/2 -z-10 h-3 w-full -translate-x-1/2 -rotate-6 -skew-x-6 transform bg-accent-red/70" />
             </div>
-            <ul className="flex flex-col text-lg">
-              <Menu name="About me" link="/" className="py-1" />
-              <Menu name="Projects" link="/projects" className="py-1" />
-              <Menu name="Tech Blog" link="/blog" className="py-1" />
-              <Menu name="CV" link="/cv" className="py-1" />
-            </ul>
+
+            <MenuList
+              renderItem={(nav) => (
+                <Link key={nav.link} href={nav.link} className="py-1">
+                  <ButtonTransition>{nav.title}</ButtonTransition>
+                </Link>
+              )}
+              className="flex flex-col text-lg"
+            />
           </nav>
           <nav className="w-fit md:mx-auto">
             <div className="relative z-10 w-fit px-1">
