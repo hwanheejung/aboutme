@@ -41,18 +41,13 @@ nav {
 }
 
 .mdx {
-  @apply prose max-w-none text-primary/60 transition-all prose-headings:text-primary prose-h1:text-3xl prose-h2:mb-3 prose-h2:mt-10 prose-h2:text-2xl prose-h3:text-xl prose-h4:text-lg prose-p:mb-2 prose-p:mt-1 prose-p:leading-7 prose-a:text-main prose-a:no-underline hover:prose-a:text-opacity-80 prose-blockquote:text-primary/60 prose-strong:font-normal prose-strong:text-primary prose-code:rounded-sm prose-code:bg-primary/20 prose-code:px-1 prose-code:font-normal prose-code:text-primary prose-ul:mt-0 prose-li:my-0;
+  @apply prose-a:text-accent-yellow prose max-w-none text-primary/70 transition-all prose-headings:text-primary prose-h1:text-4xl prose-h2:mb-3 prose-h2:mt-10 prose-h2:text-3xl prose-h3:text-2xl prose-h4:text-2xl prose-p:mb-2 prose-p:mt-1 prose-p:text-lg prose-p:leading-7 prose-a:no-underline prose-blockquote:text-primary/60 prose-strong:font-normal prose-strong:text-primary prose-code:rounded-sm prose-code:bg-primary/20 prose-code:px-1 prose-code:font-normal prose-code:text-primary prose-ul:mt-0 prose-li:my-0;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
-}
-
-.custom-shape {
-  @apply grid h-[150px] w-[150px] place-items-center bg-main text-2xl;
-  border-radius: 70% 30% 30% 70% / 60% 40% 60% 40%;
 }
 
 blockquote {
@@ -95,7 +90,8 @@ code[data-theme*=" "] span {
   code[data-theme*=" "] span {
     color: var(--shiki-dark);
     /* background-color: var(--shiki-dark-bg); */
-    background-color: rgb(37, 37, 37);
+    /* background-color: rgb(37, 37, 37); */
+    background-color: transparent;
   }
 }
 
@@ -114,8 +110,8 @@ pre [data-line] {
 }
 
 [data-highlighted-line] {
-  background: rgba(200, 200, 255, 0.1);
-  @apply border-l-blue-400;
+  background: rgba(255, 242, 98, 0.1) !important;
+  @apply !border-l-blue-400;
 }
 
 [data-highlighted-chars] {
@@ -144,7 +140,7 @@ pre [data-line] {
 }
 
 [data-rehype-pretty-code-title] {
-  @apply rounded-t-lg bg-zinc-700 px-3 py-2 text-sm font-semibold text-zinc-200;
+  @apply rounded-t-lg border border-primary/20 px-3 py-2 text-sm font-semibold text-zinc-200;
 }
 
 figure[data-rehype-pretty-code-figure]:has(> [data-rehype-pretty-code-title])

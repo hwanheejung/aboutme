@@ -25,11 +25,11 @@ const Header = ({ title, subTitle, type = "primary" }: SectionHeaderProps) => {
       className={`border-b border-b-primary/30 pb-3 ${type === "primary" ? "pt-16" : "pt-10"}`}
     >
       {subTitle && (
-        <span className="mb-2 block text-xs font-thin uppercase tracking-widest">
+        <span className="mb-2 block text-sm font-thin uppercase tracking-widest">
           {subTitle}
         </span>
       )}
-      <div className={twMerge(`text-2xl font-bold text-primary`, textColor())}>
+      <div className={twMerge(`text-3xl font-bold text-primary`, textColor())}>
         {title}
       </div>
     </div>
@@ -40,9 +40,7 @@ const Body = ({ children, title }: { children: ReactNode; title: string }) => {
   return (
     <div className="pb-5">
       <div className="pb-3 text-xl font-semibold text-primary">{title}</div>
-      <div className="prose max-w-none text-primary/60 prose-p:mb-2 prose-p:mt-1 prose-strong:font-normal prose-strong:text-primary prose-code:rounded prose-code:bg-black/10 prose-code:px-1 prose-code:font-normal prose-code:text-primary prose-ul:my-2 prose-code:dark:bg-white/20">
-        {children}
-      </div>
+      <div className="mdx">{children}</div>
     </div>
   );
 };

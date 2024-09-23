@@ -81,7 +81,7 @@ const PostPage = async ({ params }: PostPageProps) => {
           <div>by {USERMETA.name}</div>
         </div>
       </div>
-      <div className="mdx prose-a:font-normal prose-a:text-primary/60 prose-a:underline hover:prose-a:text-main/60">
+      <div className="mdx hover:prose-a:underline">
         <CustomMDXRemote source={source} components={components} />
       </div>
     </div>

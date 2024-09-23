@@ -20,7 +20,7 @@ const Image = (props: ImageProps) => {
         className="mx-auto !mb-2 rounded-lg"
       />
       {props.description && (
-        <p className="text-center text-xs text-primary/60">
+        <p className="text-center text-sm text-primary/70">
           {props.description}
         </p>
       )}
