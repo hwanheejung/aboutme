@@ -8,6 +8,7 @@ import { USERMETA } from "contents/meta";
 import { Metadata } from "next";
 import { HTMLAttributes, ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
+import { getCategoryColorById } from "../_utils/category";
 import CategoryLink from "./_components/CategoryLink";
 
 export async function generateMetadata({
@@ -27,24 +28,6 @@ export async function generateMetadata({
     },
   };
 }
-
-const components = {
-  Image: (props: ImageProps) => <Image {...props} height={400} />,
-  Box: ({
-    children,
-    className,
-  }: {
-    children: ReactNode;
-    className?: HTMLAttributes<HTMLDivElement>["className"];
-  }) => <div className={twMerge("box my-5", className)}>{children}</div>,
-  Section: Section,
-  "Section.Header": Section.Header,
-  "Section.Body": Section.Body,
-  "Section.Table": Section.Table,
-  "Section.Divider": Section.Divider,
-  Process: Process,
-  "Process.Item": Process.Item,
-};
 
 export async function generateStaticParams() {
   const posts = await getAllPosts();
@@ -67,13 +50,37 @@ const PostPage = async ({ params }: PostPageProps) => {
   const { slug } = params;
   const { source, frontmatter } = await getPostBySlug(slug);
 
+  const titleColor = frontmatter.categoryId
+    ? `text-[${getCategoryColorById(frontmatter.categoryId)}]`
+    : "text-primary";
+
+  const components = {
+    Image: (props: ImageProps) => <Image {...props} height={400} />,
+    Box: ({
+      children,
+      className,
+    }: {
+      children: ReactNode;
+      className?: HTMLAttributes<HTMLDivElement>["className"];
+    }) => <div className={twMerge("box my-5", className)}>{children}</div>,
+    Section: Section,
+    "Section.Header": Section.Header,
+    "Section.Body": Section.Body,
+    "Section.Table": Section.Table,
+    "Section.Divider": Section.Divider,
+    Process: Process,
+    "Process.Item": Process.Item,
+  };
+
   return (
     <div>
       <div className="border-b border-primary/30 pb-5 pt-20 text-center">
         {frontmatter.categoryId && (
           <CategoryLink currentCatId={frontmatter.categoryId} />
         )}
-        <div className="mb-5 text-4xl text-main">{frontmatter.title}</div>
+        <div className={twMerge("mb-5 text-4xl font-bold", titleColor)}>
+          {frontmatter.title}
+        </div>
         <div className="font-thin text-primary/60">
           <div>{parseDate(frontmatter.date)}</div>
           <div>by {USERMETA.name}</div>

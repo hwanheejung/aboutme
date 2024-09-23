@@ -1,3 +1,4 @@
+import ButtonTransition from "@/components/Transitions/ButtonTransition";
 import blogCategories from "contents/meta/blogCategories.json";
 import Link from "next/link";
 
@@ -23,25 +24,18 @@ const CategoryLink = ({ currentCatId }: CategoryLinkProps) => {
   const category = categoryMap.get(currentCatId);
 
   return (
-    <div className="mb-3 font-thin text-primary/60">
+    <div className="mb-3 flex justify-center gap-2 text-primary/60">
       {category.parent && (
         <>
-          <Link
-            href={`/blog/category/${Math.floor(Number(currentCatId))}`}
-            className="transition-all hover:text-main"
-          >
-            {category.parent}
+          <Link href={`/blog/category/${Math.floor(Number(currentCatId))}`}>
+            <ButtonTransition>{category.parent}</ButtonTransition>
           </Link>{" "}
-          <span className="font-thin">&gt;</span>
+          <span>&gt;</span>
         </>
       )}
       {category && (
-        <Link
-          className="transition-all hover:text-main"
-          href={`/blog/category/${currentCatId}`}
-        >
-          {" "}
-          {category.title}
+        <Link href={`/blog/category/${currentCatId}`}>
+          <ButtonTransition> {category.title}</ButtonTransition>
         </Link>
       )}
     </div>

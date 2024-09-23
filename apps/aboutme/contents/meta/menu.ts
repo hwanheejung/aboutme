@@ -3,6 +3,7 @@ import blogCategories from "./blogCategories.json";
 interface MenuBase {
   title: string;
   link: string;
+  color?: string;
 }
 
 export interface Menu extends MenuBase {

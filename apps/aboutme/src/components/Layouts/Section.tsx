@@ -1,30 +1,35 @@
 import { Children, ReactNode } from "react";
+import { twMerge } from "tailwind-merge";
 
 const Section = ({ children }: { children: ReactNode }) => {
   return <div className="flex flex-col gap-5">{children}</div>;
 };
 
-const Header = ({
-  title,
-  subTitle,
-  type = "primary",
-}: {
+interface SectionHeaderProps {
   title: string;
   subTitle?: string;
   type?: "primary" | "secondary";
-}) => {
+}
+
+const Header = ({ title, subTitle, type = "primary" }: SectionHeaderProps) => {
+  const textColor = () => {
+    if (type === "primary") {
+      return "text-accent-yellow";
+    } else {
+      return "text-primary";
+    }
+  };
+
   return (
     <div
-      className={`border-b border-b-primary/30 pb-2 ${type === "primary" ? "pt-16" : "pt-10"}`}
+      className={`border-b border-b-primary/30 pb-3 ${type === "primary" ? "pt-16" : "pt-10"}`}
     >
       {subTitle && (
         <span className="mb-2 block text-xs font-thin uppercase tracking-widest">
           {subTitle}
         </span>
       )}
-      <div
-        className={`text-2xl text-primary ${type === "primary" ? "!text-main" : "text-primary"}`}
-      >
+      <div className={twMerge(`text-2xl font-bold text-primary`, textColor())}>
         {title}
       </div>
     </div>

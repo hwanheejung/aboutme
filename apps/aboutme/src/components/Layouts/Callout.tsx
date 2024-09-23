@@ -11,11 +11,11 @@ const Callout = ({
   link,
   linkText = "Learn More",
 }: CalloutProps) => (
-  <div className="flex flex-col items-center gap-4 bg-primary/5 px-4 py-8">
+  <div className="flex flex-col items-center gap-4 rounded-xl bg-primary/5 px-4 py-8">
     <p className="text-center text-primary">{description}</p>
     <Link
       href={link}
-      className="rounded-lg bg-white px-3 py-1 !text-black !no-underline transition-all hover:bg-main"
+      className="rounded-lg bg-white px-3 py-1 !text-black !no-underline transition-all hover:bg-accent-yellow"
     >
       {linkText}
     </Link>
