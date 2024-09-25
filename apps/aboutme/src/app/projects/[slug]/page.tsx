@@ -40,10 +40,9 @@ const components = {
     className?: HTMLAttributes<HTMLDivElement>["className"];
   }) => <div className={twMerge("box my-5", className)}>{children}</div>,
   Section: Section,
-  "Section.Header": Section.Header,
-  "Section.Body": Section.Body,
-  "Section.Table": Section.Table,
-  "Section.Divider": Section.Divider,
+  Header: Section.Header,
+  Table: Section.Table,
+  Divider: Section.Divider,
   Process: Process,
   "Process.Item": Process.Item,
   Callout: Callout,
@@ -54,7 +53,7 @@ const components = {
     title: string;
     children: ReactNode;
   }) => (
-    <div className="pr-3">
+    <div className="py-3 pr-3">
       <div className="text-primary">{title}</div>
       <div className="flex flex-col !leading-4">{children}</div>
     </div>

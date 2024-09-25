@@ -11,248 +11,226 @@ status: "COMPLETED"
 github: "https://github.com/DizzyCode2024/client"
 ---
 
-<Section>
-  <Section.Header title="Project Overview" subTitle="process highlights" />
-  <Section.Table>
-    <OverviewItem title="Focus">
-      Built **real-time** chat and video conferencing using WebSocket and
-      WebRTC. Worked on state management, ensuring secure authentication, and
-      optimizing frontend performance for smooth user interactions.
-    </OverviewItem>
-    <OverviewItem title="Links">
-      [Github Repository](https://github.com/DizzyCode2024/client) <br />
-      [Tech
-      Blog](https://hwanheejung.tistory.com/category/Projects%2CActivity/DizzyCode%28React%29)
-    </OverviewItem>
-  </Section.Table>
-  <Section.Divider />
-  <Section.Table>
-    <OverviewItem title="Timeline & Status">
-      Jun - Aug '24, Sunset <br />
-    </OverviewItem>
-    <OverviewItem title="Team">
-      Frontend 2 <br /> Backend 2
-    </OverviewItem>
-    <OverviewItem title="Responsibilities">
-      Frontend Developer <br />
-      Frontend Deployment
-    </OverviewItem>
-    <OverviewItem title="FE Tech Stack">
-      React <br />
-      TypeScript <br />
-      TanStack Query <br />
-      Zustand <br />
-      ChakraUI <br />
-      Styled-Components
-    </OverviewItem>
-  </Section.Table>
-</Section>
+<Header title="Project Overview" subTitle="process highlights" />
+<Table>
+  <OverviewItem title="Focus">
+    Built **real-time** chat and video conferencing using WebSocket and WebRTC.
+    Worked on state management, ensuring secure authentication, and optimizing
+    frontend performance for smooth user interactions.
+  </OverviewItem>
+  <OverviewItem title="Links">
+    [Github Repository](https://github.com/DizzyCode2024/client) <br />
+    [Tech
+    Blog](https://hwanheejung.tistory.com/category/Projects%2CActivity/DizzyCode%28React%29)
+  </OverviewItem>
+</Table>
+<Divider />
+<Table>
+  <OverviewItem title="Timeline & Status">
+    Jun - Aug '24, Sunset <br />
+  </OverviewItem>
+  <OverviewItem title="Team">
+    Frontend 2 <br /> Backend 2
+  </OverviewItem>
+  <OverviewItem title="Responsibilities">
+    Frontend Developer <br />
+    Frontend Deployment
+  </OverviewItem>
+  <OverviewItem title="FE Tech Stack">
+    React <br />
+    TypeScript <br />
+    TanStack Query <br />
+    Zustand <br />
+    ChakraUI <br />
+    Styled-Components
+  </OverviewItem>
+</Table>
 
 <br />
 <br />
 
-<Section>
-  <Section.Body title="System Architecture">
-    <Image
-      src={"/projects/dizzycode/comm_arch.png"}
-      width={700}
-      height={400}
-      alt="communication architecture"
-      className="mx-auto mt-5"
-    />
-  </Section.Body>
-  <Section.Body title="User Flow Chart">
-    <Image
-      src={"/projects/dizzycode/flow_chart.png"}
-      width={700}
-      height={400}
-      alt="communication architecture"
-      className="mx-auto mt-5"
-    />
-  </Section.Body>
-</Section>
+#### System Architecture
 
-<Section>
-  <Section.Header
-    title="Key Features and Technical Decisions"
-    subTitle="our considerations"
+<br />
+
+<Image
+  src={"/projects/dizzycode/comm_arch.png"}
+  width={700}
+  height={400}
+  alt="communication architecture"
+  className="mx-auto mt-5"
+/>
+
+#### User Flow Chart
+
+<br />
+<Image
+  src={"/projects/dizzycode/flow_chart.png"}
+  width={700}
+  height={400}
+  alt="communication architecture"
+  className="mx-auto mt-5"
+/>
+
+<Header
+  title="Key Features and Technical Decisions"
+  subTitle="our considerations"
+/>
+<br />
+
+<Process>
+  <Process.Item num={1} title="Security" lists={["WebSocket+JWT"]} />
+  <Process.Item
+    num={2}
+    title="Websocket"
+    lists={[
+      "Messaging",
+      "User Status Tracking",
+      "Notifications",
+      "Recovering Abnormal Closure",
+    ]}
   />
-  <Process>
-    <Process.Item num={1} title="Security" lists={["WebSocket+JWT"]} />
-    <Process.Item
-      num={2}
-      title="Websocket"
-      lists={[
-        "Messaging",
-        "User Status Tracking",
-        "Notifications",
-        "Recovering Abnormal Closure",
-      ]}
-    />
-    <Process.Item
-      num={3}
-      title="Video Conference"
-      lists={["1:1, N:N", "OpenVidu", "Architecture", "Screen Share"]}
-    />
-    <Process.Item
-      num={4}
-      title="Optimization"
-      lists={["Caching", "State Management", "Lighthouse"]}
-    />
-  </Process>
-</Section>
-
-<br />
-
-<Section>
-  <Section.Header
-    title="Websocket + JWT Scenario"
-    subTitle="Security"
-    type="secondary"
+  <Process.Item
+    num={3}
+    title="Video Conference"
+    lists={["1:1, N:N", "OpenVidu", "Architecture", "Screen Share"]}
   />
-  <Section.Body title="🤔 Problem: Can't include custom headers">
-    Let's first understand the process of a Websocket connection.
-    **1. Initial HTTP Request:**
-
-    The WebSocket connection begins with an initial HTTP GET request,
-    which includes an "Upgrade" header asking to switch the protocol to
-    WebSocket.
-
-
-    **2. Server Response:**
-
-    The server approves the WebSocket upgrade with a "101 Switching Protocols" response.
-
-    **3. Protocol Upgrade:**
-
-    At this point, the HTTP protocol is upgraded to WebSocket, and further
-    communication occurs through WebSocket frames rather than HTTP
-    headers.
-
-    In other words, **custom headers are only valid during the initial GET request.**
-    At this stage, it might make sense to try sending tokens via custom
-    headers. However, once the WebSocket connection is established, all
-    further communication is done via WebSocket frames, and HTTP headers
-    are no longer used. Additionally, **browsers do not allow certain custom headers to be included in WebSocket upgrade requests**
-    due to security reasons, such as preventing CSRF attacks.
-
-  </Section.Body>
-  <Section.Body title="✅ Solution: Introducing Secondary Token">
-    **Including a short-lived authentication token in the query string** may be the most practical and secure approach.
-
-    For convenience, I’ll refer to this as ST. This method solves the
-    security issues I've encountered. Let’s go over the logic step by
-    step:
-
-    <Box>
-      **[CLIENT]**
-
-      - The client requests an ST using the JWT.
-
-      **[SERVER]**
-
-      - The server receives the JWT, verifies it, and issues the ST.
-      - The ST has a very short lifespan, typically around 30 seconds.
-
-
-      **[CLIENT]**
-      - The client includes the ST in the query parameters when requesting
-            the WebSocket upgrade.
-
-
-      **[SERVER]**
-
-      - The server extracts and verifies the ST using a `HandshakeInterceptor`.
-
-    </Box>
-
-    Once the WebSocket upgrade is complete, the STOMP connection and
-    message transmission use the JWT.
-
-    **Advantages of this Method:**
-    - **Short-lived ST:** Since the ST has a very short
-        lifespan, even if exposed, the risk is minimal.
-
-    - **Limited scope:** The ST is used solely for the WebSocket upgrade process, meaning it has more restricted
-        permissions compared to a general access token.
-
-    - **Independent management of WebSocket and JWT:** Using
-        an ST allows us to manage the WebSocket connection state
-        independently of the JWT’s state. Even if the access token expires,
-        we can request a new one before establishing the WebSocket
-        connection, keeping the logic cleanly separated.
-
-
-    </Section.Body>
-
-  <Callout link="/blog/dizzy-jwt" />
-</Section>
-
-<br />
-
-<Section>
-  <Section.Header
-    title="Sock.js + STOMP"
-    subTitle="WebSocket"
-    type="secondary"
+  <Process.Item
+    num={4}
+    title="Optimization"
+    lists={["Caching", "State Management", "Lighthouse"]}
   />
-  <Section.Body title="🤔 Problem 1: Limited Browser Support">
-    While the `Can I use` website indicates that most modern browsers support WebSocket, it's important to note that **it does not support in older versions and specific environments.** 
-    This limitation can affect the reach and compatibility of applications relying solely on WebSocket.
-    <Image
-      src={"/blog/dizzycode/2.png"}
-      alt="can I use"
-      width={600}
-      height={400}
-      description="https://caniuse.com/?search=websocket"
-    />
-  </Section.Body>
-  <Section.Body title="✅ Solution: Fallback Mechanism">
-    Environments that do not support Websocket can use **alternative technologies such as polling, long polling, streaming**, etc.
-    This fallback mechanism is used to address browser compatibility issues, and libraries like **SockJS** or **Socket.IO** utilize it.
-  </Section.Body>
-
-  <Section.Body title="🤔 Problem 2: Data is Too Raw">
-    The WebSocket protocol allows for the transmission of text and binary frames, but **it doesn't provide a predefined format or structure for messages.**
-    This lack of structure presents several issues:
-
-    - As projects grow, developers must design and manage complex logic for:
-      - Determining message types
-      - Handling message transmission between client and server
-      - Parsing incoming messages
-    - The flexibility in data types and message structures, while offering freedom, also introduces the **burden of definition and management.**
-    - Without a standardized approach, maintaining consistency in message handling across different parts of the application can become increasingly difficult.
-
-    These issues highlight **the need for additional protocols atop WebSocket** to provide more **structured communication** in complex applications.
-
-  </Section.Body>
-  <Section.Body title="✅ Solution: STOMP Protocol">
-    When using STOMP, messages are managed in a more structured format, enabling
-    clear communication STOMP stands for Simple Text Oriented Messaging Protocol,
-    a subprotocol that can be used alongside WebSocket. STOMP frames consist of
-    COMMAND, Headers, and Body.
-  </Section.Body>
-  <Callout link="/blog/dizzy-stomp" />
-</Section>
+</Process>
 
 <br />
-
-<Section>
-  <Section.Header title="Messaging" subTitle="WebSocket" type="secondary" />
-  <Section.Body title="Sth..">
-    <div>Explanation...</div>
-  </Section.Body>
-</Section>
-
 <br />
 
-<Section>
-  <Section.Header
-    title="User Status Tracking"
-    subTitle="WebSocket"
-    type="secondary"
-  />
-  <Section.Body title="Logic">
-    <div>Explanation...</div>
-  </Section.Body>
-</Section>
+<Header title="Websocket + JWT Scenario" subTitle="Security" type="secondary" />
+#### 🤔 Problem: Can't include custom headers
+
+Let's first understand the process of a Websocket connection. **1. Initial HTTP Request:**
+
+The WebSocket connection begins with an initial HTTP GET request,
+which includes an "Upgrade" header asking to switch the protocol to
+WebSocket.
+
+**2. Server Response:**
+
+The server approves the WebSocket upgrade with a "101 Switching Protocols" response.
+
+**3. Protocol Upgrade:**
+
+At this point, the HTTP protocol is upgraded to WebSocket, and further
+communication occurs through WebSocket frames rather than HTTP
+headers.
+
+In other words, **custom headers are only valid during the initial GET request.**
+At this stage, it might make sense to try sending tokens via custom
+headers. However, once the WebSocket connection is established, all
+further communication is done via WebSocket frames, and HTTP headers
+are no longer used. Additionally, **browsers do not allow certain custom headers to be included in WebSocket upgrade requests**
+due to security reasons, such as preventing CSRF attacks.
+
+#### ✅ Solution: Introducing Secondary Token
+
+**Including a short-lived authentication token in the query string** may be the most practical and secure approach.
+
+For convenience, I’ll refer to this as ST. This method solves the
+security issues I've encountered. Let’s go over the logic step by
+step:
+
+<Box>
+  **[CLIENT]**
+
+- The client requests an ST using the JWT.
+
+**[SERVER]**
+
+- The server receives the JWT, verifies it, and issues the ST.
+- The ST has a very short lifespan, typically around 30 seconds.
+
+**[CLIENT]**
+
+- The client includes the ST in the query parameters when requesting
+  the WebSocket upgrade.
+
+**[SERVER]**
+
+- The server extracts and verifies the ST using a `HandshakeInterceptor`.
+
+</Box>
+
+Once the WebSocket upgrade is complete, the STOMP connection and
+message transmission use the JWT.
+
+**Advantages of this Method:**
+
+- **Short-lived ST:** Since the ST has a very short
+  lifespan, even if exposed, the risk is minimal.
+
+- **Limited scope:** The ST is used solely for the WebSocket upgrade process, meaning it has more restricted
+  permissions compared to a general access token.
+
+- **Independent management of WebSocket and JWT:** Using
+  an ST allows us to manage the WebSocket connection state
+  independently of the JWT’s state. Even if the access token expires,
+  we can request a new one before establishing the WebSocket
+  connection, keeping the logic cleanly separated.
+
+<Callout link="/blog/dizzy-jwt" />
+
+<br />
+<br />
+
+<Header title="Sock.js + STOMP" subTitle="WebSocket" type="secondary" />
+
+#### 🤔 Problem 1: Limited Browser Support
+
+While the `Can I use` website indicates that most modern browsers support WebSocket, it's important to note that **it does not support in older versions and specific environments.**
+This limitation can affect the reach and compatibility of applications relying solely on WebSocket.
+
+<Image
+  src={"/blog/dizzycode/2.png"}
+  alt="can I use"
+  width={600}
+  height={400}
+  description="https://caniuse.com/?search=websocket"
+/>
+
+#### ✅ Solution: Fallback Mechanism
+
+Environments that do not support Websocket can use **alternative technologies such as polling, long polling, streaming**, etc.
+This fallback mechanism is used to address browser compatibility issues, and libraries like **SockJS** or **Socket.IO** utilize it.
+
+#### 🤔 Problem 2: Data is Too Raw
+
+The WebSocket protocol allows for the transmission of text and binary frames, but **it doesn't provide a predefined format or structure for messages.**
+This lack of structure presents several issues:
+
+- As projects grow, developers must design and manage complex logic for:
+  - Determining message types
+  - Handling message transmission between client and server
+  - Parsing incoming messages
+- The flexibility in data types and message structures, while offering freedom, also introduces the **burden of definition and management.**
+- Without a standardized approach, maintaining consistency in message handling across different parts of the application can become increasingly difficult.
+
+These issues highlight **the need for additional protocols atop WebSocket** to provide more **structured communication** in complex applications.
+
+#### ✅ Solution: STOMP Protocol
+
+When using STOMP, messages are managed in a more structured format, enabling
+clear communication STOMP stands for Simple Text Oriented Messaging Protocol,
+a subprotocol that can be used alongside WebSocket. STOMP frames consist of
+COMMAND, Headers, and Body.
+
+<Callout link="/blog/dizzy-stomp" />
+
+<br />
+<br />
+
+<Header title="Messaging" subTitle="WebSocket" type="secondary" />
+
+<br />
+<br />
+
+<Header title="User Status Tracking" subTitle="WebSocket" type="secondary" />

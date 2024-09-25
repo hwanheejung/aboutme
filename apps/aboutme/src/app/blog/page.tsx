@@ -1,10 +1,10 @@
 import { getAllPosts } from "@/lib/utils/getBlog";
+import { linkedPosts } from "contents/linkedPosts";
 import { USERMETA } from "contents/meta/user";
 import { Metadata } from "next";
 import Hero from "./_components/Hero";
-import PostBox from "./_components/PostBox";
-import { linkedPosts } from "contents/linkedPosts";
 import LinkedPostBox from "./_components/LinkedPostBox";
+import PostBox from "./_components/PostBox";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {

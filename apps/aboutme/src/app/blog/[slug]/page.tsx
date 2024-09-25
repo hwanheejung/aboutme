@@ -45,6 +45,7 @@ interface PostPageProps {
     slug: string;
   };
 }
+
 const PostPage = async ({ params }: PostPageProps) => {
   const { slug } = params;
   const { source, frontmatter } = await getPostBySlug(slug);

@@ -5,7 +5,9 @@ import { getCategoryById } from "../../_utils/category";
 import { linkedPosts } from "contents/linkedPosts";
 import LinkedPostBox from "../../_components/LinkedPostBox";
 
-// /blog/category/1, /blog/category/2
+// /blog/category/all
+// /blog/category/[slug]
+
 export async function generateStaticParams() {
   const params: { id: string }[] = [];
 
