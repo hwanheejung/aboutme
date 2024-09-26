@@ -1,8 +1,8 @@
 import { ReactNode } from "react";
-import Section from "./Section";
+import Table from "./Table";
 
 const Process = ({ children }: { children: ReactNode }) => {
-  return <Section.Table>{children}</Section.Table>;
+  return <Table>{children}</Table>;
 };
 
 interface ProcessProps {

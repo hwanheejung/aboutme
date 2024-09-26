@@ -6,10 +6,7 @@ categoryId: 3
 tags: ["frontend", "react", "react-native", "pattern"]
 ---
 
-<Section.Header
-  title="Problems w/ Navigation in Various Parts"
-  subTitle="background"
-/>
+<Header title="Problems w/ Navigation in Various Parts" subTitle="background" />
 When building my personal website, **I encountered a challenge implementing
 navigation in multiple areas**: the header, footer, and mobile hamburger menu.
 These components **all shared the same data**, which I called "NAV", but
@@ -44,7 +41,7 @@ export const NAV = [
   alt="nav data"
   description="header"
 />
-<Section.Table>
+<Table>
   <div>
     <Image
       src="/blog/frontend/rndrptrn-3.png"
@@ -61,7 +58,7 @@ export const NAV = [
       description="footer"
     />
   </div>
-</Section.Table>
+</Table>
 
 Each navigation component had **unique requirements**:
 
@@ -76,7 +73,7 @@ The code was becoming **increasingly complex and difficult to maintain**. **Shar
 
 It became clear that a refactor was necessary. **I needed a shared component that focused solely on logic, eliminating style-specific code.**
 
-<Section.Header title="Same Data, Different Style" subTitle="the idea" />
+<Header title="Same Data, Different Style" subTitle="the idea" />
 
 Inspired by **React Native's Flatlist component**, I set out to create a **similar pattern for React**. This approach would allow me to use the same navigation data source while providing flexibility in rendering and styling across different parts of my personal website.
 
@@ -84,7 +81,7 @@ Inspired by **React Native's Flatlist component**, I set out to create a **simil
 
 FlatList is a powerful component for rendering lists efficiently. It takes a `data` prop (an array o items) and a `renderItem` prop (a function that returns an React element for each item).
 
-<Section.Table>
+<Table>
 
 ```tsx title="Example from docs"
 const DATA = [
@@ -125,7 +122,7 @@ const App = () => {
 };
 ```
 
-</Section.Table>
+</Table>
 
 While React doesn't have a direct equivalent to FlatList, we can create a similar pattern that achieves the same goal of separating data from rendering logic.
 This is particularly useful for our navigation menus, which share the same data but require different styles and behaviors in the header, footer, and mobile menu.
@@ -146,7 +143,7 @@ To ensure the solution met my needs, I established the following requirements:
 - For some components, index is needed for styling.(See mobile nav below) I'll pass a `renderItem` prop that takes both the navigation item and its index as arguments.
 - For customizable styling, I'll pass a `className` prop.
 
-<Section.Header title="Introducing MenuList" subTitle="the solution" />
+<Header title="Introducing MenuList" subTitle="the solution" />
 
 ```tsx {15} title="menuList.tsx" showLineNumbers
 import { NAV } from "contents/meta/nav";
@@ -171,7 +168,7 @@ const MenuList = ({ renderItem, className }: MenuListProps) => {
 export default MenuList;
 ```
 
-<Section.Header title="Applying MenuList to Components" subTitle="usage" />
+<Header title="Applying MenuList to Components" subTitle="usage" />
 Now, let's see how we can use the `MenuList` component to create our header,
 footer, and mobile navigation components.
 
@@ -268,7 +265,7 @@ const Drawer = () => {
 
 used index for styling
 
-<Section.Header title="Conclusion" subTitle="the result" />
+<Header title="Conclusion" subTitle="the result" />
 This pattern demonstrates **how we can apply concepts from one framework(React
 Native's Flatlist) to solve problems in another context(React)**. By thinking
 creatively about component design, we can create elegant solutions that improve

@@ -1,7 +1,6 @@
 import Image, { ImageProps } from "@/components/Image";
 import Callout from "@/components/Layouts/Callout";
 import Process from "@/components/Layouts/Process";
-import Section from "@/components/Layouts/Section";
 import CustomMDXRemote from "@/components/MDX/MDXRemote";
 import { getAllProjects, getProjectBySlug } from "@/lib/utils/getProject";
 import { HTMLAttributes, ReactNode } from "react";
@@ -9,6 +8,9 @@ import { twMerge } from "tailwind-merge";
 import Intro from "../_components/Intro";
 import Navigator from "../_components/Navigator";
 import Timeline from "../_components/Timeline";
+import Header from "@/components/Layouts/Header";
+import Table from "@/components/Layouts/Table";
+import Divider from "@/components/Layouts/Divider";
 
 export async function generateStaticParams() {
   const projects = await getAllProjects();
@@ -39,10 +41,9 @@ const components = {
     children: ReactNode;
     className?: HTMLAttributes<HTMLDivElement>["className"];
   }) => <div className={twMerge("box my-5", className)}>{children}</div>,
-  Section: Section,
-  Header: Section.Header,
-  Table: Section.Table,
-  Divider: Section.Divider,
+  Header: Header,
+  Table: Table,
+  Divider: Divider,
   Process: Process,
   "Process.Item": Process.Item,
   Callout: Callout,
@@ -68,7 +69,6 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
     <div>
       <Navigator />
       <Intro data={frontmatter} />
-      {/* <Overview /> */}
       <div className="mdx prose-a:font-normal prose-a:text-primary/60 prose-a:underline hover:prose-a:text-main/60">
         <CustomMDXRemote source={source} components={components} />
       </div>

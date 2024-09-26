@@ -1,6 +1,8 @@
 import Image, { ImageProps } from "@/components/Image";
+import Divider from "@/components/Layouts/Divider";
+import Header from "@/components/Layouts/Header";
 import Process from "@/components/Layouts/Process";
-import Section from "@/components/Layouts/Section";
+import Table from "@/components/Layouts/Table";
 import CustomMDXRemote from "@/components/MDX/MDXRemote";
 import { parseDate } from "@/lib/utils/date";
 import { getAllPosts, getPostBySlug } from "@/lib/utils/getBlog";
@@ -59,11 +61,9 @@ const PostPage = async ({ params }: PostPageProps) => {
       children: ReactNode;
       className?: HTMLAttributes<HTMLDivElement>["className"];
     }) => <div className={twMerge("box my-5", className)}>{children}</div>,
-    Section: Section,
-    "Section.Header": Section.Header,
-    "Section.Body": Section.Body,
-    "Section.Table": Section.Table,
-    "Section.Divider": Section.Divider,
+    Header: Header,
+    Table: Table,
+    Divider: Divider,
     Process: Process,
     "Process.Item": Process.Item,
   };
