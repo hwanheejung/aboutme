@@ -13,7 +13,10 @@ github: "https://github.com/Pironeer-APP/client"
 
 <Header title="Project Overview" subTitle="process highlights" />
 <Table>
-  <OverviewItem title="Focus">sth sth</OverviewItem>
+  <OverviewItem title="Focus">
+    Designed and developed a cross-platform application to solve the
+    inconvenience of a club management system.
+  </OverviewItem>
   <OverviewItem title="Links">
     [Github Repository](https://github.com/Pironeer-APP/client) <br />
   </OverviewItem>
@@ -28,10 +31,269 @@ github: "https://github.com/Pironeer-APP/client"
     BE 4 <br />
   </OverviewItem>
   <OverviewItem title="Responsibilities">
+    Vice President <br />
     Frontend Developer <br />
     UI/UX Designer <br />
+    iOS Deployment
   </OverviewItem>
   <OverviewItem title="FE Tech Stack">
     React Native <br />
   </OverviewItem>
 </Table>
+
+<Header title="Summary" />
+<br />
+<Process>
+  <Process.Item
+    num={1}
+    title="Background"
+    lists={[
+      "About our Club System",
+      "Problem We Aimed to Solve",
+      "Building the Dev Team & 3W RN Study",
+    ]}
+  />
+  <Process.Item
+    num={2}
+    title="The Process"
+    lists={["Planning", "Design", "Development", "Deployment"]}
+  />
+  <Process.Item
+    num={3}
+    title="The Result"
+    lists={["Efficiency & Accuracy Improvement", "Feedback from the Club"]}
+  />
+  <Process.Item
+    num={4}
+    title="Lessons Learned"
+    lists={[
+      "Purpose-Driven Design and Ownership",
+      "Handling Unforeseen User Behavior",
+      "Make It Work First, Even If It's Messy",
+    ]}
+  />
+</Process>
+
+<Header title="Background" />
+
+<Table>
+
+<div>
+#### About our Club System
+
+**Pirogramming** is a club for students interested in **web development**.
+We offer various sessions on HTML/CSS, JavaScript, and Django, followed by a team project period.
+
+Our club operates with specific rules:
+
+- Mandatory **attendance**
+- Initial **deposit system**: members pay a certain amount of money upon joining
+- Session-based **assignments**: Sessions are held 3 times a week, and members must complete assignments
+- Deposit deductions for lateness, absence, or missed assignments
+- Deposit refund upon graduation
+- Two-month program per generation, two generations per year
+- Previous generation manages club operations, recruitment, and mentoring
+
+</div>
+
+<Image
+  src={"/projects/piro/leaders.JPG"}
+  width={500}
+  height={400}
+  alt="leaders"
+/>
+</Table>
+
+#### Problem We Aimed to Solve
+
+Despite our club's 10-year history and systematic structure, we were still managing attendance, assignments, and deposits **manually using Excel files.**
+As a development club, we recognized the need to **automate our management system to reduce workload and increase data accuracy.**
+
+#### Building the Dev Team & 3w Study
+
+To refine our old-fashioned system with development, we formed an **official development team** called **"Pironeer"**(Pioneer+Pirogramming), and embarked on an **intensive 3-week study of React Native (front-end) and Node.js (back-end)** to meet our deployment deadline before recruitment.
+
+Our schedule was as follows:
+
+| Date         | Task               |
+| ------------ | ------------------ |
+| 9.4 ~ 9.22   | Study              |
+| 9.23 ~ 10    | Development        |
+| 10.23        | Firt Deployment    |
+| 11.21 ~ 12.2 | 20th Recruitment   |
+| 12.22        | 20th Program Start |
+
+<br />
+<br />
+
+<Header title="The Process" />
+
+#### Confirming the Features
+
+We needed two separate interfaces for **members** and **administrators**.
+
+We identified four key features for our application:
+
+| Feature      | Members                                                                                    | Admin                                                                                               |
+| ------------ | ------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------- |
+| Attendance   | View session time and location by date / Verify attendance with a code during session time | View session time and location by date / Generate verification codes, Manage attendance for members |
+| Deposit      | Check deposit balance, Use coupons to refill deposit                                       | Manage member deposits, Issue deposit refill coupons                                                |
+| Assignment   | View assignment details, Time remaining, and Grades                                        | Create assignments, Grade assignments                                                               |
+| Announcement | View announcements                                                                         | Post and manage announcements                                                                       |
+
+#### Design
+
+We used **Figma** to create wireframes and design the user interface.
+
+<Image
+  src={"/projects/piro/piroapp-figma.png"}
+  width={1200}
+  height={400}
+  alt="figma"
+/>
+
+#### Deployment
+
+We successfully deployed the application on both iOS and Android platforms, making it accessible to all club members.
+I took charge of the **iOS deployment process**, which proved to be a **challenging** yet **enlightening experience**.
+
+Meeting the **App Store's stringent requirements** was no easy task.
+Many developers face rejections and spend months trying to get their apps approved.
+However, our tight timeline demanded a more efficient approach.
+Thankfully, our application **passed the review on the first try.**
+
+Key lessons from the iOS deployment experience:
+
+- **Stay updated with Apple's changing guidelines**
+- **Thorough documentation is crucial due to the complex process**
+- **Remove incomplete features before submission**
+- **Research common rejection reasons and App Store guidelines as much as possible**
+- **Conduct comprehensive testing prior to submission**
+
+As the saying goes, **"The first step is always the hardest."**
+While the initial deployment was challenging, the experience and knowledge gained have paved the way for smoother processes in future app releases.
+
+<Table>
+  <Image
+    src={"/projects/piro/appstore-release-mail.jpg"}
+    width={400}
+    height={400}
+    alt="appstore-release-mail"
+  />
+  <Image
+    src={"/projects/piro/appstore.PNG"}
+    width={300}
+    height={400}
+    alt="appstore"
+  />
+</Table>
+
+<br />
+<br />
+
+<Header title="The Result" />
+<Table>
+  <Image
+    src={"/projects/piro/piroapp-1.png"}
+    width={200}
+    height={200}
+    alt="attendance"
+    description="attendance"
+  />
+ <Image
+    src={"/projects/piro/piroapp-2.png"}
+    width={200}
+    height={200}
+    alt="deposit"
+    description="deposit"
+  />
+
+  <Image
+    src={"/projects/piro/piroapp-4.png"}
+    width={200}
+    height={200}
+    alt="assignment"
+    description="assignment"
+  />
+  <Image
+    src={"/projects/piro/piroapp-3.png"}
+    width={200}
+    height={200}
+    alt="announcement"
+    description="announcement"
+  />
+</Table>
+#### Efficiency & Accuracy Improvement
+
+- Reduced attendance check time **from 15+ minutes to mere seconds**
+- Decreased disputes by over **80%** compared to the previous generation
+- Automated deposit management, allowing real-time balance checks
+- Streamlined overall management tasks, increasing operational efficiency
+
+#### Feedback from the Club
+
+The 20th members was the first to use the app, and their response was overwhelmingly positive:
+
+- New members expressed pride in having a club-specific application
+- The app fostered a sense of unity and strengthened club bonds
+
+<Header title="Lessons Learned" />
+
+#### Purpose-Driven Design and Ownership
+
+This project provided valuable **end-to-end experience**, from **team formation to problem identification &gt; planning &gt; UX consideration &gt; design &gt; development &gt; operation &gt; and maintenance.**
+**The satisfaction of automating manual processes and simplifying operations through our application was immensely rewarding as a developer.**
+
+#### Handling Unforeseen User Behavior
+
+Despite implementing exception handling during development, we encountered **unexpected user behaviors** that led to errors.
+
+For example:
+
+- Attendance check-in errors due to **clicking multiple times**
+- Unexpected **app crashes** when users **switched between screens quickly**
+- Data synchronization issues when users had **poor internet connectivity**
+
+Key Learnings:
+
+- Users often interact with apps in ways developers don't expect. It's crucial to consider various usage scenarios.
+- This experience emphasized the **importance of real-world testing** and **continuous improvement based on user feedback.**
+
+Next Step:
+
+- **Beta Testing**: Engage a diverse group of users to test the app before full deployment.
+- **Monitoring**: Implement tools to track user behavior and app performance for ongoing improvements. (e.g. [Sentry](https://sentry.io/welcome/))
+
+#### Make It Work First, Even If It's Messy
+
+Our code could be described as **"functional but messy."**
+This approach, however, proved to be invaluable for our project's success.
+
+None of our team members had extensive experience with React, yet we managed to learn React Native in just three weeks and complete a functional product.
+**Had we focused on meticulous learning and code quality from the start, we might have missed the opportunity to gain hands-on operational experience.**
+While our initial approach may have lacked finesse, it allowed us to rapidly develop and deploy a working application.
+This experience reinforces the idea that sometimes, **the best way to learn is by doing, even if the result isn't perfect.**
+Now that I've gained practical experience with React Native, **I'm eager to improve my code quality in future projects.**
+
+Next Steps:
+
+- **Study React in-depth** (like how React works under the hood)
+- **Deeply explore code quality principles and best practices**
+- Implement **state management**
+- Incorporate **test-driven development**
+- **Collaboration with designers for better UI/UX**
+
+<br />
+<br />
+
+<Table>
+  <Image
+    src={"/projects/piro/piroapp-logo.png"}
+    width={200}
+    height={200}
+    alt="logo"
+  />
+</Table>
+
+<br />
+<br />

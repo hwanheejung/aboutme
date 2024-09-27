@@ -69,7 +69,7 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
     <div>
       <Navigator />
       <Intro data={frontmatter} />
-      <div className="mdx prose-a:font-normal prose-a:text-primary/60 prose-a:underline hover:prose-a:text-main/60">
+      <div className="mdx prose-a:font-normal hover:prose-a:underline prose-table:text-base">
         <CustomMDXRemote source={source} components={components} />
       </div>
     </div>
