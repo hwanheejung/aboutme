@@ -33,13 +33,21 @@ const CategoryPage = async ({
 }) => {
   const { id } = params;
   const posts = await getAllPosts(parseFloat(id));
-  const previousPosts = linkedPosts.filter(
-    (post) => Math.floor(post.categoryId!) === parseFloat(id),
-  );
+  // 1 -> 1.1, 1.2
+  // 1.1 -> 1.1
+  const externalPosts = linkedPosts.filter((post) => {
+    const postCategoryId = post.categoryId!.toString();
+    const targetCategoryId = id.toString();
+    if (targetCategoryId.includes(".")) {
+      return postCategoryId === targetCategoryId;
+    } else {
+      return postCategoryId.startsWith(targetCategoryId);
+    }
+  });
 
   return (
     <>
-      {posts.length === 0 && previousPosts.length === 0 ? (
+      {posts.length === 0 && externalPosts.length === 0 ? (
         <div className="pt-40 text-center text-xl">No Post Yet...</div>
       ) : (
         <>
@@ -54,7 +62,7 @@ const CategoryPage = async ({
                 slug={post.slug}
               />
             ))}
-            {previousPosts.map((post) => (
+            {externalPosts.map((post) => (
               <LinkedPostBox key={post.link} post={post} />
             ))}
           </div>
