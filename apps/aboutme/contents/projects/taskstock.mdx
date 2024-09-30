@@ -74,12 +74,31 @@ github: "https://github.com/hwanheejung/TaskStock-App-Client"
 <br />
 
 <Header title="Technology" subTitle="Key Features and Technical Decisions" />
-
+<Image
+  src={"/projects/taskstock/architecture.png"}
+  width={1200}
+  height={400}
+  alt="architecture"
+  description="Architecture"
+/>
+<Image
+  src={"/projects/taskstock/erd.jpg"}
+  width={1200}
+  height={400}
+  alt="ERD"
+  description="ERD"
+/>
+<br />
 <Process>
   <Process.Item
     num={1}
     title="JWT"
-    lists={["Multi Device Support", "Background Auto-Login", "Social Login"]}
+    lists={[
+      "Email&Social Login",
+      "Multi Device Support",
+      "Background Auto-Login",
+      "UX vs Security",
+    ]}
   />
   <Process.Item
     num={2}
@@ -90,6 +109,152 @@ github: "https://github.com/hwanheejung/TaskStock-App-Client"
 </Process>
 
 <br />
+
+<Header title="JWT" subTitle="Technology" type="secondary" />
+
 <br />
+
+Our primary challenge was to create a unified system that could manage both email and social login users, support multi-device usage, and maintain persistent login states, all while ensuring a seamless user experience.
+
+#### Key Challenges
+
+- **Integrated authentication for both email and social login users**
+- **Multi-Device Support**
+- **Persistent login state** with minimal manual re-authentication
+- **Balance between user experience and system security**
+- Designing an **efficient token storage strategy**
+
+#### Authentication Logic Design
+
+We designed a comprehensive authentication logic in close collaboration with the backend team.
+For email logins, we implemented a secure method of storing encrypted login information using **react-native-keychain**, enabling **background re-authentication when refresh tokens expired**.
+However, social logins required a separate approach due to their unique authentication processes.
+
+#### Challenges and Solutions
+
+The main challenge was **minimizing automatic logouts while maintaining system security**.
+After extensive research and consultation with industry professionals, **we decided to extend the refresh token validity period significantly.**
+To mitigate potential security risks, we planned for a future implementation of a monitoring system that would immediately invalidate tokens upon detection of suspicious activities.
+
+#### Token Management Strategy
+
+We adopted a hybrid approach for token storage:
+
+- Access tokens: Stored in both AsyncStorage and Redux for quick access and performance
+- Refresh tokens: Securely stored only in AsyncStorage
+- Expiration times: Managed in Redux for efficient checking
+
+<Table>
+<div>
+
+#### User Experience Enhancements
+
+To improve usability, we implemented features such as:
+
+- **Background auto-login for regular users**
+- **Extended refresh token validity for social login users**
+- **Displaying recent login methods** for user convenience
+- Implementing strategy-based login to **prevent account conflicts**
+- Designing a system to handle token expiration during app inactivity
+
+#### Security Considerations
+
+While prioritizing user experience, we maintained a strong focus on security:
+
+- Encrypted storage of sensitive information
+- Planned implementation of an abnormal access detection system
+- Regular security audits and updates
+
+</div>
+<Image
+  src={"/projects/taskstock/recentLogin.png"}
+  width={300}
+  height={400}
+  alt="recent login"
+  description="displaying recent login method"
+/>
+</Table>
+
+#### Multi-Device Support
+
+We implemented device-specific IDs and managed **multiple refresh tokens per user**.
+This approach required careful design of our database structure and token management logic, allowing seamless user experiences across different devices.
+
+#### Key Takeaways
+
+- The critical balance between user experience and security in authentication systems
+- The importance of adapting solutions to different login methods (email vs. social)
+- The value of seeking expert advice and industry best practices
+- The need for continuous monitoring and improvement in security systems
+
+<br />
+
+<Callout link="https://hwanheejung.tistory.com/15" />
+
+<br />
+
+<Header title="Atomic Design Pattern" subTitle="Technology" type="secondary" />
+
+#### Folder Structure and Component Sharing
+
+In our project, we encountered numerous shared components across screens. We organized these shared components outside specific screen folders:
+
+```text
+ㄴ/molecules
+   ㄴ/A
+   ㄴ/B
+   ㄴcommon1.tsx
+   ㄴcommon2.tsx
+```
+
+In retrospect, creating a '/common' folder for each atomic level (atoms, molecules, organisms, templates) could have improved organization.
+
+#### Flexible Atom Design
+
+To enhance reusability, we designed atoms with high flexibility:
+
+- Utilized extensive props
+- Set default values for frequently used props
+- Leveraged TypeScript for prop type restrictions
+- Added props as needed during development
+
+Example: A Text component with props for fontSize, color, and fontWeight, using default values and TypeScript types to restrict color options.
+
+#### Balancing Reusability
+
+As the project progressed, we realized that excessive focus on reusability could lead to code complexity.
+We adopted a more flexible approach for molecules, organisms, and templates, prioritizing clean code over strict reusability.
+
+#### Addressing Props Drilling
+
+To mitigate props drilling issues inherent in the atomic design pattern, we:
+
+- Organized components into screen-specific folders within each atomic level
+- Utilized Redux Toolkit for state management
+- Created custom hooks to minimize prop passing
+
+#### Advantages of Atomic Design Pattern
+
+- Provides a clear, intuitive structure
+- Enables flexible responses to changing design requirements
+- Facilitates consistent design across the application
+
+#### Challenges Faced
+
+- Ambiguous criteria for categorizing components into atomic levels
+- Risk of over-complicating components for the sake of reusability
+- Potential for props drilling in deeply nested component structures
+
+#### Lessons Learned
+
+- The importance of team agreement on component categorization
+- The need to balance reusability with code simplicity
+- The value of state management tools and custom hooks in atomic design implementation
+
+<br />
+
+<Callout link="https://hwanheejung.tistory.com/13" />
+
+<Header title="iOS Deployment" subTitle="Technology" type="secondary" />
 
 <Header title="Reflection" />

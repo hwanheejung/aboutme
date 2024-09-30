@@ -1,12 +1,12 @@
 "use client";
 
+import ButtonTransition from "@/components/Transitions/ButtonTransition";
 import { BlogFrontMatter } from "@/types";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
-import PostBox from "./PostBox";
 import LinkedPostBox from "./LinkedPostBox";
-import Link from "next/link";
-import ButtonTransition from "@/components/Transitions/ButtonTransition";
+import PostBox from "./PostBox";
 
 interface SectionProps {
   categoryName: string;
@@ -26,14 +26,14 @@ const Section = ({
   posts,
   externalPosts,
 }: SectionProps) => {
-  const [current, setCurrent] = useState<number>(0);
+  const [current, setCurrent] = useState<number>(categoryId);
   const [sortedPosts, setSortedPosts] = useState(posts);
   const [sortedExPosts, setSortedExPosts] = useState(externalPosts);
 
   useEffect(() => {
     let newPosts;
     let newExPosts;
-    if (current === 0) {
+    if (current === Math.floor(current)) {
       newPosts = posts;
       newExPosts = externalPosts;
     } else {
@@ -59,19 +59,20 @@ const Section = ({
           <ButtonTransition>
             <button
               type="button"
-              onClick={() => setCurrent(0)}
+              onClick={() => setCurrent(categoryId)}
               className={twMerge(
                 "rounded-full border border-primary/20 px-4 py-2",
-                current === 0 ? "border-2 border-accent-lime" : "",
+                current === Math.floor(current)
+                  ? "border-2 border-accent-lime"
+                  : "",
               )}
             >
               All
             </button>
           </ButtonTransition>
           {subCategories.map((sub) => (
-            <ButtonTransition>
+            <ButtonTransition key={sub.id}>
               <button
-                key={sub.id}
                 type="button"
                 onClick={() => setCurrent(sub.id)}
                 className={twMerge(
@@ -105,7 +106,7 @@ const Section = ({
         </div>
       )}
       <div className="flex justify-end">
-        <Link href={`/blog/category/${categoryId}`}>
+        <Link href={`/blog/category/${current}`}>
           <ButtonTransition>See More!</ButtonTransition>
         </Link>
       </div>

@@ -34,7 +34,7 @@ const CategoryPage = async ({
   const { id } = params;
   const posts = await getAllPosts(parseFloat(id));
   const previousPosts = linkedPosts.filter(
-    (post) => post.categoryId === parseFloat(id),
+    (post) => Math.floor(post.categoryId!) === parseFloat(id),
   );
 
   return (

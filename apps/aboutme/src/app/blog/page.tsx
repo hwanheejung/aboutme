@@ -1,11 +1,8 @@
 import { getAllPosts } from "@/lib/utils/getBlog";
 import { linkedPosts } from "contents/linkedPosts";
+import blogCategories from "contents/meta/blogCategories.json";
 import { USERMETA } from "contents/meta/user";
 import { Metadata } from "next";
-import Hero from "./_components/Hero";
-import LinkedPostBox from "./_components/LinkedPostBox";
-import PostBox from "./_components/PostBox";
-import blogCategories from "contents/meta/blogCategories.json";
 import Section from "./_components/Section";
 
 export async function generateMetadata(): Promise<Metadata> {
