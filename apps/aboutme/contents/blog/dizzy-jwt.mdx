@@ -3,6 +3,7 @@ title: "WebSocket + JWT Scenario"
 description: "Explores WebSocket JWT security challenges, evaluates strategies, and adopts the secondary token mechanism as the best solution."
 date: "2024-5-29"
 categoryId: 1.1
+tags: ["websocket", "jwt", "security", "dizzycode"]
 ---
 
 <br />
@@ -22,18 +23,15 @@ categoryId: 1.1
   />
 </Process>
 
-<Section>
-  <Section.Header title="Background" />
-  Say, we're chatting in a discord channel. The points at which we need to check
-  the jwt token are: ①when upgrading to WebSocket protocol, ②when connecting to
-  STOMP, ③when sending a message, etc. Steps 2 and 3 are not much of an issue,
-  **but a problem occurs at step 1.** Let's find out what the problem is and
-  come up with the best solution!
-</Section>
+<Header title="Background" />
+Say, we're chatting in a discord channel. The points at which we need to check
+the jwt token are: ①when upgrading to WebSocket protocol, ②when connecting to
+STOMP, ③when sending a message, etc. Steps 2 and 3 are not much of an issue,
+**but a problem occurs at step 1.** Let's find out what the problem is and come
+up with the best solution!
 
-<Section>
-  <Section.Header title="Problem Definition" />
-  <Section.Body>
+<Header title="Problem Definition" />
+
 First, we need to understand the WebSocket upgrading process.
 
 **1. Initial HTTP Request**
@@ -73,24 +71,22 @@ headers. However, once the WebSocket connection is established, all further comm
 are no longer used. Additionally, **browsers do not allow certain custom headers to be included in
 WebSocket upgrade requests** due to security reasons, such as preventing CSRF attacks.
 
-</Section.Body>
-</Section>
+<Header title="Solution" />
+<Box>
+  <div>Sol 1: Including JWT Token in Query String</div>
+  <div>
+    Sol 2: Sending the Authentication Token with the First WebSocket Message
+  </div>
+  <div>Sol 3: Sending Token via Sec-WebSocket-Protocol</div>
+  <div>**Sol 4: Introducing Secondary Token**</div>
+</Box>
 
-<Section>
-  <Section.Header title="Solution" />
-  <Box>
-    <div>Sol 1: Including JWT Token in Query String</div>
-    <div>Sol 2: Sending the Authentication Token with the First WebSocket Message</div>
-    <div>Sol 3: Sending Token via Sec-WebSocket-Protocol</div>
-    <div>**Sol 4: Introducing Secondary Token**</div>
-  </Box>
+<Header
+  title="Sol 1: Including JWT Token in Query String"
+  subTitle="Rejected Approaches"
+  type="secondary"
+/>
 
-  <Section.Header
-    title="Sol 1: Including JWT Token in Query String"
-    subTitle="Rejected Approaches"
-    type="secondary"
-  />
-  <Section.Body>
 ```ts
 const socket = new SockJS(
   `http://localhost:8787/ws?token=${window.localStorage.getItem("authorization")}`,
@@ -118,15 +114,14 @@ However, while technically viable, **there’s often a lingering concern about
 security when sensitive information like a token is included in the
 URL, even if the actual risk is low.**
 
-  </Section.Body>
+<br />
 
-<Section.Header
+<Header
   title="Sol 2: Sending the Authentication Token with the First WebSocket Message"
   subTitle="Rejected Approaches"
   type="secondary"
 />
 
-  <Section.Body>
 In this method, after the WebSocket connection is established, the
 client sends the authentication token **as part of the first message.** This means the token is
 not included in the headers during the initial connection, but
@@ -149,29 +144,27 @@ client.current = new Client({
 });
 ```
 
-    However, this approach has several drawbacks:
+However, this approach has several drawbacks:
 
-    - **Resource inefficiency:** Allowing unauthenticated
-      WebSocket connections, even temporarily, can waste server resources
-      as the server has to handle these connections before determining
-      their validity.
-    - **Additional overhead:** This adds a bit of complexity
-      to the communication protocol since the server must now wait for a
-      separate authentication message after the WebSocket connection is
-      established, introducing a small delay.
+- **Resource inefficiency:** Allowing unauthenticated
+  WebSocket connections, even temporarily, can waste server resources
+  as the server has to handle these connections before determining
+  their validity.
+- **Additional overhead:** This adds a bit of complexity
+  to the communication protocol since the server must now wait for a
+  separate authentication message after the WebSocket connection is
+  established, introducing a small delay.
 
-  </Section.Body>
+<br />
 
-  <Section.Header
-    title="Sol 3: Sending Token via Sec-WebSocket-Protocol"
-    subTitle="Rejected Approaches"
-    type="secondary"
-  />
-  <Section.Body>
-  In this solution, the JWT token is included in the
-`Sec-WebSocket-Protocol` header when establishing the
-WebSocket connection. The server then extracts and verifies the JWT
-token from this header using a `HandshakeInterceptor`.
+<Header
+  title="Sol 3: Sending Token via Sec-WebSocket-Protocol"
+  subTitle="Rejected Approaches"
+  type="secondary"
+/>
+In this solution, the JWT token is included in the `Sec-WebSocket-Protocol`
+header when establishing the WebSocket connection. The server then extracts and
+verifies the JWT token from this header using a `HandshakeInterceptor`.
 
 ```ts title="client (react)"
 const socket = new SockJS("http://localhost:8787/ws", null, {
@@ -217,29 +210,27 @@ public class JwtHandshakeInterceptor implements HandshakeInterceptor {
 
 Umm.. It seems to be very distorted.
 
-    **CONS**
+**CONS**
 
-    - **Limited browser support:** Not all browsers fully
-      support passing authentication tokens through the
-      `Sec-WebSocket-Protocol` header, which may lead to
-      compatibility issues across different platforms.
-    - **Misuse of the header:** The `Sec-WebSocket-Protocol` header is primarily intended for
-      protocol negotiation, not for authentication, making this approach
-      feel like a **workaround** rather than a proper solution.
-    - **Complex token management:** Since this header can
-      contain multiple values, managing authentication tokens within it
-      may become unnecessarily complicated, especially in cases where
-      multiple protocols are negotiated.
+- **Limited browser support:** Not all browsers fully
+  support passing authentication tokens through the
+  `Sec-WebSocket-Protocol` header, which may lead to
+  compatibility issues across different platforms.
+- **Misuse of the header:** The `Sec-WebSocket-Protocol` header is primarily intended for
+  protocol negotiation, not for authentication, making this approach
+  feel like a **workaround** rather than a proper solution.
+- **Complex token management:** Since this header can
+  contain multiple values, managing authentication tokens within it
+  may become unnecessarily complicated, especially in cases where
+  multiple protocols are negotiated.
 
-  </Section.Body>
+<Header
+  title="✅ Sol 4: Introducing Secondary Token"
+  subTitle="Chosen solution"
+  type="secondary"
+/>
 
-  <Section.Header
-    title="✅ Sol 4: Introducing Secondary Token"
-    subTitle="Chosen solution"
-    type="secondary"
-  />
-  <Section.Body>
-  **Including a short-lived authentication token in the query string** may
+**Including a short-lived authentication token in the query string** may
 currently be the most practical and secure approach.
 
 For convenience, I’ll refer to this as ST. This method solves the
@@ -274,24 +265,24 @@ async function connectWebSocket() {
 }
 ```
 
-    **Advantages of this method**
+**Advantages of this method**
 
-    - **Short-lived ST:** Since the ST has a very short lifespan, even if exposed, the risk is minimal.
-    - **Limited scope:** The ST is used solely for the WebSocket upgrade process, meaning it has more restricted
-      permissions compared to a general access token.
-    - **Independent management of WebSocket and JWT:** Using an ST allows us to manage the WebSocket connection state
-      independently of the JWT’s state. Even if the access token expires,
-      we can request a new one before establishing the WebSocket
-      connection, keeping the logic cleanly separated.
+- **Short-lived ST:** Since the ST has a very short lifespan, even if exposed, the risk is minimal.
+- **Limited scope:** The ST is used solely for the WebSocket upgrade process, meaning it has more restricted
+  permissions compared to a general access token.
+- **Independent management of WebSocket and JWT:** Using an ST allows us to manage the WebSocket connection state
+  independently of the JWT’s state. Even if the access token expires,
+  we can request a new one before establishing the WebSocket
+  connection, keeping the logic cleanly separated.
 
-  </Section.Body>
+<br />
+<br />
 
-</Section>
+<Header title="After WebSocket Connection" />
 
-<Section>
-  <Section.Header title="After WebSocket Connection" />
-  <Section.Body title="STOMP Connection">
-  After the WebSocket upgrade is complete, we should set up the STOMP connection.
+#### STOMP Connection
+
+After the WebSocket upgrade is complete, we should set up the STOMP connection.
 We can use the `connectHeaders` to pass and verify the JWT.
 
 ```ts
@@ -308,9 +299,9 @@ client.current = new Client({
 });
 ```
 
-  </Section.Body>
-  <Section.Body title="Message Transmission">
-  When sending messages, we can include the JWT in the message headers.
+#### Message Transmission
+
+When sending messages, we can include the JWT in the message headers.
 
 ```ts
 const sendMessage = () => {
@@ -326,14 +317,8 @@ const sendMessage = () => {
 };
 ```
 
-  </Section.Body>
-</Section>
+<Header title="Wrap Up!" />
 
-<Section>
-  <Section.Header title="Wrap Up!" />
-  <Section.Body>
-    In the WebSocket upgrade process, we chose to introduce a secondary token.
-    Afterward, the JWT can be used for the STOMP connection and message
-    transmission.
-  </Section.Body>
-</Section>
+In the WebSocket upgrade process, we chose to introduce a secondary token.
+Afterward, the JWT can be used for the STOMP connection and message
+transmission.

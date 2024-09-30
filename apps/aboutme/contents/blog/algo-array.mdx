@@ -3,15 +3,16 @@ title: "Python Lists: Memory Management and Efficiency"
 description: "Exploration of Python lists, comparing them to arrays, discussing dynamic resizing, and analyzing the efficiency of list operations through amortized analysis."
 date: "2024-9-19"
 categoryId: 2.2
+tags: ["python", "algorithm", "data-structure"]
 ---
 
-<Section.Header title="There's no Array in Python?" />
+<Header title="There's no Array in Python?" />
 
 **Arrays** are one of the most fundamental data structures in computer science.
 But did you know that Python doesn't have a built-in array data type? Instead, Python provides a versatile data structure called a **list**.
 Let's find out what the difference is between Python lists and traditional arrays, and the under the hood operations that make Python lists so efficient.
 
-<Section.Header
+<Header
   subTitle="Fundamentals of Arrays in Data Structures"
   title="Common Characteristics of Arrays"
 />
@@ -55,7 +56,7 @@ Arrays are stored in contiguous blocks of memory. This means that all elements a
 
 <br />
 
-<Section.Header
+<Header
   subTitle="Fundamentals of Arrays in Data Structures"
   title="Computer Memory Architecture"
 />
@@ -86,7 +87,7 @@ language and whether it uses a compiler or interpreter. For example:
 - **In interpreted languages like Python or JavaScript, there's an additional layer of abstraction.** The interpreter manages memory allocation and access,
   often implementing arrays as more complex data structures behind the scenes.
 
-<Section.Header
+<Header
   subTitle="Python Lists"
   title="Similarities & Differences with Traditional Arrays"
 />
@@ -102,7 +103,7 @@ language and whether it uses a compiler or interpreter. For example:
 The key difference between Python lists and traditional arrays lies in their **dynamic sizing capabilities**.
 Unlike fixed-size arrays, Python lists can **grow or shrink dynamically** as needed. You can add or remove elements without worrying about pre-allocating memory or running out of space.
 
-<Section.Header
+<Header
   subTitle="Python Lists"
   title="Resolving the Paradox: Continuous Memory Allocation vs. Dynamic Sizing"
 />
@@ -120,15 +121,12 @@ Python resolves this paradox through a smart technique which is **memory realloc
 
 This process is actually can be done by other languages as well, but the key difference is that in other languages, developers should handle this process manually while in Python, it's done automatically.
 
-<Section.Header
+<Header
   subTitle="Python Lists"
   title="Efficiency Implications of Background Reallocation"
 />
 
-<Section.Header
-  title="Theoretical vs. Actual Time Complexity"
-  type="secondary"
-/>
+<Header title="Theoretical vs. Actual Time Complexity" type="secondary" />
 At first glance, one might expect the time complexity of n append operations to
 be θ(n^2), considering the worst-case scenario where each append triggers a
 reallocation. However, the actual performance is much better.
@@ -152,7 +150,7 @@ Total copies = 1 + 2 + 3 + ... + n = n(n+1)/2 = θ(n^2)
 
 In reality, the **over-allocation strategy** ensures that reallocations occur much less frequently, leading to a **linear time complexity** for n append operations.
 
-<Section.Header title="Amortized Analysis" type="secondary" />
+<Header title="Amortized Analysis" type="secondary" />
 To understand the true efficiency, we need to consider amortized analysis.
 
 **Amortized analysis** considers the **average performance of a sequence of operations**, rather than focusing on the worst-case scenario fo each individual operation.
@@ -191,7 +189,7 @@ The sum of reallocation costs can be approximated as **O(n)**, leading to an ove
 By dividing the total cost by the number of operations, we find that the **amortized cost per append operation is O(1)**.
 This means that, on average, each append operation takes constant time.
 
-<Section.Header title="Conclusion" />
+<Header title="Conclusion" />
 In conclusion, Python's list implementation cleverly resolves the paradox
 between fixed memory and dynamic sizing through over-allocation and efficient
 reallocation strategies. **While individual operations may occasionally be

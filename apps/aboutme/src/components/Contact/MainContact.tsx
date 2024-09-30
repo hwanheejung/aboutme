@@ -1,4 +1,4 @@
-import { USERMETA } from "contents/meta";
+import { USERMETA } from "contents/meta/user";
 import EmailIcon from "public/icons/links/email.svg";
 import GithubIcon from "public/icons/links/github.svg";
 import LinkedInIcon from "public/icons/links/linkedIn.svg";

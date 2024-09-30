@@ -1,0 +1,24 @@
+{
+  "tags": {
+    "nextjs": {
+      "name": "Next.js",
+      "color": "#0070f3"
+    },
+    "react": {
+      "name": "React",
+      "color": "#61dafb"
+    },
+    "javascript": {
+      "name": "JavaScript",
+      "color": "#f7df1e"
+    },
+    "zustand": {
+      "name": "Zustand",
+      "color": ""
+    },
+    "react-native": {
+      "name": "ReactNative",
+      "color": ""
+    }
+  }
+}

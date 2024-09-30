@@ -5,7 +5,7 @@ export const parseDate = (date: BlogFrontMatter["date"]) => {
   // we want to return "Month DD, YYYY"
 
   const dateObj = new Date(date);
-  const month = dateObj.toLocaleString("default", { month: "short" });
+  const month = dateObj.toLocaleString("en-US", { month: "short" });
   const day = dateObj.getDate();
   const year = dateObj.getFullYear();
 

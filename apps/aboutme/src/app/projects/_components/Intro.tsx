@@ -8,7 +8,7 @@ const Intro = ({ data }: IntroProps) => {
   return (
     <div className="min-h-section flex flex-col items-center pb-10">
       <h1 className="pb-4 pt-20 text-4xl font-bold">{data.title}</h1>
-      <p className="max-w-[450px] pb-10 text-center font-thin tracking-wider opacity-60">
+      <p className="max-w-[450px] pb-10 text-center opacity-60">
         {data.description}
       </p>
 

@@ -11,77 +11,460 @@ status: "COMPLETED"
 github: "https://github.com/hwanheejung/TaskStock-App-Client"
 ---
 
-<Section>
-  <Section.Header title="Project Overview" subTitle="process highlights" />
-  <Section.Table>
-    <OverviewItem title="Focus">app</OverviewItem>
-    <OverviewItem title="Links">
-      [Github Repository](https://github.com/hwanheejung/TaskStock-App-Client){" "}
-      <br /> [Tech
-      Blog](https://hwanheejung.tistory.com/category/Projects%2CActivity/TaskStock%28RN%29)
-    </OverviewItem>
-  </Section.Table>
-  <Section.Divider />
-  <Section.Table>
-    <OverviewItem title="Timeline & Status">
-      Nov '23 - Mar '24, Sunset <br />
-    </OverviewItem>
-    <OverviewItem title="Team">
-      FE 2 <br />
-      BE 2 <br />
-      Designer 1
-    </OverviewItem>
-    <OverviewItem title="Responsibilities">
-      Frontend Developer <br />
-    </OverviewItem>
-    <OverviewItem title="FE Tech Stack">
-      React Native <br />
-      TypeScript <br />
-      Redux Toolkit <br />
-      Firebase <br />
-    </OverviewItem>
-  </Section.Table>
-</Section>
+<Header title="Project Overview" subTitle="process highlights" />
+
+<Table>
+  <OverviewItem title="Focus">
+    Developed a **JWT** strategy addressing multiple authentication scenarios
+    for enhanced security. Structured frontend using **atomic design patterns**.
+    Embraced an **end-to-end** project approach, taking ownership from initial
+    concept and planning through development, deployment, and operations.
+  </OverviewItem>
+  <OverviewItem title="Links">
+    [Github Repository](https://github.com/hwanheejung/TaskStock-App-Client){" "}
+    <br /> [Tech
+    Blog](https://hwanheejung.tistory.com/category/Projects%2CActivity/TaskStock%28RN%29)
+  </OverviewItem>
+</Table>
+<Divider />
+<Table>
+  <OverviewItem title="Timeline & Status">
+    Nov '23 - Mar '24, Sunset <br />
+  </OverviewItem>
+  <OverviewItem title="Team">
+    FE 2 <br />
+    BE 2 <br />
+    Designer 1
+  </OverviewItem>
+  <OverviewItem title="Responsibilities">
+    Frontend Developer <br />
+    iOS Deployment
+  </OverviewItem>
+  <OverviewItem title="FE Tech Stack">
+    React Native <br />
+    TypeScript <br />
+    Redux Toolkit <br />
+    Firebase <br />
+  </OverviewItem>
+</Table>
 
 <br />
 <br />
 
-<Section>
-  <Section.Header
-    title="Key Features and Technical Decisions"
-    subTitle="our considerations"
+<Header title="Summary" />
+<br />
+<Process>
+  <Process.Item
+    num={1}
+    title="About TaskStock"
+    lists={["Background"]}
   />
-  <Process>
-    <Process.Item
-      num={1}
-      title="JWT"
-      lists={["Multi Device Support", "Background Auto-Login", "Social Login"]}
-    />
-    <Process.Item
-      num={2}
-      title="Architecture"
-      lists={["Atomic Design Pattern"]}
-    />
-    <Process.Item num={3} title="Deployment" lists={["iOS"]} />
-  </Process>
-</Section>
+  <Process.Item
+    num={2}
+    title="Technology"
+    lists={["JWT", "Architecture"]}
+  />
+  <Process.Item num={3} title="Collaboration" lists={["Documentation", "Agile-Sprint", "Standup Meeting", "Tech Wiki"]} />
+  <Process.Item num={4} title="Production" lists={["Beta-Testing", "Result"]} />
+  <Process.Item num={5} title="Reflection" lists={["Key Takeaways"]} />
+
+</Process>
 
 <br />
 <br />
 
-<Section>
-  <Section.Header title="Tech Stack Review" subTitle="reflection" />
-  <Section.Body title="React Native">
-    <div>Explanation...</div>
-  </Section.Body>
-  <Section.Body title="Redux Toolkit">
-    <div>Explanation...</div>
-  </Section.Body>
-</Section>
+<Header title="About TaskStock" />
+<br />
+
+TaskStock is an productivity app that **visualizes personal growth through a stock market-inspired interface**.
+
+The core features include:
+
+- **Dynamic Value Visualization**: Completed tasks instantly increase your personal "stock value," displayed as a rising graph. Daily midnight settlements show cumulative progress.
+- **Project Management**: Group tasks for long-term goals and write retrospectives to add meaning to your accomplishments.
+- **Community-Driven Task Market**: Browse popular tasks or "stocks" added by the community. Compare your productivity with others and gain inspiration.
+- **Social Connectivity**: Follow friends, view their progress, and motivate each other. Privacy settings allow control over who sees your tasks.
+- **Intuitive Growth Tracking**: Easily monitor your personal development through visual representations of your daily achievements.
+
+TaskStock transforms routine task management into an engaging, social experience. It combines elements of gamification, social networking, and traditional productivity tools to create a unique platform for personal growth and motivation.
+
+<br />
+<Image
+  src={"/projects/taskstock/taskstock-preview.png"}
+  width={1200}
+  height={400}
+  alt="preview"
+/>
+<br />
+
+<Header title="Technology" subTitle="Key Features and Technical Decisions" />
+<Image
+  src={"/projects/taskstock/architecture.png"}
+  width={1200}
+  height={400}
+  alt="architecture"
+  description="Architecture"
+/>
+<Image
+  src={"/projects/taskstock/erd.jpg"}
+  width={1200}
+  height={400}
+  alt="ERD"
+  description="ERD"
+/>
+<br />
+<Process>
+  <Process.Item
+    num={1}
+    title="JWT"
+    lists={[
+      "Email&Social Login",
+      "Multi Device Support",
+      "Background Auto-Login",
+      "UX vs Security",
+    ]}
+  />
+  <Process.Item
+    num={2}
+    title="Architecture"
+    lists={["Atomic Design Pattern"]}
+  />
+</Process>
+
+<br />
+
+<Header title="JWT" subTitle="Technology" type="secondary" />
+
+<br />
+
+Our primary challenge was to create a unified system that could manage both email and social login users, support multi-device usage, and maintain persistent login states, all while ensuring a seamless user experience.
+
+#### Key Challenges
+
+- **Integrated authentication for both email and social login users**
+- **Multi-Device Support**
+- **Persistent login state** with minimal manual re-authentication
+- **Balance between user experience and system security**
+- Designing an **efficient token storage strategy**
+
+#### Authentication Logic Design
+
+We designed a comprehensive authentication logic in close collaboration with the backend team.
+For email logins, we implemented a secure method of storing encrypted login information using **react-native-keychain**, enabling **background re-authentication when refresh tokens expired**.
+However, social logins required a separate approach due to their unique authentication processes.
+
+#### Challenges and Solutions
+
+The main challenge was **minimizing automatic logouts while maintaining system security**.
+After extensive research and consultation with industry professionals, **we decided to extend the refresh token validity period significantly.**
+To mitigate potential security risks, we planned for a future implementation of a monitoring system that would immediately invalidate tokens upon detection of suspicious activities.
+
+#### Token Management Strategy
+
+We adopted a hybrid approach for token storage:
+
+- Access tokens: Stored in both AsyncStorage and Redux for quick access and performance
+- Refresh tokens: Securely stored only in AsyncStorage
+- Expiration times: Managed in Redux for efficient checking
+
+<Table>
+<div>
+
+#### User Experience Enhancements
+
+To improve usability, we implemented features such as:
+
+- **Background auto-login for regular users**
+- **Extended refresh token validity for social login users**
+- **Displaying recent login methods** for user convenience
+- Implementing strategy-based login to **prevent account conflicts**
+- Designing a system to handle token expiration during app inactivity
+
+#### Security Considerations
+
+While prioritizing user experience, we maintained a strong focus on security:
+
+- Encrypted storage of sensitive information
+- Planned implementation of an abnormal access detection system
+- Regular security audits and updates
+
+</div>
+<Image
+  src={"/projects/taskstock/recentLogin.png"}
+  width={300}
+  height={400}
+  alt="recent login"
+  description="displaying recent login method"
+/>
+</Table>
+
+#### Multi-Device Support
+
+We implemented device-specific IDs and managed **multiple refresh tokens per user**.
+This approach required careful design of our database structure and token management logic, allowing seamless user experiences across different devices.
+
+#### Key Takeaways
+
+- The critical balance between user experience and security in authentication systems
+- The importance of adapting solutions to different login methods (email vs. social)
+- The value of seeking expert advice and industry best practices
+- The need for continuous monitoring and improvement in security systems
+
+<br />
+
+<Callout link="https://hwanheejung.tistory.com/15" />
+
+<br />
+
+<Header title="Atomic Design Pattern" subTitle="Technology" type="secondary" />
+
+#### Folder Structure and Component Sharing
+
+In our project, we encountered numerous shared components across screens. We organized these shared components outside specific screen folders:
+
+<Table>
+```text title="folder structure"
+/components
+ㄴ/atoms
+   ㄴA
+   ㄴB
+ㄴ/molecules
+   ㄴA
+   ㄴB
+ㄴ/organisms
+   ㄴA
+   ㄴB
+ㄴ/templates
+   ㄴA
+   ㄴB
+```
+
+```text title="molecule"
+ㄴ/molecules
+   ㄴ/A
+   ㄴ/B
+   ㄴcommon1.tsx
+   ㄴcommon2.tsx
+```
+
+</Table>
+
+In retrospect, creating a '/common' folder for each atomic level (atoms, molecules, organisms, templates) could have improved organization.
+
+#### Flexible Atom Design
+
+To enhance reusability, we designed atoms with high flexibility:
+
+- Utilized extensive props
+- Set default values for frequently used props
+- Leveraged TypeScript for prop type restrictions
+- Added props as needed during development
+
+Example: A Text component with props for fontSize, color, and fontWeight, using default values and TypeScript types to restrict color options.
+
+#### Balancing Reusability
+
+As the project progressed, we realized that excessive focus on reusability could lead to code complexity.
+We adopted a more flexible approach for molecules, organisms, and templates, prioritizing clean code over strict reusability.
+
+#### Addressing Props Drilling
+
+To mitigate props drilling issues inherent in the atomic design pattern, we:
+
+- Organized components into screen-specific folders within each atomic level
+- Utilized Redux Toolkit for state management
+- Created custom hooks to minimize prop passing
+
+#### Advantages of Atomic Design Pattern
+
+- Provides a clear, intuitive structure
+- Enables flexible responses to changing design requirements
+- Facilitates consistent design across the application
+
+#### Challenges Faced
+
+- Ambiguous criteria for categorizing components into atomic levels
+- Risk of over-complicating components for the sake of reusability
+- Potential for props drilling in deeply nested component structures
+
+#### Lessons Learned
+
+- The importance of team agreement on component categorization
+- The need to balance reusability with code simplicity
+- The value of state management tools and custom hooks in atomic design implementation
+
+<br />
+
+<Callout link="https://hwanheejung.tistory.com/13" />
+
+<br />
+
+<Header title="Collaborative Development Practices" subTitle="collaboration" />
+
+#### Documentation w/ Notion
+
+<Image
+  src={"/projects/taskstock/taskstock-notion.png"}
+  width={1200}
+  height={400}
+  alt="TaskStock Notion Workspace"
+  description="Our centralized Notion workspace for project documentation"
+/>
+
+#### Agile Methodology: Weekly Sprints and Stand-up Meetings
+
+<Table>
+<div>
+
+We implemented weekly sprints following the Agile methodology, with a structured routine:
+
+- Role assignment
+- Task creation
+- Execution
+- Retrospective
+
+Bi-weekly stand-up meetings were held on Wednesdays and Fridays at 10 PM via Zep, where team members shared:
+
+- Completed tasks
+- Upcoming tasks
+- Potential blockers
+
+Key benefits of our Agile approach:
+
+- Frequent priority reassessment
+- Structured development process
+- Enhanced communication
+- Goal-oriented work ethic
+- Improved project visibility
+- Adaptability to changes
+- Strong team cohesion
+
+This approach significantly boosted productivity, team coordination, and project clarity.
+
+</div>
+<Image
+  src={"/projects/taskstock/taskstock-agile.png"}
+  width={500}
+  height={400}
+  alt="Agile Sprint Board" 
+  description="Our Agile sprint board for task management" />
+
+</Table>
+
+#### Tech Wiki
+
+<Table>
+<Image
+  src={"/projects/taskstock/taskstock-techwiki.png"}
+  width={500}
+  height={400}
+  alt="Tech Wiki Page" 
+  description="Our Tech Wiki page for knowledge sharing" />
+
+<div>
+
+The Tech Wiki page in our TaskStock Notion workspace became an invaluable resource for the team. It served as a platform for:
+
+- Documenting newly acquired technical knowledge
+- Sharing development insights and best practices
+- Collaborative problem-solving through issue documentation
+- Open communication via mentions and discussions
+
+This wiki fostered a culture of continuous learning and knowledge exchange within the team.
+
+</div>
+</Table>
+
+#### Bridging Design and Development
+
+<Image
+  src={"/projects/taskstock/taskstock-designer.png"}
+  width={1200}
+  height={400}
+  alt="Design-Development Collaboration Board"
+  description="Our storyboard facilitating designer-developer communication"
+/>
+
+#### User-Centric Development: Flow Chart Visualization
+
+<Image
+  src={"/projects/taskstock/taskstock-flowChart.png"}
+  width={1200}
+  height={400}
+  alt="User Flow Chart in Figjam"
+  description="Detailed user flow chart created in Figjam for intuitive navigation design"
+/>
+
+<Header title="Beta-Testing" subTitle="Production" />
+
+<Table>
+  <Image
+    src={"/projects/taskstock/taskstock-beta.png"}
+    width={300}
+    height={400}
+    alt="Group Chat"
+    description="Testers Group Chat"
+  />
+  <Image
+    src={"/projects/taskstock/taskstock-betaTester.png"}
+    width={800}
+    height={400}
+    alt="TestFlight"
+    description="TestFlight"
+  />
+</Table>
+
+In response to Google Play Store's policy changes, we conducted a beta testing phase for TaskStock.
+While the new policy required Android apps to undergo testing with **at least 20 beta testers for 2 weeks**, we expanded our scope to include iOS users as well.
+Our beta test ran for **3 weeks with 46 testers across both platforms**, exceeding the minimum requirements and ensuring a thorough evaluation of our app.
+
+We utilized **Google Forms to conduct satisfaction surveys and actively sought personal feedback from our testers**.
+This comprehensive approach yielded invaluable insights:
+
+- Uncovered unexpected issues and user reactions
+- Provided a basis for more rigorous Quality Assurance (QA) processes
+- Allowed us to address platform-specific concerns for both Android and iOS
+
+This extended beta testing phase not only helped us meet regulatory requirements but also significantly improved the overall quality and user experience of TaskStock across both major mobile platforms.
+The diverse feedback we received enabled us to refine features, fix bugs, and optimize performance before the official launch, ensuring a more polished and user-friendly product for our target audience.
+
+<Table>
+  <Image
+    src={"/projects/taskstock/appStore-release.PNG"}
+    width={400}
+    height={400}
+    alt="App Store"
+    description="AppStore Release"
+  />
+  <Image
+    src={"/projects/taskstock/android-release.png"}
+    width={400}
+    height={400}
+    alt="PlayStore"
+    description="PlayStore Release"
+  />
+</Table>
+
+<Header title="Key Takeaways" subTitle="reflection" />
+
+<br />
+
+- **Collaborative Growth**: Our team overcame various technical challenges, strengthening our teamwork and individual expertise through knowledge sharing, particularly via the Tech Wiki page.
+- **Production-Oriented Development**: Focusing on service launch and operation led to more thorough exception handling and thoughtful logic design.
+- **Technical Skill Enhancement**: Improved proficiency in TypeScript and Redux Toolkit
+- **Deployment Experience**: Smoother iOS deployment process compared to the first attempt, reinforcing the idea that initial experiences are often the most challenging.
+- **Agile Methodology Application**: Developed flexibility in responding to rapidly changing project requirements through Agile and Scrum methodologies.
+- **Comprehensive Skill Development**: Growth not only in technical capabilities but also in collaboration, communication, and problem-solving skills.
 
 <br />
 <br />
 
-<Section>
-  <Section.Header title="Next Step" subTitle="reflection" />
-</Section>
+<Image
+  src={"/projects/taskstock/taskstock-logo.png"}
+  width={250}
+  height={400}
+  alt="Logo"
+/>
+
+<br />
+<br />

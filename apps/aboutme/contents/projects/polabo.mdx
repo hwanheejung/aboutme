@@ -12,126 +12,144 @@ site: "https://polabo.site/"
 github: "https://github.com/DDD-Community/DDD-11-Sonny-Polabo-FE"
 ---
 
-<Section>
-  <Section.Header title="Project Overview" subTitle="process highlights" />
-  <Section.Table>
-    <OverviewItem title="Focus">
-      MVP, Next.js, SSR, Image, ... <br />
-    </OverviewItem>
-    <OverviewItem title="Links">
-      [Release](https://polabo.site/) <br />
-      [Github
-      Repository](https://github.com/DDD-Community/DDD-11-Sonny-Polabo-FE)
-      <br /> [Tech
-      Blog](https://hwanheejung.tistory.com/category/Projects%2CActivity/DDD%28Next%29)
-    </OverviewItem>
-  </Section.Table>
-  <Section.Divider />
-  <Section.Table>
-    <OverviewItem title="Timeline & Status">
-      Jun '24 - Current, 3rd MVP Released <br />
-    </OverviewItem>
-    <OverviewItem title="Team">
-      Product Manager 1 <br />
-      Frontend 2 <br />
-      Backend 1 <br />
-      Designer 2
-    </OverviewItem>
-    <OverviewItem title="Responsibilities">
-      Frontend Developer <br />
-    </OverviewItem>
-    <OverviewItem title="FE Tech Stack">
-      Next.js <br />
-      TypeScript <br />
-      Tailwind.css <br />
-    </OverviewItem>
-  </Section.Table>
-</Section>
+<Header title="Project Overview" subTitle="process highlights" />
+<Table>
+  <OverviewItem title="Focus">
+    MVP, Next.js, SSR, Image, ... <br />
+  </OverviewItem>
+  <OverviewItem title="Links">
+    [Release](https://polabo.site/) <br />
+    [Github Repository](https://github.com/DDD-Community/DDD-11-Sonny-Polabo-FE)
+    <br /> [Tech
+    Blog](https://hwanheejung.tistory.com/category/Projects%2CActivity/DDD%28Next%29)
+  </OverviewItem>
+</Table>
+<Divider />
+<Table>
+  <OverviewItem title="Timeline & Status">
+    Jun '24 - Current, 4th MVP Released <br />
+  </OverviewItem>
+  <OverviewItem title="Team">
+    Product Manager 1 <br />
+    Frontend 2 <br />
+    Backend 1 <br />
+    Designer 2
+  </OverviewItem>
+  <OverviewItem title="Responsibilities">
+    Frontend Developer <br />
+  </OverviewItem>
+  <OverviewItem title="FE Tech Stack">
+    Next.js <br />
+    TypeScript <br />
+    Tailwind.css
+  </OverviewItem>
+</Table>
 
 <br />
 <br />
 
-<Section>
-  <Section.Header
-    title="Release Timeline & Added Features"
-    subTitle="Major Milestones for MVP Development"
+<Header title="Summary" subTitle="Technical Highlights and Key Decisions" />
+<br />
+<Process>
+  <Process.Item
+    num={1}
+    title="Technology"
+    lists={["Image Optimization", "NextAuth"]}
   />
-  <Timeline>
-    <Timeline.Item
-      date="7.24"
-      title="Beta Launch: Core Features"
-      lists={[
-        "Create Board",
-        "Upload and Display Polaroid Photos",
-        "Share Boards via Link",
-      ]}
-    />
-    <Timeline.Item
-      date="8.21"
-      title="2nd Iteration: Login Integration"
-      lists={["Kakao Login"]}
-    />
-    <Timeline.Item
-      date="8.29"
-      title="3rd Iteration: Social Sharing & UI Overhaul"
-      lists={[
-        "Share Boards on Social Media",
-        "My Board Page",
-        "Revamped User Interface",
-      ]}
-    />
-    <Timeline.Item
-      date="9.14"
-      title="4th Iteration: Customization & Save Options"
-      lists={[
-        "Export Board as Image",
-        "Board Sticker",
-        "New Polaroid Frame Designs",
-      ]}
-    />
-    <Timeline.Item date="9.26" title="Final Presentation" lists={[]} />
-  </Timeline>
-</Section>
-
-<br />
-<br />
-
-<Section>
-  <Section.Header
-    title="Key Features and Technical Decisions"
-    subTitle="our considerations"
+  <Process.Item
+    num={2}
+    title="Collaboration"
+    lists={["MVP Planning", "Agile-Sprint", "PM-Design-Dev Sync"]}
   />
-  <Process>
-    <Process.Item
-      num={1}
-      title="Image Optimization"
-      lists={["Compression", "Next/Image"]}
-    />
-  </Process>
-</Section>
+  <Process.Item
+    num={3}
+    title="Development Process"
+    lists={["Code Review", "Branching Strategy"]}
+  />
+  <Process.Item
+    num={4}
+    title="Reflection"
+    lists={["Tech Stack Review", "Key Takeaways", "Next Steps"]}
+  />
+</Process>
 
 <br />
 <br />
 
-<Section>
-  <Section.Header title="Tech Stack Review" subTitle="reflection" />
-  <Section.Body title="NextAuth">
-    <div>Explanation...</div>
-  </Section.Body>
-  <Section.Body title="Next/Image">
-    <div>Explanation...</div>
-  </Section.Body>
-  <Section.Body title="Tailwind.css">
-    <div>Explanation...</div>
-  </Section.Body>
-</Section>
+<Header title="Technology" />
+<Header title="Image Optimization" subTitle="Technology" type="secondary" />
+
+#### Image Compression
+
+#### Next/Image
 
 <br />
 <br />
 
-<Section>
-  <Section.Header title="Keep" subTitle="reflection" />
-</Section>
-<Section>
-  <Section.Header title="Next Steps" subTitle="reflection" />
-</Section>
+<Header title="Collaboration" />
+
+<Header title="MVP Planning" subTitle="Collaboration" type="secondary" />
+
+#### Release Timeline & Added Features
+
+<br />
+
+<Timeline>
+  <Timeline.Item
+    date="7.24"
+    title="Beta Launch: Core Features"
+    lists={[
+      "Create Boards",
+      "Upload and Display Polaroid Photos",
+      "Share Boards via Link",
+      "Link generation",
+    ]}
+  />
+  <Timeline.Item
+    date="8.15"
+    title="2nd MVP: Login Integration"
+    lists={[
+      "Social Login: Kakao",
+      "Nickname setting/modification",
+      "List of boards I created",
+      "Board deletion",
+      "Error reporting email",
+    ]}
+  />
+  <Timeline.Item
+    date="9.7"
+    title="3rd MVP: Social Sharing & UI Overhaul"
+    lists={[
+      "SNS Sharing (KakaoTalk, Instagram, X+a)",
+      "Nickname setting for polaroid participants",
+      "My Board Page",
+      "List of boards I participated in",
+      "Revamped User Interface",
+    ]}
+  />
+  <Timeline.Item
+    date="9.27"
+    title="4th MVP: Customization"
+    lists={[
+      "New Polaroid Frame, Font Selection",
+      "Polaroid deletion feature: board owner only",
+      "Topic recommendation",
+    ]}
+  />
+</Timeline>
+
+<br />
+<br />
+
+<Header title="Reflection" />
+
+<Header title="Tech Stack Review" subTitle="reflection" type="secondary" />
+#### NextAuth
+
+#### Next/Image
+
+#### Tailwind.css
+
+<Header title="Key Takeaways" subTitle="reflection" type="secondary" />
+
+<Header title="Next Steps" subTitle="reflection" type="secondary" />

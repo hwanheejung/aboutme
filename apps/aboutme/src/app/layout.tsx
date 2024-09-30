@@ -1,7 +1,7 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import "@/styles/globals.css";
-import { SITEMETA } from "contents/meta";
+import { SITEMETA } from "contents/meta/user";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import localFont from "next/font/local";
@@ -38,7 +38,7 @@ export default function RootLayout({
       >
         <div className="font-hanken">
           <Header />
-          <main className="px-10 text-lg">{children}</main>
+          <main className="px-10 text-lg md:px-5">{children}</main>
           <Footer />
         </div>
       </body>

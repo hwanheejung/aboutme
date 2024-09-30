@@ -32,6 +32,7 @@ const config: Config = {
         },
         white: "#FFF4E0",
         primary: "rgb(var(--color-primary) / <alpha-value>)",
+        background: "rgb(var(--background) / <alpha-value>)",
         emerald: "#10b981",
         red: "#F24535",
         beige: "#f5f5dc",

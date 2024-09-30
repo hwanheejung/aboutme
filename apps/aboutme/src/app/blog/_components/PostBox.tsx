@@ -1,35 +1,44 @@
+import ButtonTransition from "@/components/Transitions/ButtonTransition";
 import { parseDate } from "@/lib/utils/date";
 import { BlogFrontMatter } from "@/types";
 import Link from "next/link";
-import { getCategoryById } from "../_utils/getCategoryById";
+import { getCategoryById } from "../_utils/category";
 
 interface PostBoxProps {
   post: BlogFrontMatter;
   slug: string;
 }
 
-const PostBox = async ({ post, slug }: PostBoxProps) => {
+const PostBox = ({ post, slug }: PostBoxProps) => {
   const { title, description, date, categoryId } = post;
 
   const parsedDate = parseDate(date);
 
   return (
-    <div className="flex flex-col rounded-lg border border-gray-300 border-opacity-60 bg-gray-100 p-3 text-center dark:border-neutral-700 dark:bg-neutral-800/30">
-      <span className="text-sm text-main/80">
-        {categoryId ? getCategoryById(categoryId) : ""}
-      </span>
+    <div className="flex flex-col rounded-xl border border-gray-300 border-opacity-60 p-3 dark:border-neutral-700 dark:bg-neutral-800/30">
+      <div className="flex items-center justify-between">
+        <Link
+          href={`/blog/category/${categoryId}`}
+          className={"text-sm text-accent-yellow hover:underline"}
+        >
+          {categoryId ? getCategoryById(categoryId) : ""}
+        </Link>
+        <span className="text-xl">🇺🇸</span>
+      </div>
       <Link href={`/blog/${slug}`} className="mt-2 p-0 text-xl !no-underline">
-        <div className="text-main hover:underline">{title}</div>
+        <div className="text-2xl font-bold hover:underline">{title}</div>
       </Link>
-      <span className="py-2 text-xs font-thin text-primary/60">
+      <span className="py-2 text-xs font-thin text-primary/70">
         {parsedDate}
       </span>
-      <p className="pb-6 pt-2 text-sm font-light opacity-70">{description}</p>
+      <p className="pb-6 pt-2 text-sm opacity-70">{description}</p>
       <Link
         href={`/blog/${slug}`}
-        className="mt-auto rounded-md bg-primary bg-opacity-10 py-1 text-center !font-thin !text-primary transition-all hover:bg-opacity-20"
+        className="mt-auto w-full rounded-full border border-gray-300 py-2 dark:border-neutral-700"
       >
-        Read More
+        <ButtonTransition className="flex items-center justify-center">
+          Read More!
+        </ButtonTransition>
       </Link>
     </div>
   );

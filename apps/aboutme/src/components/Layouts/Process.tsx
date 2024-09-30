@@ -1,8 +1,8 @@
 import { ReactNode } from "react";
-import Section from "./Section";
+import Table from "./Table";
 
 const Process = ({ children }: { children: ReactNode }) => {
-  return <Section.Table>{children}</Section.Table>;
+  return <Table>{children}</Table>;
 };
 
 interface ProcessProps {
@@ -14,7 +14,7 @@ interface ProcessProps {
 const Item = (props: ProcessProps) => {
   return (
     <div className="flex flex-col items-center pt-5">
-      <span className="flex h-12 w-12 items-center justify-center rounded-full bg-main/20 text-center text-lg font-semibold text-main">
+      <span className="flex h-12 w-12 items-center justify-center rounded-full bg-accent-yellow/20 text-center text-lg font-semibold text-accent-yellow">
         {props.num}
       </span>
       <div className="py-3 pb-2 pt-2 text-center text-lg text-primary">

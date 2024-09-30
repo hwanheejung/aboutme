@@ -1,10 +1,12 @@
 import Image, { ImageProps } from "@/components/Image";
+import Divider from "@/components/Layouts/Divider";
+import Header from "@/components/Layouts/Header";
 import Process from "@/components/Layouts/Process";
-import Section from "@/components/Layouts/Section";
+import Table from "@/components/Layouts/Table";
 import CustomMDXRemote from "@/components/MDX/MDXRemote";
 import { parseDate } from "@/lib/utils/date";
 import { getAllPosts, getPostBySlug } from "@/lib/utils/getBlog";
-import { USERMETA } from "contents/meta";
+import { USERMETA } from "contents/meta/user";
 import { Metadata } from "next";
 import { HTMLAttributes, ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
@@ -28,24 +30,6 @@ export async function generateMetadata({
   };
 }
 
-const components = {
-  Image: (props: ImageProps) => <Image {...props} height={400} />,
-  Box: ({
-    children,
-    className,
-  }: {
-    children: ReactNode;
-    className?: HTMLAttributes<HTMLDivElement>["className"];
-  }) => <div className={twMerge("box my-5", className)}>{children}</div>,
-  Section: Section,
-  "Section.Header": Section.Header,
-  "Section.Body": Section.Body,
-  "Section.Table": Section.Table,
-  "Section.Divider": Section.Divider,
-  Process: Process,
-  "Process.Item": Process.Item,
-};
-
 export async function generateStaticParams() {
   const posts = await getAllPosts();
 
@@ -63,9 +47,26 @@ interface PostPageProps {
     slug: string;
   };
 }
+
 const PostPage = async ({ params }: PostPageProps) => {
   const { slug } = params;
   const { source, frontmatter } = await getPostBySlug(slug);
+
+  const components = {
+    Image: (props: ImageProps) => <Image {...props} height={400} />,
+    Box: ({
+      children,
+      className,
+    }: {
+      children: ReactNode;
+      className?: HTMLAttributes<HTMLDivElement>["className"];
+    }) => <div className={twMerge("box my-5", className)}>{children}</div>,
+    Header: Header,
+    Table: Table,
+    Divider: Divider,
+    Process: Process,
+    "Process.Item": Process.Item,
+  };
 
   return (
     <div>
@@ -73,13 +74,15 @@ const PostPage = async ({ params }: PostPageProps) => {
         {frontmatter.categoryId && (
           <CategoryLink currentCatId={frontmatter.categoryId} />
         )}
-        <div className="mb-5 text-4xl text-main">{frontmatter.title}</div>
+        <div className={"mb-5 text-4xl font-bold text-accent-yellow"}>
+          {frontmatter.title}
+        </div>
         <div className="font-thin text-primary/60">
           <div>{parseDate(frontmatter.date)}</div>
           <div>by {USERMETA.name}</div>
         </div>
       </div>
-      <div className="mdx prose-a:font-normal prose-a:text-primary/60 prose-a:underline hover:prose-a:text-main/60">
+      <div className="mdx hover:prose-a:underline">
         <CustomMDXRemote source={source} components={components} />
       </div>
     </div>
