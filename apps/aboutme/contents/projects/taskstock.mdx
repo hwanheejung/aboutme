@@ -14,7 +14,12 @@ github: "https://github.com/hwanheejung/TaskStock-App-Client"
 <Header title="Project Overview" subTitle="process highlights" />
 
 <Table>
-  <OverviewItem title="Focus">app</OverviewItem>
+  <OverviewItem title="Focus">
+    Developed a **JWT** strategy addressing multiple authentication scenarios
+    for enhanced security. Structured frontend using **atomic design patterns**.
+    Embraced an **end-to-end** project approach, taking ownership from initial
+    concept and planning through development, deployment, and operations.
+  </OverviewItem>
   <OverviewItem title="Links">
     [Github Repository](https://github.com/hwanheejung/TaskStock-App-Client){" "}
     <br /> [Tech
@@ -52,16 +57,16 @@ github: "https://github.com/hwanheejung/TaskStock-App-Client"
   <Process.Item
     num={1}
     title="About TaskStock"
-    lists={["Background", "Django to RN"]}
+    lists={["Background"]}
   />
   <Process.Item
     num={2}
     title="Technology"
-    lists={["JWT", "Architecture", "iOS Deployment"]}
+    lists={["JWT", "Architecture"]}
   />
-  <Process.Item num={3} title="Collaboration" lists={["Agile-Sprint", "Standup Meeting", "Tech Wiki"]} />
+  <Process.Item num={3} title="Collaboration" lists={["Documentation", "Agile-Sprint", "Standup Meeting", "Tech Wiki"]} />
   <Process.Item num={4} title="Production" lists={["Beta-Testing", "Result"]} />
-  <Process.Item num={5} title="Reflection" lists={["Blockers", "Key Takeaways", "Next Step"]} />
+  <Process.Item num={5} title="Reflection" lists={["Key Takeaways"]} />
 
 </Process>
 
@@ -69,8 +74,27 @@ github: "https://github.com/hwanheejung/TaskStock-App-Client"
 <br />
 
 <Header title="About TaskStock" />
+<br />
+
+TaskStock is an productivity app that **visualizes personal growth through a stock market-inspired interface**.
+
+The core features include:
+
+- **Dynamic Value Visualization**: Completed tasks instantly increase your personal "stock value," displayed as a rising graph. Daily midnight settlements show cumulative progress.
+- **Project Management**: Group tasks for long-term goals and write retrospectives to add meaning to your accomplishments.
+- **Community-Driven Task Market**: Browse popular tasks or "stocks" added by the community. Compare your productivity with others and gain inspiration.
+- **Social Connectivity**: Follow friends, view their progress, and motivate each other. Privacy settings allow control over who sees your tasks.
+- **Intuitive Growth Tracking**: Easily monitor your personal development through visual representations of your daily achievements.
+
+TaskStock transforms routine task management into an engaging, social experience. It combines elements of gamification, social networking, and traditional productivity tools to create a unique platform for personal growth and motivation.
 
 <br />
+<Image
+  src={"/projects/taskstock/taskstock-preview.png"}
+  width={1200}
+  height={400}
+  alt="preview"
+/>
 <br />
 
 <Header title="Technology" subTitle="Key Features and Technical Decisions" />
@@ -105,7 +129,6 @@ github: "https://github.com/hwanheejung/TaskStock-App-Client"
     title="Architecture"
     lists={["Atomic Design Pattern"]}
   />
-  <Process.Item num={3} title="Deployment" lists={["iOS"]} />
 </Process>
 
 <br />
@@ -199,13 +222,32 @@ This approach required careful design of our database structure and token manage
 
 In our project, we encountered numerous shared components across screens. We organized these shared components outside specific screen folders:
 
-```text
+<Table>
+```text title="folder structure"
+/components
+ㄴ/atoms
+   ㄴA
+   ㄴB
+ㄴ/molecules
+   ㄴA
+   ㄴB
+ㄴ/organisms
+   ㄴA
+   ㄴB
+ㄴ/templates
+   ㄴA
+   ㄴB
+```
+
+```text title="molecule"
 ㄴ/molecules
    ㄴ/A
    ㄴ/B
    ㄴcommon1.tsx
    ㄴcommon2.tsx
 ```
+
+</Table>
 
 In retrospect, creating a '/common' folder for each atomic level (atoms, molecules, organisms, templates) could have improved organization.
 
@@ -255,6 +297,174 @@ To mitigate props drilling issues inherent in the atomic design pattern, we:
 
 <Callout link="https://hwanheejung.tistory.com/13" />
 
-<Header title="iOS Deployment" subTitle="Technology" type="secondary" />
+<br />
 
-<Header title="Reflection" />
+<Header title="Collaborative Development Practices" subTitle="collaboration" />
+
+#### Documentation w/ Notion
+
+<Image
+  src={"/projects/taskstock/taskstock-notion.png"}
+  width={1200}
+  height={400}
+  alt="TaskStock Notion Workspace"
+  description="Our centralized Notion workspace for project documentation"
+/>
+
+#### Agile Methodology: Weekly Sprints and Stand-up Meetings
+
+<Table>
+<div>
+
+We implemented weekly sprints following the Agile methodology, with a structured routine:
+
+- Role assignment
+- Task creation
+- Execution
+- Retrospective
+
+Bi-weekly stand-up meetings were held on Wednesdays and Fridays at 10 PM via Zep, where team members shared:
+
+- Completed tasks
+- Upcoming tasks
+- Potential blockers
+
+Key benefits of our Agile approach:
+
+- Frequent priority reassessment
+- Structured development process
+- Enhanced communication
+- Goal-oriented work ethic
+- Improved project visibility
+- Adaptability to changes
+- Strong team cohesion
+
+This approach significantly boosted productivity, team coordination, and project clarity.
+
+</div>
+<Image
+  src={"/projects/taskstock/taskstock-agile.png"}
+  width={500}
+  height={400}
+  alt="Agile Sprint Board" 
+  description="Our Agile sprint board for task management" />
+
+</Table>
+
+#### Tech Wiki
+
+<Table>
+<Image
+  src={"/projects/taskstock/taskstock-techWiki.png"}
+  width={500}
+  height={400}
+  alt="Tech Wiki Page" 
+  description="Our Tech Wiki page for knowledge sharing" />
+
+<div>
+
+The Tech Wiki page in our TaskStock Notion workspace became an invaluable resource for the team. It served as a platform for:
+
+- Documenting newly acquired technical knowledge
+- Sharing development insights and best practices
+- Collaborative problem-solving through issue documentation
+- Open communication via mentions and discussions
+
+This wiki fostered a culture of continuous learning and knowledge exchange within the team.
+
+</div>
+</Table>
+
+#### Bridging Design and Development
+
+<Image
+  src={"/projects/taskstock/taskstock-designer.png"}
+  width={1200}
+  height={400}
+  alt="Design-Development Collaboration Board"
+  description="Our storyboard facilitating designer-developer communication"
+/>
+
+#### User-Centric Development: Flow Chart Visualization
+
+<Image
+  src={"/projects/taskstock/taskstock-flowChart.png"}
+  width={1200}
+  height={400}
+  alt="User Flow Chart in Figjam"
+  description="Detailed user flow chart created in Figjam for intuitive navigation design"
+/>
+
+<Header title="Beta-Testing" subTitle="Production" />
+
+<Table>
+  <Image
+    src={"/projects/taskstock/taskstock-beta.png"}
+    width={300}
+    height={400}
+    alt="Group Chat"
+    description="Testers Group Chat"
+  />
+  <Image
+    src={"/projects/taskstock/taskstock-betaTester.png"}
+    width={800}
+    height={400}
+    alt="TestFlight"
+    description="TestFlight"
+  />
+</Table>
+
+In response to Google Play Store's policy changes, we conducted a beta testing phase for TaskStock.
+While the new policy required Android apps to undergo testing with **at least 20 beta testers for 2 weeks**, we expanded our scope to include iOS users as well.
+Our beta test ran for **3 weeks with 46 testers across both platforms**, exceeding the minimum requirements and ensuring a thorough evaluation of our app.
+
+We utilized **Google Forms to conduct satisfaction surveys and actively sought personal feedback from our testers**.
+This comprehensive approach yielded invaluable insights:
+
+- Uncovered unexpected issues and user reactions
+- Provided a basis for more rigorous Quality Assurance (QA) processes
+- Allowed us to address platform-specific concerns for both Android and iOS
+
+This extended beta testing phase not only helped us meet regulatory requirements but also significantly improved the overall quality and user experience of TaskStock across both major mobile platforms.
+The diverse feedback we received enabled us to refine features, fix bugs, and optimize performance before the official launch, ensuring a more polished and user-friendly product for our target audience.
+
+<Table>
+  <Image
+    src={"/projects/taskstock/appStore-release.PNG"}
+    width={400}
+    height={400}
+    alt="App Store"
+    description="AppStore Release"
+  />
+  <Image
+    src={"/projects/taskstock/android-release.png"}
+    width={400}
+    height={400}
+    alt="PlayStore"
+    description="PlayStore Release"
+  />
+</Table>
+
+<Header title="Key Takeaways" subTitle="reflection" />
+
+<br />
+
+- **Collaborative Growth**: Our team overcame various technical challenges, strengthening our teamwork and individual expertise through knowledge sharing, particularly via the Tech Wiki page.
+- **Production-Oriented Development**: Focusing on service launch and operation led to more thorough exception handling and thoughtful logic design.
+- **Technical Skill Enhancement**: Improved proficiency in TypeScript and Redux Toolkit
+- **Deployment Experience**: Smoother iOS deployment process compared to the first attempt, reinforcing the idea that initial experiences are often the most challenging.
+- **Agile Methodology Application**: Developed flexibility in responding to rapidly changing project requirements through Agile and Scrum methodologies.
+- **Comprehensive Skill Development**: Growth not only in technical capabilities but also in collaboration, communication, and problem-solving skills.
+
+<br />
+<br />
+
+<Image
+  src={"/projects/taskstock/taskstock-logo.png"}
+  width={250}
+  height={400}
+  alt="Logo"
+/>
+
+<br />
+<br />
