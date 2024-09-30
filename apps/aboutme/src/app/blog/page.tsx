@@ -5,6 +5,8 @@ import { Metadata } from "next";
 import Hero from "./_components/Hero";
 import LinkedPostBox from "./_components/LinkedPostBox";
 import PostBox from "./_components/PostBox";
+import blogCategories from "contents/meta/blogCategories.json";
+import Section from "./_components/Section";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -25,23 +27,20 @@ const BlogPage = async () => {
 
   return (
     <>
-      <Hero
-        emoji={<span className="h-6 text-5xl">💻</span>}
-        title={"Welcome to my Tech Blog :)"}
-        description="I'm currently focusing on Next.js"
-      />
-      {posts.length === 0 && previousPosts.length === 0 ? (
-        <div className="pt-40 text-center text-xl">No Post Yet...</div>
-      ) : (
-        <div className="mx-35 my-10 grid grid-cols-3 gap-5 lg:grid-cols-2 md:grid-cols-1">
-          {posts.map((post) => (
-            <PostBox key={post.slug} post={post.frontmatter} slug={post.slug} />
-          ))}
-          {previousPosts.map((post) => (
-            <LinkedPostBox key={post.link} post={post} />
-          ))}
-        </div>
-      )}
+      {blogCategories.categories.map((item) => (
+        <Section
+          categoryName={item.title}
+          categoryId={item.id}
+          subCategories={item.subs}
+          key={item.id}
+          posts={posts.filter(
+            (post) => Math.floor(post.frontmatter.categoryId!) === item.id,
+          )}
+          externalPosts={previousPosts.filter(
+            (post) => Math.floor(post.categoryId!) === item.id,
+          )}
+        />
+      ))}
     </>
   );
 };

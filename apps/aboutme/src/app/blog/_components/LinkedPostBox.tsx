@@ -8,7 +8,7 @@ interface LinkedPostBoxProps {
   post: Omit<BlogFrontMatter, "slug"> & { link: string };
 }
 
-const LinkedPostBox = async ({ post }: LinkedPostBoxProps) => {
+const LinkedPostBox = ({ post }: LinkedPostBoxProps) => {
   const { title, description, date, categoryId, link } = post;
 
   const parsedDate = parseDate(date);

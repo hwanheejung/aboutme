@@ -9,7 +9,7 @@ interface PostBoxProps {
   slug: string;
 }
 
-const PostBox = async ({ post, slug }: PostBoxProps) => {
+const PostBox = ({ post, slug }: PostBoxProps) => {
   const { title, description, date, categoryId } = post;
 
   const parsedDate = parseDate(date);
