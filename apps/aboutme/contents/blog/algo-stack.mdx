@@ -1,0 +1,184 @@
+---
+title: "Application of Stack: Infix to Prefix Conversion"
+description: "Infix to Prefix Conversion"
+date: "2024-10-5"
+categoryId: 2.2
+tags: ["algorithm", "data-structure"]
+---
+
+<Header title="Infix & Postfix Notations" subTitle="Introduction" />
+Infix and postfix notations are two different ways of writing mathmatical
+expressions. **Infix notation**, the standard approach in everyday mathematics,
+places operators **between** operands (e.g., **2 + 3**). **Postfix notation**,
+also known as Reverse Polish Notation (RPN), positions operators **after** their
+operands (e.g., **2 3 +**).
+
+While infix notation may seem sufficient for most purposes, postfix notation offers several advantages that make it valuable in certain contexts.
+
+Advantages of postfix notation:
+
+- **Elimination of parentheses** and operator precedence ambiguity
+- Easier evaluation using **stack-based algorithms**
+- More efficient for computer processing and parsing
+
+Although postfix notation may appear less intuitive for human readers,
+it proves highly efficient in computer science applications. It is particularly useful for tasks such as expression parsing and compiler design, and it significantly simplifies the process of expression evaluation.
+
+<Image
+  src={"/blog/algorithms/stack-1.png"}
+  width={500}
+  height={400}
+  alt="postfix notation"
+  description="Top: infix & Bottom: postfix"
+/>
+
+<Header title="Strategy Setting" subTitle="step-by-step" />
+
+**Step 1: Fully Parenthesize**
+
+- Begin by fully parenthesizing the infix expression to ensure each operation is distinctly marked. For example, the expression `A + B * C` would be fully parenthesized as `(A + (B * C))`. This step guarantees that **there is only one operator within each pair of parentheses**.
+
+**Step 2: Move Operators**
+
+- Move each operator that is directly before a closing parenthesis to just outside that parenthesis. For instance, in the expression `(A + (B * C))`, moving the operators outward results in `(A (B C *) +)`.
+
+**Step 3: Remove Parenthesis**
+
+- Remove all the parentheses. Since the operators have been appropriately placed to maintain the correct order of operations, the parentheses are no longer necessary. After removing parentheses, you get `A B C * +`.
+
+When observing the result, **it preserves the order of operands**. We can set the strategy as:
+
+- **Operands are immediately output**
+- **operators are stored until they are ready to be "computed."**
+
+#### Algorithm Breakdown
+
+The key idea is that operands (numbers or variables) are directly output as soon as they are encountered,
+while operators are held in a stack until their corresponding operands are ready.
+When the operator on the top of the stack has higher or equal precedence than the current operator, it is popped and output.
+This guarantees that the correct order of operations is preserved.
+
+```text showLineNumbers
+initialize an empty stack s of operands
+    for each token x of the expression, from left to right
+        if x is an operand then output x
+        else
+            while top* of stack has higher or equal precedence than x
+                pop and output the operator
+            push x
+    repeat pop and output the operator until s is empty
+```
+
+#### Stack Example for `A + B * (C - D)`:
+
+1. Initialize:
+
+   - Output:
+   - Stack: `[]`
+
+2. Process `A`:
+
+   - `A` is an operand, so it goes directly to the output.
+   - Output: `A`
+   - Stack: `[]`
+
+3. Process `+`:
+
+   - `+` is an operator, so push it onto the stack.
+   - Output: `A`
+   - Stack: [+]
+
+4. Process `B`:
+
+   - B is an operand, so it goes directly to the output.
+   - Output: `A B`
+   - Stack: `[+]`
+
+5. Process `*`:
+
+   - Since `*` has higher precedence than `+` (currently on top of the stack), we push `*` onto the stack.
+   - Output: `A B`
+   - Stack: `[+, *]`
+
+6. Process `(`:
+
+   - `(` is an opening parenthesis, so we push it onto the stack to mark the beginning of a sub-expression.
+   - Output: `A B`
+   - Stack: `[+, *, (]`
+
+7. Process `C`:
+
+   - directly to the output.
+   - Output: `A B C`
+   - Stack: `[+, *, (]`
+
+8. Process `-`:
+
+   - Since it appears inside the parentheses, we push it onto the stack.
+   - Output: `A B C`
+   - Stack: `[+, *, (, -]`
+
+9. Process `D`:
+
+   - directly to the output.
+   - Output: `A B C D`
+   - Stack: `[+, *, (, -]`
+
+10. Process `)`:
+
+    - `)` is a closing parenthesis. Pop operators from the stack to the output until we reach the opening parenthesis `(`.
+    - Output: `A B C D -`
+    - Stack: `[+, *]`
+
+11. End of Expression:
+
+    - Now that all tokens have been processed, pop all remaining operators from the stack and add them to the output.
+    - Pop `*` and `+` from the stack.
+    - Output: `A B C D - * +`
+    - Stack: []
+
+<Header title="In JavaScript" subTitle="Implementation" />
+
+```javascript showLineNumbers
+function infixToPostfix(expression) {
+  let output = [];
+  let operators = [];
+  let precedence = { "+": 1, "-": 1, "*": 2, "/": 2 };
+
+  expression = expression
+    .replace(/\s+/g, "")
+    .split(/([+\-*\/\(\)])/)
+    .filter((c) => c);
+
+  expression.forEach((token) => {
+    if (token.match(/[A-Za-z0-9]/)) {
+      output.push(token);
+    } else if ("+*/-".includes(token)) {
+      while (
+        operators.length > 0 &&
+        precedence[operators[operators.length - 1]] >= precedence[token]
+      ) {
+        output.push(operators.pop());
+      }
+      operators.push(token);
+    } else if (token === "(") {
+      operators.push(token);
+    } else if (token === ")") {
+      while (operators[operators.length - 1] !== "(") {
+        output.push(operators.pop());
+      }
+      operators.pop(); // remove '('
+    }
+  });
+
+  while (operators.length > 0) {
+    output.push(operators.pop());
+  }
+
+  return output.join(" ");
+}
+
+// Example
+let expr = "A + B * (C - D)";
+console.log(infixToPostfix(expr)); // Outputs: A B C D - * +
+```

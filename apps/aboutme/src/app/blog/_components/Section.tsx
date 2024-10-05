@@ -55,7 +55,7 @@ const Section = ({
         {categoryName}
       </header>
       {subCategories && (
-        <div className="flex justify-center gap-5">
+        <div className="flex w-full flex-wrap justify-center gap-5">
           <ButtonTransition>
             <button
               type="button"
@@ -70,6 +70,7 @@ const Section = ({
               All
             </button>
           </ButtonTransition>
+
           {subCategories.map((sub) => (
             <ButtonTransition key={sub.id}>
               <button
