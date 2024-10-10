@@ -14,9 +14,10 @@ github: "https://github.com/DizzyCode2024/client"
 <Header title="Project Overview" subTitle="process highlights" />
 <Table>
   <OverviewItem title="Focus">
-    Built **real-time** chat and video conferencing using WebSocket and WebRTC.
-    Worked on state management, ensuring secure authentication, and optimizing
-    frontend performance for smooth user interactions.
+    Built **real-time** chat and video conferencing using **WebSocket** and
+    **WebRTC**. Implemented state management using **TanStack Query for server
+    state** and **Zustand for client state**, ensuring secure authentication,
+    and optimizing frontend performance for smooth user interactions.
   </OverviewItem>
   <OverviewItem title="Links">
     [Github Repository](https://github.com/DizzyCode2024/client) <br />
@@ -40,8 +41,7 @@ github: "https://github.com/DizzyCode2024/client"
     TypeScript <br />
     TanStack Query <br />
     Zustand <br />
-    ChakraUI <br />
-    Styled-Components
+    ChakraUI
   </OverviewItem>
 </Table>
 
@@ -71,12 +71,7 @@ github: "https://github.com/DizzyCode2024/client"
   <Process.Item
     num={2}
     title="Websocket"
-    lists={[
-      "Messaging",
-      "User Status Tracking",
-      "Notifications",
-      "Recovering Abnormal Closure",
-    ]}
+    lists={["Messaging", "User Status Tracking", "Recovering Abnormal Closure"]}
   />
   <Process.Item
     num={3}
@@ -206,10 +201,13 @@ These issues highlight **the need for additional protocols atop WebSocket** to p
 
 #### ✅ Solution: STOMP Protocol
 
-When using STOMP, messages are managed in a more structured format, enabling
-clear communication STOMP stands for Simple Text Oriented Messaging Protocol,
-a subprotocol that can be used alongside WebSocket. STOMP frames consist of
-COMMAND, Headers, and Body.
+- **Structured Message Format**: STOMP manages messages in a structured format consisting of COMMAND, Headers, and Body1. This structure enables clear and consistent communication between clients and servers, making it easier to parse and process messages.
+- **Publish-Subscribe Model**: STOMP utilizes a topic-based publish-subscribe model, allowing easy implementation of chat rooms and efficient server-to-server communication2. This model simplifies message routing and distribution.
+- **Consistent Protocol Across Layers**: By using STOMP, developers can maintain a consistent protocol from the client-side to the server-side, streamlining development and maintenance processes2.
+- **Message Broker Integration**: STOMP can be used in conjunction with Message Brokers, enhancing message routing and delivery efficiency2. This is particularly useful for applications requiring real-time communication.
+
+<br />
+<br />
 
 <Callout link="/blog/dizzy-stomp" />
 
@@ -217,6 +215,86 @@ COMMAND, Headers, and Body.
 <br />
 
 <Header title="Messaging" subTitle="WebSocket" type="secondary" />
+#### 1) User A Logs into DizzyCode:
+
+**WebSocket Connection**
+
+<Box>
+
+[Client]
+
+- Requests a Secondary Token (ST) using JWT.
+
+[Server]
+
+- Validates the JWT and returns an ST with a short validity period (around 30 seconds).
+
+[Client]
+
+- Sends a WebSocket upgrade request with the ST as a query parameter.
+
+[Server]
+
+- Uses HandshakeInterceptor to extract and validate the ST.
+- Enhances initial connection security with short-lived ST, then uses JWT for ongoing authentication and authorization in STOMP connections and message transmissions.
+
+</Box>
+
+**Upon successful connection, subscribes to all rooms A belongs to.**
+
+<Box>
+
+- Incoming messages follow the format: `{roomId, categoryId, channelId}`, used for new chat notifications in channels.
+
+</Box>
+
+#### 2) A Enters Channel1 to Chat:
+
+**Subscribes to Channel1**
+
+<Box>
+
+- Messages received on this path are immediately updated on the screen.
+
+</Box>
+
+**Publishes messages to the 'app' topic**
+
+<Box>
+
+```tsx showLineNumbers
+if (client && isConnected) {
+  const destination = `/app/rooms.${roomId}.categories.${categoryId}.channels.${channelId}`;
+  client.publish({
+    destination,
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+    },
+    body: JSON.stringify(body),
+  });
+}
+```
+
+</Box>
+
+#### 3) Exiting Channel1, Entering Channel2:
+
+- Unsubscribes from Channel1
+- Subscribes to Channel2
+
+#### 4) Logout:
+
+- Unsubscribes from all rooms and channels
+- Terminates WebSocket connection
+
+<br />
+
+<Image
+  src={"/projects/dizzycode/layer.png"}
+  width={700}
+  height={400}
+  alt="layer structure"
+/>
 
 <br />
 <br />

@@ -11,6 +11,30 @@ import Timeline from "../_components/Timeline";
 import Header from "@/components/Layouts/Header";
 import Table from "@/components/Layouts/Table";
 import Divider from "@/components/Layouts/Divider";
+import { Metadata } from "next";
+
+interface ProjectPageProps {
+  params: {
+    slug: string;
+  };
+}
+
+export async function generateMetadata({
+  params,
+}: ProjectPageProps): Promise<Metadata> {
+  const { slug } = params;
+  const { frontmatter } = await getProjectBySlug(slug);
+  return {
+    openGraph: {
+      title: frontmatter.title,
+      description: frontmatter.description,
+    },
+    twitter: {
+      title: frontmatter.title,
+      description: frontmatter.description,
+    },
+  };
+}
 
 export async function generateStaticParams() {
   const projects = await getAllProjects();
@@ -24,12 +48,6 @@ export async function generateStaticParams() {
       slug: project.slug,
     };
   });
-}
-
-interface ProjectPageProps {
-  params: {
-    slug: string;
-  };
 }
 
 const components = {
